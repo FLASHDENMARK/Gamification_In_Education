@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class MouseManager : MonoBehaviour {
 
@@ -38,7 +39,7 @@ public class MouseManager : MonoBehaviour {
             if(hit.collider.name == "Cat")
                 hit.transform.GetComponent<PositionRandomizer>().RandomizePosition();
             if (hit.collider.name == "Cat_Level")
-                Application.LoadLevel(1);
+                SceneManager.LoadScene(1);
             return hit.collider.name;
         }
         else
