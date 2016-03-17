@@ -31,20 +31,22 @@ public class MouseManager : MonoBehaviour {
 
 
 
-    string GetClickedEntity(Vector2 mousePosition)
+    int GetClickedEntity(Vector2 mousePosition)
     {
         RaycastHit2D hit = Physics2D.Raycast(mousePosition, Camera.main.transform.forward);
         if (hit)
         {
-            if(hit.collider.name == "Cat")
-                hit.transform.GetComponent<PositionRandomizer>().RandomizePosition();
-            if (hit.collider.name == "Cat_Level")
-                SceneManager.LoadScene(1);
-            return hit.collider.name;
+           for(int i = 0; i < transform.GetComponent<ProgressionManager>().unlocks.Length; i++)
+            {
+                if (hit.collider.name == transform.GetComponent<ProgressionManager>().unlocks[i].name)
+                    Debug.Log(i);
+                    return i;
+            }
         }
         else
         {
-            return "-1";
+            return -1;
         }
+        return 1;
     }
 }
