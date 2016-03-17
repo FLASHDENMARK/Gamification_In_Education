@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ObjectProgress : MonoBehaviour {
 
-    public bool[] level;
+    public int level;
+
+    public int[] toUnlock;
+
     public Progress[] progress;
             
     [System.Serializable]
@@ -26,6 +31,8 @@ public class ObjectProgress : MonoBehaviour {
             if (unlocks == dependencies.Length)
                 this.isDone = true;
         }
+
+
     }
 
 
