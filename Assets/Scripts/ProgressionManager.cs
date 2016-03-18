@@ -4,13 +4,23 @@ using System.Collections;
 public class ProgressionManager : MonoBehaviour {
 
     // Use this for initialization
-    public GameObject[] unlocks;
+    public ObjectProgress[] unlocks;
     public int missionCounter;
+
+    [System.Serializable]
+    public class ObjectProgress
+    {
+        // fornace, campfire...
+        public GameObject asset;
+        public int level = 0;
+        public int[] toUnlock;
+    }
+
     void Start()
     {
-        foreach (GameObject g in unlocks)
+        foreach (ObjectProgress g in unlocks)
         {
-            g.SetActive(false);
+            g.asset.SetActive(false);
         }
         UnlockObject(3);
     }
@@ -20,12 +30,12 @@ public class ProgressionManager : MonoBehaviour {
         //Furnace
         for(int j = 0; j < unlocks.Length; j++) { 
             for(int i = 0; i < unlocks.Length; i++) {
-                Debug.Log(j +", " + i + ". " + "checking " + unlocks[j].name + " need: " + unlocks[j].GetComponent<ObjectProgress>().toUnlock[i]
-                    + " have: " + unlocks[i].GetComponent<ObjectProgress>().level);
-                if (unlocks[i].GetComponent<ObjectProgress>().level >= unlocks[j].GetComponent<ObjectProgress>().toUnlock[i])
+                Debug.Log(j +", " + i + ". " + "checking " + unlocks[j].asset.name + " need: " + unlocks[j].toUnlock[i]
+                    + " have: " + unlocks[i].level);
+                if (unlocks[i].level >= unlocks[j].toUnlock[i])
                 {
                     if (i == unlocks.Length-1) {
-                        Debug.Log("unlocking: " + unlocks[j].name);
+                        Debug.Log("unlocking: " + unlocks[j].asset.name);
                         UnlockObject(j);
                     }
                 } else
@@ -40,10 +50,12 @@ public class ProgressionManager : MonoBehaviour {
     void Update () {
         unlockObjects();
     }
-
+    
     void UnlockObject(int objectIndex)
     {
-        GameObject toUnlock = unlocks[objectIndex].gameObject;             
+        GameObject toUnlock = unlocks[objectIndex].asset.gameObject;             
         toUnlock.SetActive(true);
     }
+
+
 }
