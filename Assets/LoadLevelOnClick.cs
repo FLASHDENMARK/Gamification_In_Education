@@ -19,7 +19,7 @@ public class LoadLevelOnClick : MonoBehaviour, IClickable
 	}
 
 	// The user pressed yes / no
-	public void OnClickConfirmed (bool answer)
+	public void OnConfirmedOrDenied (bool answer)
 	{
 		Debug.LogError("The user answered: " + answer);
 
@@ -28,7 +28,7 @@ public class LoadLevelOnClick : MonoBehaviour, IClickable
 	}
 
 	// The user answered the quiz 
-	public void OnClickQuiz (int answer)
+	public void OnQuizWasAnswered (int answer)
 	{
 		if (answer == correctAnswer)
 		{

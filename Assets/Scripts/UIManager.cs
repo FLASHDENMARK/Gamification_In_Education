@@ -17,11 +17,11 @@ public class UIManager : MonoBehaviour
 		textWindow.SetBody(message);
 	}
 
-	MonoBehaviour delegateMono;
+	MonoBehaviour callback;
 
 	public void TextNotificationWithAck (string headline, string message, MonoBehaviour mono)
 	{
-		delegateMono = mono;
+		callback = mono;
 
 		TextNotification(headline, message);
 		textWindow.InitializeConfirm(true);
@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour
 
 	public void TextNotificationWithAccept (string headline, string message, MonoBehaviour mono)
 	{
-		delegateMono = mono;
+		callback = mono;
 
 		TextNotification(headline, message);
 		textWindow.InitializeAcceptOrDeny(true);
@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour
 
 	public void TextNotificationWithQuiz (string headline, string message, string[] answers, MonoBehaviour mono)
 	{
-		delegateMono = mono;
+		callback = mono;
 
 		TextNotification(headline, message);
 		textWindow.InitializeQuiz(answers);
@@ -47,14 +47,14 @@ public class UIManager : MonoBehaviour
 	{
 		DisableNotification();
 
-		if (delegateMono)
-			delegateMono.SendMessage("OnClickConfirmed", answer);
+		if (callback)
+			callback.SendMessage("OnConfirmedOrDenied", answer);
 	}
 
 	public void OnQuizWasAnswered (int answer)
 	{
-		if (delegateMono)
-			delegateMono.SendMessage("OnClickQuiz", answer);
+		if (callback)
+			callback.SendMessage("OnQuizWasAnswered", answer);
 	}
 
 	// Called directly from the UI element

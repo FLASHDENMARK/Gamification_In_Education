@@ -4,5 +4,5 @@ using System.Collections;
 public interface IClickable 
 {
 	void OnClick();
-	void OnClickConfirmed(bool b);
+	void OnConfirmedOrDenied(bool b);
 }
