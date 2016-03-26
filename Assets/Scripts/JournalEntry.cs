@@ -1,15 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class JournalEntry : MonoBehaviour {
+class JournalEntry : JournalEntryBase 
+{	
+	// Constructor calls base Constructor
+	public JournalEntry (string headline) : base (headline) {}
 
-	// Use this for initialization
-	void Start () {
-	
-	}//TTests
-	
-	// Update is called once per frame
-	void Update () {
-	
+	// Constructor calls base Constructor
+	public JournalEntry (string headline, string body) : base (headline, body) {}
+
+	public override List<JournalEntryBase> GetEntries ()
+	{
+		throw new System.NotImplementedException();
+	}
+
+	public override void Select (int selection)
+	{
+		throw new System.NotImplementedException();
 	}
 }
