@@ -6,15 +6,33 @@ using System.Collections;
 public class UIRelay : MonoBehaviour 
 {
 	static UIManager manager; 
+	public Transform UIWindow;
 
 	void Awake ()
 	{
-		manager = GetComponent<UIManager>(); 
+		DontDestroyOnLoad(this);
+		Transform canvas = GameObject.Find("Canvas").transform;
+		DontDestroyOnLoad(canvas.gameObject);
 
-		if (!manager)
+		if (!UIWindow)
 		{
-			throw new System.NullReferenceException("No Canvas was found!");
+			throw new System.NullReferenceException("No UIWindow was assigned");
 		}
+		else
+		{
+			Transform t = Instantiate(UIWindow);
+			t.gameObject.SetActive(false);
+			t.SetParent(canvas, false);
+
+			manager = t.GetComponent<UIManager>();
+		
+			if (!manager)
+			{
+				throw new System.NullReferenceException("No UIManager was found!");
+			}
+		}
+
+		TextNotification("Welcome!", "You are stranded, something something something...");
 	}
 
 	public static void TextNotification (string headline, string message)

@@ -10,10 +10,15 @@ public class LoadLevelOnClick : MonoBehaviour, IClickable
 	public string[] answers;
 	public int correctAnswer;
 
+	void Awake ()
+	{
+		SceneManager.LoadScene(loadLevel);
+	}
+
 	// Is called when the object containing this script is clicked on
 	public void OnClick ()
 	{
-		UIRelay.TextNotificationWithQuiz(UIHeadline, UIBody, answers, this);
+		//UIRelay.TextNotificationWithQuiz(UIHeadline, UIBody, answers, this);
 		//UIRelay.TextNotificationWithAccept(UIHeadline, UIBody, this);
 		//UIRelay.TextNotification (UIHeadline, UIBody);
 	}

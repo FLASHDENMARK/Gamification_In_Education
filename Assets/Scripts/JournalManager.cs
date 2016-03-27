@@ -224,7 +224,7 @@ class JournalManager : MonoBehaviour
 
     void TheoryUIWindow (int windowID) 
     {
-    	// Draws the body (text) for the current topic
+    	// Draws the body (text) for the current topic, inside a UI Window
         GUI.Label(new Rect(10, 20, windowRect.width - 10, 350), body);        
     }
 

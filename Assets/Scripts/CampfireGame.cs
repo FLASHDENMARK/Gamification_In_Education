@@ -2,13 +2,17 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
-public class CampfireGame : MonoBehaviour {
+
+public class CampfireGame : MonoBehaviour 
+{
     string CurrentResource = null;
     // Use this for initialization
     
-    void Start () {
-	
+    void Start () 
+    {
+	   UIRelay.TextNotification("Penis!", "Hvorfor lugter tæer hvis de ikke har nogen næse?");
 	}
+
     public GameObject GO = null;
     GameObject draggedObject;
     // Update is called once per frame
