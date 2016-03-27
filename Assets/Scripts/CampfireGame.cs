@@ -60,34 +60,44 @@ public class CampfireGame : MonoBehaviour {
         List<string> compositionList = new List<string>();
         Transform canvas = GameObject.Find("Canvas/Fire Triangle").transform;
         string[] composition = new string[3];
-        foreach (Transform child in canvas)
+        foreach (Transform child in canvas) { 
+            Debug.Log(child.GetComponent<Text>().text);
             compositionList.Add(child.GetComponent<Text>().text);
-
+        }
+        
         if (compositionList.Contains("Heat") && compositionList.Contains("Fuel") && compositionList.Contains("O2")) {
             CB.normalColor = Color.green;
+            CB.highlightedColor = Color.green;
             button.colors = CB;
             yield return new WaitForSeconds(.5f);
             CB.normalColor = Color.white;
+            CB.highlightedColor = Color.white;
             button.colors = CB;
             yield return new WaitForSeconds(.5f);
             CB.normalColor = Color.green;
+            CB.highlightedColor = Color.green;
             button.colors = CB;
             yield return new WaitForSeconds(.5f);
             CB.normalColor = Color.white;
+            CB.highlightedColor = Color.white;
             button.colors = CB;
         }
         else
         {
             CB.normalColor = Color.red;
+            CB.highlightedColor = Color.red;
             button.colors = CB;
             yield return new WaitForSeconds(.5f);
             CB.normalColor = Color.white;
+            CB.highlightedColor = Color.white;
             button.colors = CB;
             yield return new WaitForSeconds(.5f);
             CB.normalColor = Color.red;
+            CB.highlightedColor = Color.red;
             button.colors = CB;
             yield return new WaitForSeconds(.5f);
             CB.normalColor = Color.white;
+            CB.highlightedColor = Color.white;
             button.colors = CB;
 
 
