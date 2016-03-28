@@ -11,7 +11,7 @@ public class CampfireGame : MonoBehaviour
     
     void Start () 
     {
-	   UIRelay.TextNotification("Penis!", "Hvorfor lugter tæer hvis de ikke har nogen næse?");
+	   UIRelay.TextNotification("Making Fire!", "Now, to make a fire, i need three components. If only i can remember which ones it is...");
 	}
 
     public GameObject GO = null;

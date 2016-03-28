@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class ProgressionManager : MonoBehaviour {
 
     // Use this for initialization
     public ObjectProgress[] unlocks;
-    public int missionCounter;
 
     [System.Serializable]
     public class ObjectProgress
@@ -16,13 +16,16 @@ public class ProgressionManager : MonoBehaviour {
         public int[] toUnlock;
     }
 
-    void Start()
+    void Awake()
     {
-        foreach (ObjectProgress g in unlocks)
-        {
-            g.asset.SetActive(false);
-        }
-        UnlockObject(3);
+    }
+
+    void OnLevelWasLoaded(int level)
+    {
+        Debug.LogError("GEP");
+        unlocks[0].asset = GameObject.Find("Unlockables/CampFire");
+        if(Application.loadedLevel == 0)
+        unlockObjects();
     }
 	
     void unlockObjects()
@@ -48,13 +51,15 @@ public class ProgressionManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        unlockObjects();
     }
-    
+
     void UnlockObject(int objectIndex)
     {
-        GameObject toUnlock = unlocks[objectIndex].asset.gameObject;             
-        toUnlock.SetActive(true);
+        if (unlocks[objectIndex].level == 1) { 
+        GameObject toUnlock = unlocks[objectIndex].asset.gameObject;
+        Sprite sprite = Resources.Load<Sprite>("CampFire");
+        toUnlock.GetComponent<SpriteRenderer>().sprite = sprite;
+    }
     }
 
 

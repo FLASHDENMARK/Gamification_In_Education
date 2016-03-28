@@ -16,7 +16,6 @@ using System.Collections.Generic;
 class Menu : JournalEntryBase
 {
 	List<JournalEntryBase> journalEntries = new List<JournalEntryBase>();
-    List<T> tingogsager = new List<T>();
 	string _subject;
 	int selection;
 
@@ -161,8 +160,9 @@ class JournalManager : MonoBehaviour
 	// Called every frame and draws UI elements on screen
 	void OnGUI ()
 	{
+        GUI.contentColor = Color.white;
 		// Let the user know how to toggle the Journal on and off
-		GUI.Label(new Rect(10, 10, 350, 30), 
+		GUI.Label(new Rect(10, Screen.height - 20, 350, 30), 
 			"Press " + show.ToString() + " to " + (showJournal? "hide" : "show") + " the Professor's Journal");
 		
 		// Return if the journal shouldn't be show
@@ -233,10 +233,8 @@ class JournalManager : MonoBehaviour
         Texture2D penisTexture = new Texture2D(2, 2);
         float height = penis.CalcHeight(new GUIContent(body), windowRect.width - 10);
 
-        GUI.DrawTexture(new Rect(10, 20 + height, windowRect.width - 10, 350), penisTexture);
-
-
-        Debug.LogError("Penis height: " + height);        
+        //GUI.DrawTexture(new Rect(10, 20 + height, windowRect.width - 10, 350), penisTexture);
+      
     }
 
     void Highlight ()

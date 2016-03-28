@@ -32,7 +32,7 @@ public class UIRelay : MonoBehaviour
 			}
 		}
 
-		TextNotification("Welcome!", "You are stranded, something something something...");
+		TextNotification("Welcome!", "You wake up, on a strange island. You notice a journal, lying on the ground. Is is a professors journal. You pick it up, and can now access it by pressing tab.");
 	}
 
 	public static void TextNotification (string headline, string message)
