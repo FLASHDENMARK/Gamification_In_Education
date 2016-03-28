@@ -11,7 +11,7 @@ public class CampfireGame : MonoBehaviour
     
     void Start () 
     {
-	   UIRelay.TextNotification("Making Fire!", "Now, to make a fire, i need three components. If only i can remember which ones it is...");
+	   UIRelay.TextNotification("Making Fire!", "Now, to make a fire, i need three components. If only i can remember which ones it is... \n\n\nDrag the correct components, to the fire triangle and give it a shot.");
 	}
 
     public GameObject GO = null;

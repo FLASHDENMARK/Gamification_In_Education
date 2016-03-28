@@ -24,7 +24,7 @@ public class WoodCutter : MonoBehaviour {
 
     IEnumerator checkAnswers()
     {
-        int i = 0, score = 1;
+        int i = 0, score = 0;
         List<int> answers = new List<int>();
         int[] correctAnswers = {10, -330, 15, 40};
         Transform Canvas = GameObject.Find("Canvas/Answers").transform;
@@ -52,6 +52,7 @@ public class WoodCutter : MonoBehaviour {
                     inputfield.colors = CB;
                     i++;
                     score++;
+                    Debug.Log(score);
                 }
                 else
                 {
@@ -71,8 +72,9 @@ public class WoodCutter : MonoBehaviour {
                     i++;
                 }
         }
-        if (score > 4)
+        if (score == 4) { 
             GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[0].level = 1;
             SceneManager.LoadScene(0);
+        }
     }
 }
