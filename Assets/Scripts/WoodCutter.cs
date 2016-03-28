@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class WoodCutter : MonoBehaviour {
 
@@ -71,6 +72,7 @@ public class WoodCutter : MonoBehaviour {
                 }
         }
         if (score > 4)
-            Debug.Log("COMPLETE");
+            
+            SceneManager.LoadScene(0);
     }
 }

@@ -11,11 +11,21 @@ public class MouseManager : MonoBehaviour {
 
     }
 
+    void StartMinigame()
+    {
+        if(GetClickedEntity(mousePosition).name == "CampFire")
+        {
+            SceneManager.LoadScene(1);
+        }
+    }
+
     // Update is called once per frame
     void Update() {
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log(GetClickedEntity(mousePosition));
+            if(GetClickedEntity(mousePosition))
+            StartMinigame();
         }
     }
 

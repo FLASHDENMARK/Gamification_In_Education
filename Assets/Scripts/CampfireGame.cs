@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class CampfireGame : MonoBehaviour 
 {
@@ -85,6 +86,7 @@ public class CampfireGame : MonoBehaviour
             CB.normalColor = Color.white;
             CB.highlightedColor = Color.white;
             button.colors = CB;
+            SceneManager.LoadScene(2);
         }
         else
         {

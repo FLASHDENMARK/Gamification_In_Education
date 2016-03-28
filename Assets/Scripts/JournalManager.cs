@@ -16,6 +16,7 @@ using System.Collections.Generic;
 class Menu : JournalEntryBase
 {
 	List<JournalEntryBase> journalEntries = new List<JournalEntryBase>();
+    List<T> tingogsager = new List<T>();
 	string _subject;
 	int selection;
 
@@ -222,10 +223,20 @@ class JournalManager : MonoBehaviour
 		}
 	}
 
+    public GUIStyle penis;
+
     void TheoryUIWindow (int windowID) 
     {
     	// Draws the body (text) for the current topic, inside a UI Window
-        GUI.Label(new Rect(10, 20, windowRect.width - 10, 350), body);        
+        GUI.Label(new Rect(10, 20, windowRect.width - 10, 350), body, penis);
+
+        Texture2D penisTexture = new Texture2D(2, 2);
+        float height = penis.CalcHeight(new GUIContent(body), windowRect.width - 10);
+
+        GUI.DrawTexture(new Rect(10, 20 + height, windowRect.width - 10, 350), penisTexture);
+
+
+        Debug.LogError("Penis height: " + height);        
     }
 
     void Highlight ()
