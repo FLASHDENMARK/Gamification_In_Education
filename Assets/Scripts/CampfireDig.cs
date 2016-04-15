@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class CampfireDig : MonoBehaviour
 {
@@ -8,11 +9,13 @@ public class CampfireDig : MonoBehaviour
     Vector3[] nullVectorArray = new Vector3[2] { Vector3.zero, Vector3.zero };
     public GameObject object1 = null;
     public GameObject object2 = null;
+    GameObject canvas;
     bool flag;
     // Use this for initialization
     void Start()
     {
         this.GetComponent<LineRenderer>().SetWidth(0.1f, 0.1f);
+        this.GetComponent<LineRenderer>().SetColors(Color.white, Color.white);
     }
 
     // Update is called once per frame
@@ -29,10 +32,17 @@ public class CampfireDig : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && this.flag)
         {
+            canvas = GameObject.Find("Canvas");
             object1 = this.gameObject;
             object2 = Camera.main.GetComponent<MouseManager>().GetClickedEntity(mousePosition);
             object2.GetComponent<LineRenderer>().SetPositions(nullVectorArray);
+            Debug.Log(this.object1.GetComponent<RectTransform>().rect.width * (canvas.GetComponent<RectTransform>().rect.width / Screen.width));
+            Debug.Log(Screen.width);
             this.positions[0] = Camera.main.ScreenToWorldPoint(object1.transform.position);
+            Vector3 temp = this.object1.transform.position;
+            temp.x -= this.object1.GetComponent<RectTransform>().rect.width / 2;
+            temp = Camera.main.ScreenToWorldPoint(temp);
+            this.positions[0] = temp;
             this.positions[1] = object2.transform.position;
             this.GetComponent<LineRenderer>().SetPositions(positions);
             this.flag = false;
