@@ -72,19 +72,23 @@ public class CampfireDig : MonoBehaviour
         }
     }
 
-    public void checkAnswers()
+    public bool checkAnswers()
     {
  //       Debug.Log(object1.name + " - " + object2.name);
         for (int i = 0; i < GameObject.Find("Canvas").transform.childCount -1; i++ ){
            if (GameObject.Find("Canvas").transform.GetChild(i).GetComponent<CampfireDig>().object1 == null ||
                 GameObject.Find("Canvas").transform.GetChild(i).GetComponent<CampfireDig>().object1 == null) {
-                return;       
+                return false; 
             }
         }
-        if (this.object1.name.Contains(this.object2.name))
+        if (this.object1.name.Contains(this.object2.name)) {
             this.GetComponent<LineRenderer>().SetColors(Color.green, Color.green);
-        else
+            return true;
+        }
+        else {
             this.GetComponent<LineRenderer>().SetColors(Color.red, Color.red);
+            return false;
+        }
     }
 
 }

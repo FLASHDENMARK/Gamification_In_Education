@@ -7,6 +7,7 @@ using UnityEngine.UI;
     bool ColorChangeRunning = false;
     // Use this for initialization
     public void CheckAllAnswers() {
+        int correctAnswers = 0;
         foreach (GameObject GO in Shapes) {
             if (GO.GetComponent<CampfireDig>().object1 == null || GO.GetComponent<CampfireDig>().object2 == null) {
                 Debug.Log("Starting coroutine on: " + GO.name);
@@ -15,8 +16,11 @@ using UnityEngine.UI;
                 return;
             }
             foreach (GameObject GOS in Shapes) {
-                GOS.GetComponent<CampfireDig>().checkAnswers();
+                if (GOS.GetComponent<CampfireDig>().checkAnswers())
+                    correctAnswers++;
             }
+            if (correctAnswers == GameObject.Find("Shapes").transform.childCount)
+                Debug.LogError("CORRECT!");
         }
     }
 
