@@ -10,7 +10,7 @@ public class ProgressionManager : MonoBehaviour {
     [System.Serializable]
     public class ObjectProgress
     {
-        // furnace, campfire...
+        // fornace, campfire...
         public GameObject asset;
         public int level = 0;
         public int[] toUnlock;
@@ -18,18 +18,17 @@ public class ProgressionManager : MonoBehaviour {
 
     void Awake()
     {
-        unlocks[0].asset = GameObject.Find("Unlockables/CampFire");
-        DontDestroyOnLoad(this);
     }
 
     void OnLevelWasLoaded(int level)
     {
+        Debug.LogError("GEP");
         unlocks[0].asset = GameObject.Find("Unlockables/CampFire");
-        //if(Application.loadedLevel == 0)
-       // unlockObjects();
+        if(Application.loadedLevel == 0)
+        unlockObjects();
     }
-
-    /*void unlockObjects()
+	
+    void unlockObjects()
     {
         //Furnace
         for(int j = 0; j < unlocks.Length; j++) { 
@@ -49,7 +48,7 @@ public class ProgressionManager : MonoBehaviour {
             }
         }
     }
-    */
+
     // Update is called once per frame
     void Update () {
     }

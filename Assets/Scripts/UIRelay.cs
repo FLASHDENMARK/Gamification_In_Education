@@ -12,7 +12,7 @@ public class UIRelay : MonoBehaviour
 	{
 		DontDestroyOnLoad(this);
 		Transform canvas = GameObject.Find("Canvas").transform;
-		//DontDestroyOnLoad(canvas.gameObject);
+		DontDestroyOnLoad(canvas.gameObject);
 
 		if (!UIWindow)
 		{

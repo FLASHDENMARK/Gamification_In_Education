@@ -2,7 +2,6 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
     class CampFireDigManager : MonoBehaviour {
     public GameObject[] Shapes;
@@ -21,11 +20,8 @@ using UnityEngine.SceneManagement;
                 if (GOS.GetComponent<CampfireDig>().checkAnswers())
                     correctAnswers++;
             }
-            if (correctAnswers == GameObject.Find("Shapes").transform.childCount) {
-                GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[0].level++;
-                SceneManager.LoadScene(0);
-            }
-                
+            if (correctAnswers == GameObject.Find("Shapes").transform.childCount)
+                Debug.LogError("CORRECT!");
         }
     }
 

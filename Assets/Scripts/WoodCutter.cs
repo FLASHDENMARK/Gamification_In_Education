@@ -73,7 +73,7 @@ public class WoodCutter : MonoBehaviour {
                 }
         }
         if (score == 4) { 
-            GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[0].level++;
+            GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[0].level = 1;
             SceneManager.LoadScene(0);
         }
     }
