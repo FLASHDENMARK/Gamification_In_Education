@@ -22,13 +22,12 @@ public class ProgressionManager : MonoBehaviour {
 
     void OnLevelWasLoaded(int level)
     {
-        Debug.LogError("GEP");
         unlocks[0].asset = GameObject.Find("Unlockables/CampFire");
-        if(Application.loadedLevel == 0)
-        unlockObjects();
+        //if(Application.loadedLevel == 0)
+        //unlockObjects();
     }
 	
-    void unlockObjects()
+   /* void unlockObjects()
     {
         //Furnace
         for(int j = 0; j < unlocks.Length; j++) { 
@@ -48,7 +47,7 @@ public class ProgressionManager : MonoBehaviour {
             }
         }
     }
-
+    */
     // Update is called once per frame
     void Update () {
     }
