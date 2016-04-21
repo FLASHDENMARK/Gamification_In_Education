@@ -15,7 +15,7 @@ public class MouseManager : MonoBehaviour {
     {
         if(GetClickedEntity(mousePosition).name == "CampFire")
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(1+GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[0].level);
         }
     }
 

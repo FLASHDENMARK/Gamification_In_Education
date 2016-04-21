@@ -11,7 +11,7 @@ public class CampfireGame : MonoBehaviour
     
     void Start () 
     {
-	   UIRelay.TextNotification("Making Fire!", "Now, to make a fire, i need three components. If only i can remember which ones it is... \n\n\nDrag the correct components, to the fire triangle and give it a shot.");
+	  // UIRelay.TextNotification("Making Fire!", "Now, to make a fire, i need three components. If only i can remember which ones it is... \n\n\nDrag the correct components, to the fire triangle and give it a shot.");
 	}
 
     public GameObject GO = null;
@@ -86,7 +86,8 @@ public class CampfireGame : MonoBehaviour
             CB.normalColor = Color.white;
             CB.highlightedColor = Color.white;
             button.colors = CB;
-            SceneManager.LoadScene(2);
+            GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[0].level++;
+            SceneManager.LoadScene(0);
         }
         else
         {
