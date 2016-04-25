@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MouseManager : MonoBehaviour {
 
@@ -13,14 +14,15 @@ public class MouseManager : MonoBehaviour {
 
     void StartMinigame()
     {
-        if(GetClickedEntity(mousePosition).name == "CampFire")
-        {
+        if(GetClickedEntity(mousePosition).name == "CampFire"){
+            GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text = "";
             int index = 0;
             bool flag = false;
             foreach(int i in GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[0].toUnlock) {
                 if(GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[index].level < i) {
-                    Debug.LogError(GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[index].asset.name +
-                        " needs level: " + i);
+                    GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text +=
+                   GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[index].asset.name +
+                        " needs level: " + i + "\n";
                     flag = true;
                 }
                 index++;
@@ -30,12 +32,14 @@ public class MouseManager : MonoBehaviour {
         }
 
         if (GetClickedEntity(mousePosition).name == "Workbench") {
+            GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text = "";
             int index = 0;
             bool flag = false;
             foreach (int i in GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[1].toUnlock) {
                 if (GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[index].level < i) {
-                    Debug.LogError(GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[index].asset.name +
-                        " needs level: " + i);
+                    GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text +=
+                   GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[index].asset.name +
+                        " needs level: " + i + "\n";
                     flag = true;
                 }
                 index++;
@@ -45,12 +49,14 @@ public class MouseManager : MonoBehaviour {
         }
 
         if (GetClickedEntity(mousePosition).name == "Furnace") {
+            GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text = "";
             int index = 0;
             bool flag = false;
-            foreach (int i in GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[0].toUnlock) {
+            foreach (int i in GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[2].toUnlock) {
                 if (GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[index].level < i) {
-                    Debug.LogError(GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[index].asset.name +
-                        " needs level: " + i);
+                    GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text +=
+                   GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[index].asset.name +
+                        " needs level: " + i + "\n";
                     flag = true;
                 }
                 index++;
@@ -60,12 +66,14 @@ public class MouseManager : MonoBehaviour {
         }
 
         if (GetClickedEntity(mousePosition).name == "Hut") {
+            GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text = "";
             int index = 0;
             bool flag = false;
-            foreach (int i in GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[0].toUnlock) {
+            foreach (int i in GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[3].toUnlock) {
                 if (GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[index].level < i) {
-                    Debug.LogError(GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[index].asset.name +
-                        " needs level: " + i);
+                    GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text += 
+                   GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[index].asset.name +
+                        " needs level: " + i + "\n";
                     flag = true;
                 }
                 index++;
