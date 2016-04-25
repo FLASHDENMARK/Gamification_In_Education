@@ -15,7 +15,63 @@ public class MouseManager : MonoBehaviour {
     {
         if(GetClickedEntity(mousePosition).name == "CampFire")
         {
+            int index = 0;
+            bool flag = false;
+            foreach(int i in GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[0].toUnlock) {
+                if(GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[index].level < i) {
+                    Debug.LogError(GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[index].asset.name +
+                        " needs level: " + i);
+                    flag = true;
+                }
+                index++;
+            }
+            if(!flag)
             SceneManager.LoadScene(1 + GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[0].level);
+        }
+
+        if (GetClickedEntity(mousePosition).name == "Workbench") {
+            int index = 0;
+            bool flag = false;
+            foreach (int i in GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[1].toUnlock) {
+                if (GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[index].level < i) {
+                    Debug.LogError(GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[index].asset.name +
+                        " needs level: " + i);
+                    flag = true;
+                }
+                index++;
+            }
+            if (!flag)
+                SceneManager.LoadScene(1 + GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[0].level);
+        }
+
+        if (GetClickedEntity(mousePosition).name == "Furnace") {
+            int index = 0;
+            bool flag = false;
+            foreach (int i in GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[0].toUnlock) {
+                if (GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[index].level < i) {
+                    Debug.LogError(GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[index].asset.name +
+                        " needs level: " + i);
+                    flag = true;
+                }
+                index++;
+            }
+            if (!flag)
+                SceneManager.LoadScene(1 + GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[0].level);
+        }
+
+        if (GetClickedEntity(mousePosition).name == "Hut") {
+            int index = 0;
+            bool flag = false;
+            foreach (int i in GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[0].toUnlock) {
+                if (GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[index].level < i) {
+                    Debug.LogError(GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[index].asset.name +
+                        " needs level: " + i);
+                    flag = true;
+                }
+                index++;
+            }
+            if (!flag)
+                SceneManager.LoadScene(1 + GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[0].level);
         }
     }
 

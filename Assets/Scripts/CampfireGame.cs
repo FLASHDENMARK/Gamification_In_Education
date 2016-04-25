@@ -64,7 +64,6 @@ public class CampfireGame : MonoBehaviour
         ColorBlock CB = button.colors;
         List<string> compositionList = new List<string>();
         Transform canvas = GameObject.Find("Canvas/Fire Triangle").transform;
-        string[] composition = new string[3];
         foreach (Transform child in canvas) { 
             Debug.Log(child.GetComponent<Text>().text);
             compositionList.Add(child.GetComponent<Text>().text);

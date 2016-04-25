@@ -9,18 +9,29 @@ public class UnlockAblesRenderer : MonoBehaviour {
 	void Start () {
         DontDestroyOnLoad(this);
         unlocks[0] = GameObject.Find("Canvas/Unlockables/Campfire").GetComponent<Image>();
-        unlocks[0].fillAmount = (0.33F * this.GetComponent<ProgressionManager>().unlocks[0].level);
-        GameObject.Find("Canvas/Unlockables/Campfire/Text").GetComponent<Text>().text =
-        this.GetComponent<ProgressionManager>().unlocks[0].level.ToString();
+        unlocks[1] = GameObject.Find("Canvas/Unlockables/Workbench").GetComponent<Image>();
+        unlocks[2] = GameObject.Find("Canvas/Unlockables/Furnace").GetComponent<Image>();
+        unlocks[3] = GameObject.Find("Canvas/Unlockables/Hut").GetComponent<Image>();
+
+        for(int i = 0; i < unlocks.Length; i++) {
+            unlocks[i].fillAmount = (0.33f * this.GetComponent<ProgressionManager>().unlocks[i].level);
+            unlocks[i].transform.FindChild("Text").GetComponent<Text>().text =
+                this.GetComponent<ProgressionManager>().unlocks[i].level.ToString();
+        }
     }
 
     void OnLevelWasLoaded(int level) {
         if(level == 0) {
             unlocks[0] = GameObject.Find("Canvas/Unlockables/Campfire").GetComponent<Image>();
-            Debug.Log(0.33F * this.GetComponent<ProgressionManager>().unlocks[0].level);
-            unlocks[0].fillAmount = (0.33F * this.GetComponent<ProgressionManager>().unlocks[0].level);
-            GameObject.Find("Canvas/Unlockables/Campfire/Text").GetComponent<Text>().text =
-            this.GetComponent<ProgressionManager>().unlocks[0].level.ToString();
+            unlocks[1] = GameObject.Find("Canvas/Unlockables/Workbench").GetComponent<Image>();
+            unlocks[2] = GameObject.Find("Canvas/Unlockables/Furnace").GetComponent<Image>();
+            unlocks[3] = GameObject.Find("Canvas/Unlockables/Hut").GetComponent<Image>();
+
+            for(int i = 0; i < unlocks.Length; i++) {
+                unlocks[i].fillAmount = (0.33f * this.GetComponent<ProgressionManager>().unlocks[i].level);
+                unlocks[i].transform.FindChild("Text").GetComponent<Text>().text =
+                    this.GetComponent<ProgressionManager>().unlocks[i].level.ToString();
+            }
         }
     }
 

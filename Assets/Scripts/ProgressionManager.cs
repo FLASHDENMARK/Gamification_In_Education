@@ -18,11 +18,18 @@ public class ProgressionManager : MonoBehaviour {
 
     void Awake()
     {
+        unlocks[0].asset = GameObject.Find("Unlockables/CampFire");
+        unlocks[1].asset = GameObject.Find("Unlockables/Workbench");
+        unlocks[2].asset = GameObject.Find("Unlockables/Furnace");
+        unlocks[3].asset = GameObject.Find("Unlockables/Hut");
     }
 
     void OnLevelWasLoaded(int level)
     {
         unlocks[0].asset = GameObject.Find("Unlockables/CampFire");
+        unlocks[1].asset = GameObject.Find("Unlockables/Workbench");
+        unlocks[2].asset = GameObject.Find("Unlockables/Furnace");
+        unlocks[3].asset = GameObject.Find("Unlockables/Hut");
         //if(Application.loadedLevel == 0)
         //unlockObjects();
     }
