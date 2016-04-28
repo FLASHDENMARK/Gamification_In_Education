@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class MouseManager : MonoBehaviour {
 
@@ -29,8 +30,12 @@ public class MouseManager : MonoBehaviour {
                 index++;
             }
             if(!flag)
-            SceneManager.LoadScene(GameManagerProgressionManager.unlocks[0]
+                try {
+                    SceneManager.LoadScene(GameManagerProgressionManager.unlocks[0]
                 .scenes[GameManagerProgressionManager.unlocks[0].level]);
+                } catch (IndexOutOfRangeException) {
+                    GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text = "No more levels for this unlockable.";
+                }
         }
 
         if (GetClickedEntity(mousePosition).name == "Workbench") {
