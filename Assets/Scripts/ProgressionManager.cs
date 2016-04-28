@@ -13,7 +13,9 @@ public class ProgressionManager : MonoBehaviour {
         // fornace, campfire...
         public GameObject asset;
         public int level = 0;
+        public int maxLevel;
         public int[] toUnlock;
+        public int[] scenes;
     }
 
     void Awake()
@@ -33,29 +35,6 @@ public class ProgressionManager : MonoBehaviour {
         //if(Application.loadedLevel == 0)
         //unlockObjects();
     }
-	
-   /* void unlockObjects()
-    {
-        //Furnace
-        for(int j = 0; j < unlocks.Length; j++) { 
-            for(int i = 0; i < unlocks.Length; i++) {
-                Debug.Log(j +", " + i + ". " + "checking " + unlocks[j].asset.name + " need: " + unlocks[j].toUnlock[i]
-                    + " have: " + unlocks[i].level);
-                if (unlocks[i].level >= unlocks[j].toUnlock[i])
-                {
-                    if (i == unlocks.Length-1) {
-                        Debug.Log("unlocking: " + unlocks[j].asset.name);
-                        UnlockObject(j);
-                    }
-                } else
-                {
-                    break;
-                }
-            }
-        }
-    }
-    */
-    // Update is called once per frame
     void Update () {
     }
 

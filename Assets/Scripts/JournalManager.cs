@@ -123,17 +123,21 @@ class JournalManager : MonoBehaviour
 
 		// Physics subjects 
 		Menu physics = new Menu("Physics");
-		string fireTriangle = 
-		"The Fire Triangle (Combustion Triangle), is a simple way of understanding the factors of a fire. "
-		+ "Each side of the Triangle represents one of the three ingredients needed to have a fire. The three "
-		+ "Elements of the Fire Triangle are as follows: "
-		+ "\n\n <b>Oxygen, Heat and Fuel.</b> \n\n"
-		+ "A fire can only exist if <i>all</i> three Elements are present. If only one Element is removed, the fire "
-		+ "will be extinguished.";
-
+        string fireTriangle =
+        "<b>\t   Day: 34 - Analysis of fire.</b>"
+        + "\n\nI have spend the entire day, analysing the behaviour of fire, and i think i have figured it out. "
+        + "It seems that the ability to create a fire is based on three primary factors. "
+        + "I have not been able to produce a fire without these components, so they seem important to creating a fire. "
+        + "\n\nFirstly to create a fire, i need something that can serve as a fuel, something that can burn. \n\n"
+        + "I have also found that creating a fire in an oxygenless environment is impossible. It seems that oxygen is a key"
+        + "component too. \n\nLastly i have found that the reaction, that is fire, can be started by raising the fuel to it's"
+        + "Ignition temperature, as long as the other two components are present.\n\n\n"
+        + "I am fairly certain this information will come in handy at some point."
+        + "\n\n <i>-- Prof. Jameson</i>";
 		physics.AddJournalEntry(new JournalEntry("Fire Triangle", fireTriangle));
-		
-		string waterDistillation = "";
+
+        string waterDistillation = "";
+
 		physics.AddJournalEntry(new JournalEntry("Water distillation", waterDistillation));
 
 		string velocity = "";

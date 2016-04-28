@@ -14,7 +14,8 @@ public class UnlockAblesRenderer : MonoBehaviour {
         unlocks[3] = GameObject.Find("Canvas/Unlockables/Hut").GetComponent<Image>();
 
         for(int i = 0; i < unlocks.Length; i++) {
-            unlocks[i].fillAmount = (0.33f * this.GetComponent<ProgressionManager>().unlocks[i].level);
+            ProgressionManager PM = this.GetComponent<ProgressionManager>();
+            unlocks[i].fillAmount = ((float)PM.unlocks[i].level / (float)PM.unlocks[i].maxLevel);
             unlocks[i].transform.FindChild("Text").GetComponent<Text>().text =
                 this.GetComponent<ProgressionManager>().unlocks[i].level.ToString();
         }
@@ -28,7 +29,8 @@ public class UnlockAblesRenderer : MonoBehaviour {
             unlocks[3] = GameObject.Find("Canvas/Unlockables/Hut").GetComponent<Image>();
 
             for(int i = 0; i < unlocks.Length; i++) {
-                unlocks[i].fillAmount = (0.33f * this.GetComponent<ProgressionManager>().unlocks[i].level);
+                unlocks[i].fillAmount = ((float)this.GetComponent<ProgressionManager>().unlocks[i].level / 
+                    (float)this.GetComponent<ProgressionManager>().unlocks[i].maxLevel);
                 unlocks[i].transform.FindChild("Text").GetComponent<Text>().text =
                     this.GetComponent<ProgressionManager>().unlocks[i].level.ToString();
             }
