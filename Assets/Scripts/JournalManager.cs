@@ -38,7 +38,7 @@ class Menu : JournalEntryBase
 		this.Subject = subject;
 	}
 
-	// Adds a new entry to the list of entries
+	// Adds a new entry to the list of entriesx
 	public void AddJournalEntry (JournalEntryBase entry)
 	{
 		journalEntries.Add(entry);
@@ -91,7 +91,7 @@ class JournalManager : MonoBehaviour
 	// The Keycode (button input) to toggle the journal on/off
 	KeyCode show = KeyCode.Tab;
 	// The color of the highlighted GUI
-	Color highlight = Color.blue;
+	Color highlight = Color.grey;
 
 	// Adds a new subject to the list of subjects
 	public void AddSubject (Menu menu)
@@ -164,16 +164,21 @@ class JournalManager : MonoBehaviour
 	// Called every frame and draws UI elements on screen
 	void OnGUI ()
 	{
+        GUI.backgroundColor = new Color(0, 0, 0, 1);
         GUI.contentColor = Color.white;
 		// Let the user know how to toggle the Journal on and off
 		GUI.Label(new Rect(10, Screen.height - 20, 350, 30), 
 			"Press " + show.ToString() + " to " + (showJournal? "hide" : "show") + " the Professor's Journal");
-		
-		// Return if the journal shouldn't be show
-		if (!showJournal)
-		{
-			return;
-		}
+
+        // Return if the journal shouldn't be show
+        if (!showJournal) {
+            return;
+        }
+        else {
+            GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "");
+            GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "");
+            GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "");
+        }
 
 		// Assigns the current subject to a temp value for easy access
 		Menu currentSubject = subjects[selection];

@@ -6,13 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class CampfireGame : MonoBehaviour 
 {
+
+    MouseManager MM;
+
     string CurrentResource = null;
     // Use this for initialization
     
     void Start () 
     {
-	  // UIRelay.TextNotification("Making Fire!", "Now, to make a fire, i need three components. If only i can remember which ones it is... \n\n\nDrag the correct components, to the fire triangle and give it a shot.");
-	}
+        MM = GameObject.Find("GameManager").GetComponent<MouseManager>();
+      // UIRelay.TextNotification("Making Fire!", "Now, to make a fire, i need three components. If only i can remember which ones it is... \n\n\nDrag the correct components, to the fire triangle and give it a shot.");
+    }
 
     public GameObject GO = null;
     GameObject draggedObject;
@@ -22,8 +26,8 @@ public class CampfireGame : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            if(GetComponent<MouseManager>().GetClickedEntity(mousePosition) != null) { 
-            GO = GetComponent<MouseManager>().GetClickedEntity(mousePosition).gameObject;
+            if(MM.GetClickedEntity(mousePosition) != null) { 
+            GO = MM.GetClickedEntity(mousePosition).gameObject;
             if(GO.name == "IgniteButton")
                 {
                     StartCoroutine(CompositionCheck());
@@ -49,8 +53,8 @@ public class CampfireGame : MonoBehaviour
             {
                 Debug.Log(CurrentResource);
                 Destroy(draggedObject);
-                if(GetComponent<MouseManager>().GetClickedEntity(mousePosition) != null)
-                GO = GetComponent<MouseManager>().GetClickedEntity(mousePosition).gameObject;
+                if (MM.GetClickedEntity(mousePosition).transform.parent.name == "Fire Triangle")
+                GO = MM.GetClickedEntity(mousePosition).gameObject;
                 if (GO)
                     GO.GetComponent<Text>().text = CurrentResource;
             }
