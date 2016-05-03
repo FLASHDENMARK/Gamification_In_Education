@@ -52,8 +52,13 @@ public class MouseManager : MonoBehaviour {
                 index++;
             }
             if (!flag)
-                SceneManager.LoadScene(GameManagerProgressionManager.unlocks[1]
-                    .scenes[GameManagerProgressionManager.unlocks[1].level]);
+                try {
+                    SceneManager.LoadScene(GameManagerProgressionManager.unlocks[1]
+                .scenes[GameManagerProgressionManager.unlocks[1].level]);
+                }
+                catch (IndexOutOfRangeException) {
+                    GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text = "No more levels for this unlockable.";
+                }
         }
 
         if (GetClickedEntity(mousePosition).name == "Furnace") {
@@ -70,8 +75,13 @@ public class MouseManager : MonoBehaviour {
                 index++;
             }
             if (!flag)
-                SceneManager.LoadScene(GameManagerProgressionManager.unlocks[2]
-                    .scenes[GameManagerProgressionManager.unlocks[2].level]);
+                try {
+                    SceneManager.LoadScene(GameManagerProgressionManager.unlocks[2]
+                .scenes[GameManagerProgressionManager.unlocks[2].level]);
+                }
+                catch (IndexOutOfRangeException) {
+                    GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text = "No more levels for this unlockable.";
+                }
         }
 
         if (GetClickedEntity(mousePosition).name == "Hut") {
@@ -88,8 +98,13 @@ public class MouseManager : MonoBehaviour {
                 index++;
             }
             if (!flag)
-                SceneManager.LoadScene(GameManagerProgressionManager.unlocks[3]
-                    .scenes[GameManagerProgressionManager.unlocks[3].level]);
+                try {
+                    SceneManager.LoadScene(GameManagerProgressionManager.unlocks[3]
+                .scenes[GameManagerProgressionManager.unlocks[3].level]);
+                }
+                catch (IndexOutOfRangeException) {
+                    GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text = "No more levels for this unlockable.";
+                }
         }
     }
 
