@@ -136,13 +136,11 @@ class JournalManager : MonoBehaviour
         + "\n\n <i>-- Prof. Jameson</i>";
 		physics.AddJournalEntry(new JournalEntry("Fire Triangle", fireTriangle));
 
-        string waterDistillation = 
+        string waterDistillation =
         "<b>\t   Day: 37 - Distilling of saltwater.</b>"
-        + "\n\nI have found a method to create drinkable water from seawater. I've found a jerry can that holds about 1 litre. "
-        + "If i fill it with water and boil it. I should be able to create drinkable water from the steam "
-        + "if i channel it through a cold tube. Luckily i also found this piece of PVC tubeing and a small can to hold the drinkable water. "
-        + "The water seems to about 15 degrees. And if i remember correctly my physics teacher said that "
-        + "saltwater has a specific heat capacity of 3993 Joule/(gram Kelvin)";
+        + "\n\n "
+        + " "
+        + " ";
 
 		physics.AddJournalEntry(new JournalEntry("Water distillation", waterDistillation));
 
