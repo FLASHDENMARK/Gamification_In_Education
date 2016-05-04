@@ -24,7 +24,7 @@ public class MouseManager : MonoBehaviour {
                 if(GameManagerProgressionManager.unlocks[index].level < i) {
                     GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text +=
                    GameManagerProgressionManager.unlocks[index].asset.name +
-                        " needs level: " + i + "\n";
+                        " need to be level: " + i + "\n";
                     flag = true;
                 }
                 index++;
@@ -46,7 +46,7 @@ public class MouseManager : MonoBehaviour {
                 if (GameManagerProgressionManager.unlocks[index].level < i) {
                     GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text +=
                    GameManagerProgressionManager.unlocks[index].asset.name +
-                        " needs level: " + i + "\n";
+                        " need to be level: " + i + "\n";
                     flag = true;
                 }
                 index++;
@@ -69,7 +69,7 @@ public class MouseManager : MonoBehaviour {
                 if (GameManagerProgressionManager.unlocks[index].level < i) {
                     GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text +=
                    GameManagerProgressionManager.unlocks[index].asset.name +
-                        " needs level: " + i + "\n";
+                        " need to be level: " + i + "\n";
                     flag = true;
                 }
                 index++;
@@ -92,7 +92,7 @@ public class MouseManager : MonoBehaviour {
                 if (GameManagerProgressionManager.unlocks[index].level < i) {
                     GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text += 
                    GameManagerProgressionManager.unlocks[index].asset.name +
-                        " needs level: " + i + "\n";
+                        " need to be level: " + i + "\n";
                     flag = true;
                 }
                 index++;

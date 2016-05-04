@@ -172,8 +172,9 @@ class JournalManager : MonoBehaviour
 	{
         GUI.backgroundColor = new Color(0, 0, 0, 1);
         GUI.contentColor = Color.white;
-		// Let the user know how to toggle the Journal on and off
-		GUI.Label(new Rect(10, Screen.height - 20, 350, 30), 
+        // Let the user know how to toggle the Journal on and off
+        GUI.Box(new Rect(0, Screen.height - 20, 280, 30), "");
+        GUI.Label(new Rect(10, Screen.height - 20, 350, 30), 
 			"Press " + show.ToString() + " to " + (showJournal? "hide" : "show") + " the Professor's Journal");
 
         // Return if the journal shouldn't be show
