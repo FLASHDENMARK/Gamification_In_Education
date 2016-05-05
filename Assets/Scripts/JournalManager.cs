@@ -138,9 +138,8 @@ class JournalManager : MonoBehaviour
 
         string waterDistillation =
         "<b>\t   Day: 37 - Distilling of saltwater.</b>"
-        + "\n\n "
-        + " "
-        + " ";
+        + "\n\nI have though of a way to make drinkable water! i just need a container to hold the water "
+        + "then i can boil it and cool the steam to turn it into drinkable water. ";
 
 		physics.AddJournalEntry(new JournalEntry("Water distillation", waterDistillation));
 
