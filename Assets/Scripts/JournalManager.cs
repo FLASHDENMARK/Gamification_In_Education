@@ -102,8 +102,19 @@ class JournalManager : MonoBehaviour
 	// Is called once when the application starts
 	void Start () 
 	{
-		// Mathematical subjects
-		Menu mathematics = new Menu("Mathematics");
+
+        Menu intro = new Menu("Intro");
+        string AboutThisJournal =
+        "<b>This journal belongs to science Professor Jameson.</b>"
+        + "\n\n\nThis journal contains the finds I have done, through various experiments."
+        + "\nThe finds are divided into chapters of their respective subjects."
+        + "\n\nIf you are to find this book, please return it to Professor Jameson."
+        + "\n\n<i>-- Prof. Jameson</i>";
+
+        intro.AddJournalEntry(new JournalEntry("About This Journal", AboutThisJournal));
+
+        // Mathematical subjects
+        Menu mathematics = new Menu("Mathematics");
 		string phytagoreanTheorem = 
 		"The Phytagorean Theorem is a <i>very</i> important equation in mathematics. It states that "
 		+ "the hypotenuse (the side opposite the right angle) of a right angled triangle is equal to the "
@@ -114,9 +125,26 @@ class JournalManager : MonoBehaviour
 
 		// This adds an entry to the mathematics menu
 		mathematics.AddJournalEntry(new JournalEntry("Phytagorean Theorem", phytagoreanTheorem));
-		
-		string orderOfOperations = "";
-		mathematics.AddJournalEntry(new JournalEntry("Order of Operations", orderOfOperations));
+
+        string orderOfOperations = "It seems that math can be misleading at times."
+        + "\nI have found that the order of operations is quite important."
+        + "\n\nHere's an example."
+        + "\nWe have Two sticks, and then 4 sets of 3 sticks."
+        + "\n || +(||| + ||| + ||| + |||)"
+        + "\nThe mathematcial equation would then be:"
+        + "\n<b>2+3×4</b>"
+        + "\n2+3 = 5, that leaves us with 5×4."
+        + "\n5×4= 20 right? Wrong. Count the sticks for yourself, are there 20 sticks above?"
+        + "\nNo, right? The correct equation would be:"
+        + "\n\n<b>2+3×4</b>"
+        + "\n3×4 = 12, which leaves us with: 2 + 12."
+        + "\n3×4 = 14. 14 sticks, just as above."
+        + "\nIt seems that you have to multiply and divide, before addition and subtraction, to get the right result."
+        + "\nFurthermore it seems that parenthesis should be calculated as the very first thing of an equation."
+        + "\nthen we should calculate roots and exponents, then multiplication and division, and lastly addition and subtraction."
+        +"\n\n<i>-- Prof. Jameson</i>";
+
+        mathematics.AddJournalEntry(new JournalEntry("Order of Operations", orderOfOperations));
 
 		string geometry = "";
 		mathematics.AddJournalEntry(new JournalEntry("Geometry", geometry));
@@ -125,13 +153,13 @@ class JournalManager : MonoBehaviour
 		Menu physics = new Menu("Physics");
         string fireTriangle =
         "<b>\t   Day: 34 - Analysis of fire.</b>"
-        + "\n\nI have spend the entire day, analysing the behaviour of fire, and i think i have figured it out. "
+        + "\n\nI have spend the entire day, analyzing the behaviour of fire, and I think I have figured it out. "
         + "It seems that the ability to create a fire is based on three primary factors. "
         + "I have not been able to produce a fire without these components, so they seem important to creating a fire. "
-        + "\n\nFirstly to create a fire, i need something that can serve as a fuel, something that can burn. \n\n"
+        + "\n\nFirstly to create a fire, I need something that can serve as a fuel, something that can burn. \n\n"
         + "I have also found that creating a fire in an oxygenless environment is impossible. It seems that oxygen is a key"
-        + "component too. \n\nLastly i have found that the reaction, that is fire, can be started by raising the fuel to it's"
-        + "Ignition temperature, as long as the other two components are present.\n\n\n"
+        + "component too. \n\nLastly I have found that the reaction, that is fire, can be started by raising the fuel to it's"
+        + " Ignition temperature, as long as the other two components are present.\n\n\n"
         + "I am fairly certain this information will come in handy at some point."
         + "\n\n <i>-- Prof. Jameson</i>";
 		physics.AddJournalEntry(new JournalEntry("Fire Triangle", fireTriangle));
@@ -149,7 +177,8 @@ class JournalManager : MonoBehaviour
 		// Extra subjects
 		Menu tingOgSager = new Menu("Add Subject");
 		tingOgSager.AddJournalEntry(new JournalEntry("Add Entry", "Add Body"));
-		
+
+        AddSubject(intro);
 		AddSubject(mathematics);
 		AddSubject(physics);
 		AddSubject(tingOgSager);
