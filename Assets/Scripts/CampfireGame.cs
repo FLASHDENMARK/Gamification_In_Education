@@ -22,12 +22,10 @@ public class CampfireGame : MonoBehaviour
     GameObject draggedObject;
     // Update is called once per frame
     void Update () {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
         if (Input.GetMouseButtonDown(0))
         {
-            if(MM.GetClickedEntity(mousePosition) != null) { 
-            GO = MM.GetClickedEntity(mousePosition).gameObject;
+            if(MouseManager.GetClickedEntity() != null) { 
+            GO = MouseManager.GetClickedEntity().gameObject;
             if(GO.name == "IgniteButton")
                 {
                     StartCoroutine(CompositionCheck());
@@ -53,8 +51,8 @@ public class CampfireGame : MonoBehaviour
             {
                 Debug.Log(CurrentResource);
                 Destroy(draggedObject);
-                if (MM.GetClickedEntity(mousePosition).transform.parent.name == "Fire Triangle")
-                GO = MM.GetClickedEntity(mousePosition).gameObject;
+                if (MouseManager.GetClickedEntity().transform.parent.name == "Fire Triangle")
+                GO = MouseManager.GetClickedEntity().gameObject;
                 if (GO)
                     GO.GetComponent<Text>().text = CurrentResource;
             }

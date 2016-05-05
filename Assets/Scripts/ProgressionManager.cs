@@ -2,9 +2,9 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class ProgressionManager : MonoBehaviour {
-
-    // Use this for initialization
+public class ProgressionManager : MonoBehaviour 
+{
+    public UnlockablesRenderer unlockRenderer;
     public ObjectProgress[] unlocks;
 
     [System.Serializable]
@@ -18,7 +18,23 @@ public class ProgressionManager : MonoBehaviour {
         public int[] scenes;
     }
 
-    void Awake()
+    void Awake ()
+    {
+        DontDestroyOnLoad(this);
+        FindUnlocks();
+        unlockRenderer.SetProgression(); 
+    }
+
+    void OnLevelWasLoaded (int level)
+    {
+        FindUnlocks();
+
+        // If the Main Menu was loaded. The Main Menu is always '0'
+        if (level == 0) 
+            unlockRenderer.SetProgression(); 
+    }
+
+    void FindUnlocks ()
     {
         unlocks[0].asset = GameObject.Find("Unlockables/CampFire");
         unlocks[1].asset = GameObject.Find("Unlockables/Workbench");
@@ -26,26 +42,13 @@ public class ProgressionManager : MonoBehaviour {
         unlocks[3].asset = GameObject.Find("Unlockables/Hut");
     }
 
-    void OnLevelWasLoaded(int level)
+    void UnlockObject (int objectIndex)
     {
-        unlocks[0].asset = GameObject.Find("Unlockables/CampFire");
-        unlocks[1].asset = GameObject.Find("Unlockables/Workbench");
-        unlocks[2].asset = GameObject.Find("Unlockables/Furnace");
-        unlocks[3].asset = GameObject.Find("Unlockables/Hut");
-        //if(Application.loadedLevel == 0)
-        //unlockObjects();
+        if (unlocks[objectIndex].level == 1) 
+        { 
+            GameObject toUnlock = unlocks[objectIndex].asset.gameObject;
+            Sprite sprite = Resources.Load<Sprite>("CampFire");
+            toUnlock.GetComponent<SpriteRenderer>().sprite = sprite;
+        }
     }
-    void Update () {
-    }
-
-    void UnlockObject(int objectIndex)
-    {
-        if (unlocks[objectIndex].level == 1) { 
-        GameObject toUnlock = unlocks[objectIndex].asset.gameObject;
-        Sprite sprite = Resources.Load<Sprite>("CampFire");
-        toUnlock.GetComponent<SpriteRenderer>().sprite = sprite;
-    }
-    }
-
-
 }

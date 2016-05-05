@@ -1,150 +1,30 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using System;
 
-public class MouseManager : MonoBehaviour {
-
-    Vector2 mousePosition;
-    ProgressionManager GameManagerProgressionManager;
-    // Use this for initialization
-    void Start() {
-
-    }
-
-    void StartMinigame()
+public class MouseManager : MonoBehaviour 
+{
+    // Returns the object the user has clicked on
+    public static GameObject GetClickedEntity ()
     {
-        GameManagerProgressionManager = GameObject.Find("GameManager").GetComponent<ProgressionManager>();
-        if(GetClickedEntity(mousePosition).name == "CampFire"){
-            GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text = "";
-            int index = 0;
-            bool flag = false;
-            foreach(int i in GameManagerProgressionManager.unlocks[0].toUnlock) {
-                if(GameManagerProgressionManager.unlocks[index].level < i) {
-                    GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text +=
-                   GameManagerProgressionManager.unlocks[index].asset.name +
-                        " need to be level: " + i + "\n";
-                    flag = true;
-                }
-                index++;
-            }
-            if(!flag)
-                try {
-                    SceneManager.LoadScene(GameManagerProgressionManager.unlocks[0]
-                .scenes[GameManagerProgressionManager.unlocks[0].level]);
-                } catch (IndexOutOfRangeException) {
-                    GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text = "No more levels for this unlockable.";
-                }
-        }
-
-        if (GetClickedEntity(mousePosition).name == "Workbench") {
-            GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text = "";
-            int index = 0;
-            bool flag = false;
-            foreach (int i in GameManagerProgressionManager.unlocks[1].toUnlock) {
-                if (GameManagerProgressionManager.unlocks[index].level < i) {
-                    GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text +=
-                   GameManagerProgressionManager.unlocks[index].asset.name +
-                        " need to be level: " + i + "\n";
-                    flag = true;
-                }
-                index++;
-            }
-            if (!flag)
-                try {
-                    SceneManager.LoadScene(GameManagerProgressionManager.unlocks[1]
-                .scenes[GameManagerProgressionManager.unlocks[1].level]);
-                }
-                catch (IndexOutOfRangeException) {
-                    GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text = "No more levels for this unlockable.";
-                }
-        }
-
-        if (GetClickedEntity(mousePosition).name == "Furnace") {
-            GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text = "";
-            int index = 0;
-            bool flag = false;
-            foreach (int i in GameManagerProgressionManager.unlocks[2].toUnlock) {
-                if (GameManagerProgressionManager.unlocks[index].level < i) {
-                    GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text +=
-                   GameManagerProgressionManager.unlocks[index].asset.name +
-                        " need to be level: " + i + "\n";
-                    flag = true;
-                }
-                index++;
-            }
-            if (!flag)
-                try {
-                    SceneManager.LoadScene(GameManagerProgressionManager.unlocks[2]
-                .scenes[GameManagerProgressionManager.unlocks[2].level]);
-                }
-                catch (IndexOutOfRangeException) {
-                    GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text = "No more levels for this unlockable.";
-                }
-        }
-
-        if (GetClickedEntity(mousePosition).name == "Hut") {
-            GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text = "";
-            int index = 0;
-            bool flag = false;
-            foreach (int i in GameManagerProgressionManager.unlocks[3].toUnlock) {
-                if (GameManagerProgressionManager.unlocks[index].level < i) {
-                    GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text += 
-                   GameManagerProgressionManager.unlocks[index].asset.name +
-                        " need to be level: " + i + "\n";
-                    flag = true;
-                }
-                index++;
-            }
-            if (!flag)
-                try {
-                    SceneManager.LoadScene(GameManagerProgressionManager.unlocks[3]
-                .scenes[GameManagerProgressionManager.unlocks[3].level]);
-                }
-                catch (IndexOutOfRangeException) {
-                    GameObject.Find("Canvas/Panel/Text").GetComponent<Text>().text = "No more levels for this unlockable.";
-                }
-        }
-    }
-
-    // Update is called once per frame
-    void Update() {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log(GetClickedEntity(mousePosition));
-            if(GetClickedEntity(mousePosition))
-            StartMinigame();
-        }
-    }
-
-
-    void LateUpdate()
-    {
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Debug.DrawRay(mousePosition, Vector2.up * 0.5f, Color.red);
-        Debug.DrawRay(mousePosition, Vector2.down * 0.5f, Color.red);
-        Debug.DrawRay(mousePosition, Vector2.right * 0.5f, Color.red);
-        Debug.DrawRay(mousePosition, Vector2.left * 0.5f, Color.red);
-    }
-
-
-
-    public GameObject GetClickedEntity(Vector2 mousePosition)
-    {
+        GameObject entity = null;
+        // Converts the mouse position from screen space into world space
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        // Sends out a 'ray' that checks for objects with Collider Components
         RaycastHit2D hit = Physics2D.Raycast(mousePosition, Camera.main.transform.forward);
+        // If an object with a Collider Component was hit
         if (hit)
         {
-            return hit.collider.gameObject;
-        }
-        hit = Physics2D.Raycast(Input.mousePosition, Camera.main.transform.forward);
-        if (hit)
-        {
-            return hit.collider.gameObject;
+            entity = hit.collider.gameObject;
         }
         else
         {
-            return null;
+            // No world space object was hit. Instead check for UI elements (UI elements are screen spaced)
+            hit = Physics2D.Raycast(Input.mousePosition, Camera.main.transform.forward);
+
+            if (hit)
+                entity = hit.collider.gameObject;
         }
+
+        // Return the object that was hit. Null if no object was hit
+        return entity;
     }
 }

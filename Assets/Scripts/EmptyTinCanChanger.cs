@@ -16,7 +16,7 @@ public class EmptyTinCanChanger : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        emptyTinCan = this.GetComponent<MouseManager>().GetClickedEntity(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        emptyTinCan = MouseManager.GetClickedEntity(/*Camera.main.ScreenToWorldPoint(Input.mousePosition)*/);
         tinCan = gameObject.GetComponent<SpriteRenderer>();
 
         if (emptyTinCan == null)

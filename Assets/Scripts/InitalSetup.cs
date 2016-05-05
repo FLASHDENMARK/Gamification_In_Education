@@ -1,20 +1,20 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class InitalSetup : MonoBehaviour {
-
+public class InitalSetup : MonoBehaviour 
+{
     public GameObject Instance;
     public GameObject IntroText1;
     public GameObject IntroText2;
-    void Awake()
+
+    void Awake ()
     {
-         
-        if (!GameObject.Find("GameManager")) {
-            GameObject.Instantiate(Instance);
-            GameObject.Find("GameManager(Clone)").name = "GameManager";
+        if (!GameObject.Find("GameManager")) 
+        {
+            GameObject gameManager = Instantiate(Instance);
+            gameManager.name = Instance.name;
+            
             IntroText1.SetActive(true);
             IntroText2.SetActive(true);
         }
     }
-
 }

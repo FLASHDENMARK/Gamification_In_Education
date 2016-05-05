@@ -24,9 +24,9 @@ public class CampfireDig : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             GameObject.Find("Manager").GetComponent<CampFireDigManager>().clearLineColors();
-            if(Camera.main.GetComponent<MouseManager>().GetClickedEntity(mousePosition) == this.gameObject)
+            if(MouseManager.GetClickedEntity(/*mousePosition*/) == this.gameObject)
             {
-                object1 = Camera.main.GetComponent<MouseManager>().GetClickedEntity(mousePosition);
+                object1 = MouseManager.GetClickedEntity(/*mousePosition*/);
                 this.positions[0] = Camera.main.ScreenToWorldPoint(this.object1.transform.position);
                 this.flag = true;
             }
@@ -44,8 +44,8 @@ public class CampfireDig : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && this.flag)
         {
-            if(Camera.main.GetComponent<MouseManager>().GetClickedEntity(mousePosition) != null && object1 != null){
-                if(Camera.main.GetComponent<MouseManager>().GetClickedEntity(mousePosition) == object1) {
+            if(MouseManager.GetClickedEntity(/*mousePosition*/) != null && object1 != null){
+                if(MouseManager.GetClickedEntity(/*mousePosition*/) == object1) {
                     object2 = null;
                     this.positions[0] = object1.transform.position;
                     this.positions[1] = object1.transform.position;
@@ -53,7 +53,7 @@ public class CampfireDig : MonoBehaviour
                     this.GetComponent<LineRenderer>().SetPositions(positions);
                     return;
                 }
-            object2 = Camera.main.GetComponent<MouseManager>().GetClickedEntity(mousePosition);
+            object2 = MouseManager.GetClickedEntity(/*mousePosition*/);
 
             this.positions[0] = Camera.main.ScreenToWorldPoint(object1.transform.GetChild(0).position);
             this.positions[1] = object2.transform.position;
