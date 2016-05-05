@@ -5,7 +5,7 @@ using System;
 
 public class MiniGameStarter : MonoBehaviour 
 {
-    ProgressionManager GameManagerProgressionManager;
+    ProgressionManager progression;
 
     // Update is called once per frame
     void Update () 
@@ -22,25 +22,26 @@ public class MiniGameStarter : MonoBehaviour
     void LoadMiniGame (int levelIndex)
     {
         int index = 0;
-        bool flag = false;
+        bool levelReached = true;
         Text canvasText = GameObject.Find("Canvas/Panel/Text").GetComponent<Text>();
-    	GameManagerProgressionManager = (ProgressionManager)FindObjectOfType(typeof(ProgressionManager));
+    	progression = (ProgressionManager)FindObjectOfType(typeof(ProgressionManager));
 
-        foreach (int i in GameManagerProgressionManager.unlocks[levelIndex].toUnlock) 
+        foreach (int i in progression.unlocks[levelIndex].toUnlock) 
         {
-            if (GameManagerProgressionManager.unlocks[index].level < i) 
+            if (progression.unlocks[index].level < i) 
             {
-				canvasText.text = GameManagerProgressionManager.unlocks[index].asset.name + " need to be level: " + i;
-                flag = true;
+				canvasText.text = progression.unlocks[index].asset.name + " need to be level: " + i;
+                levelReached = false;
             }
 
             index++;
         }
-        if (!flag)
+        
+        if (levelReached)
         {
             try 
             {
-                SceneManager.LoadScene(GameManagerProgressionManager.unlocks[levelIndex].scenes[GameManagerProgressionManager.unlocks[levelIndex].level]);
+                SceneManager.LoadScene(progression.unlocks[levelIndex].scenes[progression.unlocks[levelIndex].level]);
             } 
             catch (IndexOutOfRangeException) 
             {

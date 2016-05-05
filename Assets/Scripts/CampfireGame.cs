@@ -2,21 +2,10 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 
-public class CampfireGame : MonoBehaviour 
+public class CampfireGame : MiniGameBase     
 {
-
-    MouseManager MM;
-
     string CurrentResource = null;
-    // Use this for initialization
-    
-    void Start () 
-    {
-        MM = GameObject.Find("GameManager").GetComponent<MouseManager>();
-        //UIRelay.TextNotification("Making Fire!", "Now, to make a fire, i need three components. If only i can remember which ones it is... \n\n\nDrag the correct components, to the fire triangle and give it a shot.");
-    }
 
     public GameObject GO = null;
     GameObject draggedObject;
@@ -87,8 +76,7 @@ public class CampfireGame : MonoBehaviour
             CB.normalColor = Color.white;
             CB.highlightedColor = Color.white;
             button.colors = CB;
-            GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[0].level++;
-            SceneManager.LoadScene(0);
+            base.OnMiniGameCompleted(0);
         }
         else
         {

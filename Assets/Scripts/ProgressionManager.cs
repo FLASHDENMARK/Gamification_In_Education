@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.SceneManagement;
 
 public class ProgressionManager : MonoBehaviour 
 {
@@ -10,7 +8,7 @@ public class ProgressionManager : MonoBehaviour
     [System.Serializable]
     public class ObjectProgress
     {
-        // fornace, campfire...
+        // furnace, campfire...
         public GameObject asset;
         public int level = 0;
         public int maxLevel;
@@ -25,6 +23,7 @@ public class ProgressionManager : MonoBehaviour
         unlockRenderer.SetProgression(); 
     }
 
+    // Callback. Called automatically when a level has been loaded
     void OnLevelWasLoaded (int level)
     {
         FindUnlocks();

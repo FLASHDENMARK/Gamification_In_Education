@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
 public class RendererProgression : MonoBehaviour 
@@ -12,10 +11,9 @@ public class RendererProgression : MonoBehaviour
 
         for (int i = 0; i < unlocks.Length; i++) 
         {
-            ProgressionManager PM = this.GetComponent<ProgressionManager>();
+            ProgressionManager PM = gameObject.GetComponent<ProgressionManager>();
             unlocks[i].fillAmount = ((float)PM.unlocks[i].level / (float)PM.unlocks[i].maxLevel);
-            unlocks[i].transform.FindChild("Text").GetComponent<Text>().text =
-                this.GetComponent<ProgressionManager>().unlocks[i].level.ToString();
+            unlocks[i].transform.FindChild("Text").GetComponent<Text>().text = PM.unlocks[i].level.ToString();
         }
     }
 
