@@ -13,9 +13,9 @@ public class MiniGameStarter : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
     		GameObject GO = MouseManager.GetClickedEntity();
-    		
+
             if (GO)
-                CheckObjectForMinigame(GO);
+                CheckObjectForMiniGame(GO);
         }
     }
 
@@ -49,7 +49,7 @@ public class MiniGameStarter : MonoBehaviour
         }
     }
 
-    void CheckObjectForMinigame (GameObject GO)
+    void CheckObjectForMiniGame (GameObject GO)
     {
         if (GO.name == "CampFire")
         	LoadMiniGame(0);

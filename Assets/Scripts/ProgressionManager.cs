@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class ProgressionManager : MonoBehaviour 
 {
-    public UnlockablesRenderer unlockRenderer;
+    public RendererProgression unlockRenderer;
     public ObjectProgress[] unlocks;
 
     [System.Serializable]
