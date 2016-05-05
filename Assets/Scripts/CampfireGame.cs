@@ -15,7 +15,7 @@ public class CampfireGame : MonoBehaviour
     void Start () 
     {
         MM = GameObject.Find("GameManager").GetComponent<MouseManager>();
-      // UIRelay.TextNotification("Making Fire!", "Now, to make a fire, i need three components. If only i can remember which ones it is... \n\n\nDrag the correct components, to the fire triangle and give it a shot.");
+        //UIRelay.TextNotification("Making Fire!", "Now, to make a fire, i need three components. If only i can remember which ones it is... \n\n\nDrag the correct components, to the fire triangle and give it a shot.");
     }
 
     public GameObject GO = null;
