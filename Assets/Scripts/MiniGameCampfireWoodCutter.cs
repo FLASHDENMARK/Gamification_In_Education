@@ -4,35 +4,24 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
-public class WoodCutter : MonoBehaviour {
-
-	// Use this for initialization
-	void Start ()
+public class MiniGameCampfireWoodCutter : MiniGameBase 
+{
+    public void Check ()
     {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-    public void check()
-    {
-        StartCoroutine(checkAnswers());
+        StartCoroutine(CheckAnswers());
     }
 
-    IEnumerator checkAnswers()
+    IEnumerator CheckAnswers ()
     {
         int i = 0, score = 0;
-        List<int> answers = new List<int>();
         int[] correctAnswers = {10, -330, 15, 40};
         Transform Canvas = GameObject.Find("Canvas/Answers").transform;
+
         foreach (Transform child in Canvas.transform)
         {
             int value;
-            bool result = int.TryParse((child.GetChild(2).GetComponent<Text>().text), out value);
-            if (result)
+            if (int.TryParse((child.GetChild(2).GetComponent<Text>().text), out value))
+            {
                 if (value == correctAnswers[i])
                 {
                     InputField inputfield = Canvas.GetChild(i).GetComponent<InputField>();
@@ -52,7 +41,6 @@ public class WoodCutter : MonoBehaviour {
                     inputfield.colors = CB;
                     i++;
                     score++;
-                    Debug.Log(score);
                 }
                 else
                 {
@@ -71,10 +59,12 @@ public class WoodCutter : MonoBehaviour {
                     inputfield.colors = CB;
                     i++;
                 }
+            }
         }
-        if (score == 4) { 
-            GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[0].level++;
-            SceneManager.LoadScene(0);
+
+        if (score == 4) 
+        { 
+            base.OnMiniGameCompleted(0);
         }
     }
 }
