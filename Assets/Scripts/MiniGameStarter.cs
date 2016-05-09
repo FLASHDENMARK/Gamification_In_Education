@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
-using System;
+using UnityEngine.SceneManagement;
 
 public class MiniGameStarter : MonoBehaviour 
 {

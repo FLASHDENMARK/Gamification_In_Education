@@ -1,31 +1,38 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
 
 public class CampfireGame : MiniGameBase     
 {
-    string CurrentResource = null;
-
-    public GameObject GO = null;
-    GameObject draggedObject;
+    GameObject draggedObject = null;
+    
     // Update is called once per frame
-    void Update () {
+    void Update () 
+    {
+        GameObject GO = null;
+
         if (Input.GetMouseButtonDown(0))
         {
-            if(MouseManager.GetClickedEntity() != null) { 
-            GO = MouseManager.GetClickedEntity().gameObject;
-            if(GO.name == "IgniteButton")
+            GO = MouseManager.GetClickedEntity();
+
+            if (GO) 
+            {
+                if (GO.name == "IgniteButton")
                 {
                     StartCoroutine(CompositionCheck());
                     return;
                 }
-            draggedObject = Instantiate(GO);
-            draggedObject.transform.SetParent(GameObject.Find("Canvas").transform);
-            CurrentResource = GO != null ? GO.GetComponent<Text>().text : null;
+
+                // Create a copy of the clicked object, allowing the user to drag it
+                draggedObject = Instantiate(GO);
+                // The dragged object is an UI element, it has to be parented to the Canvas
+                // or else it wont draw to the screen
+                draggedObject.transform.SetParent(GameObject.Find("Canvas").transform);
             }
         }
 
+        // The object we clicked is now being "dragged"
         if (Input.GetMouseButton(0))
         {
             if (draggedObject)
@@ -38,12 +45,11 @@ public class CampfireGame : MiniGameBase
         {
             if (draggedObject)
             {
-                Debug.Log(CurrentResource);
                 Destroy(draggedObject);
-                if (MouseManager.GetClickedEntity().transform.parent.name == "Fire Triangle")
+                if (MouseManager.GetClickedEntity().transform.parent.name == "Fire Triangle")       // Gives an error
                 GO = MouseManager.GetClickedEntity().gameObject;
                 if (GO)
-                    GO.GetComponent<Text>().text = CurrentResource;
+                    GO.GetComponent<Text>().text = draggedObject.GetComponent<Text>().text;
             }
         }
 
