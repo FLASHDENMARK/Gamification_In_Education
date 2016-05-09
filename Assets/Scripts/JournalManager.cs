@@ -1,120 +1,47 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-
-/*
-	To do: 
-	Seperate these two classes into two seperate files?
-	Implement into new UI system? (Pro: scales better, con: is a bitch to implement!)
-	Scroll bar,
-	Pictures (how?)
-	Implement custom exception in JournalEntryBase when assigning "" to Headline or Body
-	Convert GetBody, GetHeadline and GetSelectionIndex into Properties instead of methods?
-*/
-
-class Menu : JournalEntryBase
-{
-	List<JournalEntryBase> journalEntries = new List<JournalEntryBase>();
-	string _subject;
-	int selection;
-
-	// Property
-	public string Subject 
-	{
-		get
-		{
-			return _subject;
-		}
-		private set
-		{
-			_subject = value;
-		}
-	}
-	
-	// Constructor. Calls Super Class Constructor
-	public Menu (string subject) : base (subject, "")
-	{
-		this.Subject = subject;
-	}
-
-	// Adds a new entry to the list of entriesx
-	public void AddJournalEntry (JournalEntryBase entry)
-	{
-		journalEntries.Add(entry);
-	}
-
-	// Returns a list of all entries
-	public override List<JournalEntryBase> GetEntries ()
-	{
-		return journalEntries;
-	}
-
-	// Selects a new entry
-	public override void Select (int selection)
-	{
-		this.selection = selection;
-	}
-
-	// Returns the selection
-	public int GetSelectionIndex ()
-	{
-		return selection;
-	}
-
-	// Returns the body (text) of the selected entry
-	public string GetBody ()
-	{
-		return journalEntries[selection].Body;
-	}
-
-	// Returns the headline (text) of the selected entry
-	public string GetHeadline ()
-	{
-		return journalEntries[selection].Headline;
-	}
-}
 
 // Manages the main behaviour of the journal 
 class JournalManager : MonoBehaviour 
 {
 	// A list of all subjects
-	List<Menu> subjects = new List<Menu>();
+	List<JournalMenu> subjects = new List<JournalMenu>();
 	// Index of selected entry
-	int selection;
+	int _selection;
 	// The body (text) of the selected entry
-	string body;
+	string _body;
 	// The position and scale of the UI Window (assigned through Inspector)
 	public Rect windowRect;
 	// Show the journal or not
-	bool showJournal;
+	bool _showJournal;
 	// The Keycode (button input) to toggle the journal on/off
-	KeyCode show = KeyCode.Tab;
+	KeyCode _showKey = KeyCode.Tab;
 	// The color of the highlighted GUI
-	Color highlight = Color.grey;
+	Color _highlight = Color.grey;
 
 	// Adds a new subject to the list of subjects
-	public void AddSubject (Menu menu)
+	public void AddSubject (JournalMenu JournalMenu)
 	{
-		subjects.Add(menu);
+		subjects.Add(JournalMenu);
 	}
 
 	// Is called once when the application starts
 	void Start () 
 	{
-
-        Menu intro = new Menu("Intro");
-        string AboutThisJournal =
-        "<b>This journal belongs to science Professor Jameson.</b>"
-        + "\n\n\nThis journal contains the finds I have done, through various experiments."
-        + "\nThe finds are divided into chapters of their respective subjects."
-        + "\n\nIf you are to find this book, please return it to Professor Jameson."
+		// Intro	
+        JournalMenu intro = new JournalMenu("Intro");
+        string aboutJournal =
+        "<b>This journal belongs to Science Professor Jameson</b>"
+        + "\n\nThis journal contains the discoveries I have done, through various experiments."
+        + " The finds are divided into chapters of their respective subjects."
+        + "\n\nIf you are to find this book, please return it to me."
         + "\n\n<i>-- Prof. Jameson</i>";
 
-        intro.AddJournalEntry(new JournalEntry("About This Journal", AboutThisJournal));
+        intro.AddJournalEntry(new JournalEntry("About This Journal", aboutJournal));
 
         // Mathematical subjects
-        Menu mathematics = new Menu("Mathematics");
+        JournalMenu mathematics = new JournalMenu("Mathematics");
 		string phytagoreanTheorem = 
 		"The Phytagorean Theorem is a <i>very</i> important equation in mathematics. It states that "
 		+ "the hypotenuse (the side opposite the right angle) of a right angled triangle is equal to the "
@@ -123,25 +50,28 @@ class JournalManager : MonoBehaviour
 		+ "This equation has many applications, such as Trigonometry and Physics."
 		+ "\n\n More!!";
 
-		// This adds an entry to the mathematics menu
+		// This adds an entry to the mathematics JournalMenu
 		mathematics.AddJournalEntry(new JournalEntry("Phytagorean Theorem", phytagoreanTheorem));
 
         string orderOfOperations = "It seems that math can be misleading at times."
         + "\nI have found that the order of operations is quite important."
-        + "\n\nHere's an example."
-        + "\nWe have Two sticks, and then 4 sets of 3 sticks."
+        + "\n\nHere's an example:"
+        + "\nWe have two sticks, and then 4 sets of 3 sticks."
         + "\n || +(||| + ||| + ||| + |||)"
-        + "\nThe mathematcial equation would then be:"
-        + "\n<b>2+3×4</b>"
+        + "\n\nThe mathematcial equation would then be:"
+        + "\n\n<b>2+3×4</b>"
         + "\n2+3 = 5, that leaves us with 5×4."
-        + "\n5×4= 20 right? Wrong. Count the sticks for yourself, are there 20 sticks above?"
+        + "\n5×4 = 20 right? Wrong. Count the sticks for yourself, are there 20 sticks above?"
         + "\nNo, right? The correct equation would be:"
         + "\n\n<b>2+3×4</b>"
-        + "\n3×4 = 12, which leaves us with: 2 + 12."
-        + "\n3×4 = 14. 14 sticks, just as above."
-        + "\nIt seems that you have to multiply and divide, before addition and subtraction, to get the right result."
+        + "\n3×4 = 12, which leaves us with: 2 + 12 = 14."
+        + "\n14 sticks, just as above."
+        + "\n\nIt seems that you have to multiply and divide, before addition and subtraction, to get the right result."
         + "\nFurthermore it seems that parenthesis should be calculated as the very first thing of an equation."
         + "\nthen we should calculate roots and exponents, then multiplication and division, and lastly addition and subtraction."
+        + "\n\nI have come up with an easier way to remember this order. I call it PEMDAS and it stands for"
+        + "\nParentheses, exponents, multiply, devide, add and subtract."
+        + "\n\nAs long as equations are calculated in this order, then the result will always be correct."
         +"\n\n<i>-- Prof. Jameson</i>";
 
         mathematics.AddJournalEntry(new JournalEntry("Order of Operations", orderOfOperations));
@@ -150,14 +80,14 @@ class JournalManager : MonoBehaviour
 		mathematics.AddJournalEntry(new JournalEntry("Geometry", geometry));
 
 		// Physics subjects 
-		Menu physics = new Menu("Physics");
+		JournalMenu physics = new JournalMenu("Physics");
         string fireTriangle =
-        "<b>\t   Day: 34 - Analysis of fire.</b>"
+        "<b>\tDay: 34 - Analysis of fire</b>"
         + "\n\nI have spend the entire day, analyzing the behaviour of fire, and I think I have figured it out. "
         + "It seems that the ability to create a fire is based on three primary factors. "
         + "I have not been able to produce a fire without these components, so they seem important to creating a fire. "
         + "\n\nFirstly to create a fire, I need something that can serve as a fuel, something that can burn. \n\n"
-        + "I have also found that creating a fire in an oxygenless environment is impossible. It seems that oxygen is a key"
+        + "I have also found that creating a fire in an oxygenless environment is impossible. It seems that oxygen is a key "
         + "component too. \n\nLastly I have found that the reaction, that is fire, can be started by raising the fuel to it's"
         + " Ignition temperature, as long as the other two components are present.\n\n\n"
         + "I am fairly certain this information will come in handy at some point."
@@ -165,7 +95,7 @@ class JournalManager : MonoBehaviour
 		physics.AddJournalEntry(new JournalEntry("Fire Triangle", fireTriangle));
 
         string waterDistillation =
-        "<b>\t   Day: 37 - Distilling of saltwater.</b>"
+        "<b>\tDay: 37 - Distilling of saltwater</b>"
         + "\n\nI have though of a way to make drinkable water! i just need a container to hold the water "
         + "then i can boil it and cool the steam to turn it into drinkable water. ";
 
@@ -174,90 +104,89 @@ class JournalManager : MonoBehaviour
 		string velocity = "";
 		physics.AddJournalEntry(new JournalEntry("Velocity", velocity));
 
-		// Extra subjects
-		Menu tingOgSager = new Menu("Add Subject");
-		tingOgSager.AddJournalEntry(new JournalEntry("Add Entry", "Add Body"));
-
         AddSubject(intro);
 		AddSubject(mathematics);
 		AddSubject(physics);
-		AddSubject(tingOgSager);
 	}
 
 	// Called every frame
 	void Update ()
 	{
-		if (Input.GetKeyDown(show))
+		if (Input.GetKeyDown(_showKey))
 		{
-			showJournal = !showJournal; 
+			_showJournal = !_showJournal; 
 		}
 	}
 
 	// Called every frame and draws UI elements on screen
 	void OnGUI ()
 	{
+		ScaleToScreenSize();
+
         GUI.backgroundColor = new Color(0, 0, 0, 1);
         GUI.contentColor = Color.white;
+
         // Let the user know how to toggle the Journal on and off
-        GUI.Box(new Rect(0, Screen.height - 20, 280, 30), "");
-        GUI.Label(new Rect(10, Screen.height - 20, 350, 30), 
-			"Press " + show.ToString() + " to " + (showJournal? "hide" : "show") + " the Professor's Journal");
+        GUI.Box(new Rect(0, 450, 280, 30), "");
+        GUI.Label(new Rect(10, 455, 350, 30), 
+			"Press " + _showKey.ToString() + " to " + (_showJournal? "hide" : "show") + " the Professor's Journal");
 
         // Return if the journal shouldn't be show
-        if (!showJournal) {
+        if (!_showJournal) {
             return;
         }
         else {
-            GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "");
-            GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "");
-            GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "");
+            GUI.Box(new Rect(0, 0, 20000, 10000), "");
+            GUI.Box(new Rect(0, 0, 20000, 10000), "");
+            GUI.Box(new Rect(0, 0, 20000, 10000), "");
         }
 
-		// Assigns the current subject to a temp value for easy access
-		Menu currentSubject = subjects[selection];
-		// Sets body (text) to the body of the current subject
-		body = currentSubject.GetBody();
+        DrawMenuAndSubjects();
+	}
+
+	void DrawMenuAndSubjects ()
+	{
+		// Assigns the current subject to a temp value for easy and quicker access
+		JournalMenu currentSubject = subjects[_selection];
+		// Store the body of the current subject for later use
+		_body = currentSubject.Body;
 		
 		// Iterates through all subjects
 		for (int index = 0; index < subjects.Count; index++)
 		{
 			// Highlights the current selected subject 
-			if (index == selection)
-			{
+			if (index == _selection)
 				Highlight();
-			}
-
+			
 			// Draws a button for each subject
 			if (GUI.Button(new Rect(50, 50 + index * 35, 150, 30), subjects[index].Subject))
 			{
-				selection = index;
-				currentSubject = subjects[selection];
+				_selection = index;
+				currentSubject = subjects[_selection];
 			}
 
 			// Resets the GUI color
 			ResetHighlight();
 
-			// Starts drawing a UI Window
-			windowRect = GUI.Window(0, windowRect, TheoryUIWindow, currentSubject.GetHeadline());
+			// Starts drawing a UI Window with the 
+			windowRect = GUI.Window(0, windowRect, TheoryUIWindow, currentSubject.Headline);
 		}
 
 		// Temp list of all entries in the current subject
-		List<JournalEntryBase> entries = currentSubject.GetEntries();
+		List<JournalEntryBase> entries = currentSubject.Entries;
 
 		// Iterates through all entries
 		for (int b = 0; b < entries.Count; b++)
 		{
 			// Highlights the current selected subject
-			if (b == currentSubject.GetSelectionIndex())
-			{
+			if (b == currentSubject.Selection)
 				Highlight();
-			}
 
-			// Draw a button for each entriy and check if it has been clicked
+			// Draw a button for each entry and check if it has been clicked
 			if (GUI.Button(new Rect(200, 50 + b * 35, 200, 30), entries[b].Headline))
 			{
 				// Select the entry that was clicked
-				currentSubject.Select(b);
+				currentSubject.Selection = b;
 			}
 
 			// Resets the GUI color
@@ -265,23 +194,44 @@ class JournalManager : MonoBehaviour
 		}
 	}
 
-    public GUIStyle penis;
+	Vector2 scrollPosition;
 
+	// Draws the currently selected subject to the screen
     void TheoryUIWindow (int windowID) 
+    {	
+    	float width = windowRect.width-30;
+    	// Calculates the height of the text we are about to draw. 
+    	// Takes line shifts into account
+    	float height = GUI.skin.label.CalcHeight(new GUIContent(_body), width);
+    	// The XY position and XY width of a "scroll view", which allows us to scroll 
+    	// through the text if it exceeds its boundaries
+    	Rect scrollPosAndSize = new Rect(10, 20, width+20, 375);
+    	// The current "scroll position" (how much we have scrolled up/down, left/right)
+    	Rect scrollView = new Rect(0, 0, width, height);
+
+    	// Draw a scroll view
+	 	scrollPosition = GUI.BeginScrollView(scrollPosAndSize, scrollPosition, scrollView);
+	 		// We draw the subject text inside the scroll view
+        	GUI.Label(new Rect(0, 0, width, height), _body);
+        // This "ends" the scroll view
+        GUI.EndScrollView();
+    }
+
+    void ScaleToScreenSize ()
     {
-    	// Draws the body (text) for the current topic, inside a UI Window
-        GUI.Label(new Rect(10, 20, windowRect.width - 10, 350), body, penis);
+		float screenWidth = Screen.width / 853.0F; // 853 is the native width of the original screen
+		float screenHeight = Screen.height / 480.0F; // 480 is the native height of the original screen
 
-        Texture2D penisTexture = new Texture2D(2, 2);
-//        float height = penis.CalcHeight(new GUIContent(body), windowRect.width - 10);
-
-        //GUI.DrawTexture(new Rect(10, 20 + height, windowRect.width - 10, 350), penisTexture);
-      
+		// This makes the UI scale automatically. It creates a Translation, Rotation and Scaling(TRS) matrix.
+		// The returned matrix means that positions, rotations and scale that once fit the native width/height 
+		// will now scale properly on (almost) any screen
+		GUI.matrix = Matrix4x4.TRS(new Vector3(0, 0, 0), Quaternion.identity, 
+			new Vector3(screenWidth, screenHeight, 1)); 
     }
 
     void Highlight ()
     {
-    	GUI.contentColor = highlight;
+    	GUI.contentColor = _highlight;
     }
 
     void ResetHighlight ()
