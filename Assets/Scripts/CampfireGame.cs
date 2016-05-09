@@ -2,28 +2,19 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 
-public class CampfireGame : MonoBehaviour 
+public class CampfireGame : MiniGameBase     
 {
     string CurrentResource = null;
-    // Use this for initialization
-    
-    void Start () 
-    {
-	  // UIRelay.TextNotification("Making Fire!", "Now, to make a fire, i need three components. If only i can remember which ones it is... \n\n\nDrag the correct components, to the fire triangle and give it a shot.");
-	}
 
     public GameObject GO = null;
     GameObject draggedObject;
     // Update is called once per frame
     void Update () {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
         if (Input.GetMouseButtonDown(0))
         {
-            if(GetComponent<MouseManager>().GetClickedEntity(mousePosition) != null) { 
-            GO = GetComponent<MouseManager>().GetClickedEntity(mousePosition).gameObject;
+            if(MouseManager.GetClickedEntity() != null) { 
+            GO = MouseManager.GetClickedEntity().gameObject;
             if(GO.name == "IgniteButton")
                 {
                     StartCoroutine(CompositionCheck());
@@ -49,8 +40,8 @@ public class CampfireGame : MonoBehaviour
             {
                 Debug.Log(CurrentResource);
                 Destroy(draggedObject);
-                if(GetComponent<MouseManager>().GetClickedEntity(mousePosition) != null)
-                GO = GetComponent<MouseManager>().GetClickedEntity(mousePosition).gameObject;
+                if (MouseManager.GetClickedEntity().transform.parent.name == "Fire Triangle")
+                GO = MouseManager.GetClickedEntity().gameObject;
                 if (GO)
                     GO.GetComponent<Text>().text = CurrentResource;
             }
@@ -64,7 +55,6 @@ public class CampfireGame : MonoBehaviour
         ColorBlock CB = button.colors;
         List<string> compositionList = new List<string>();
         Transform canvas = GameObject.Find("Canvas/Fire Triangle").transform;
-        string[] composition = new string[3];
         foreach (Transform child in canvas) { 
             Debug.Log(child.GetComponent<Text>().text);
             compositionList.Add(child.GetComponent<Text>().text);
@@ -86,8 +76,7 @@ public class CampfireGame : MonoBehaviour
             CB.normalColor = Color.white;
             CB.highlightedColor = Color.white;
             button.colors = CB;
-            GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[0].level++;
-            SceneManager.LoadScene(0);
+            base.OnMiniGameCompleted(0);
         }
         else
         {

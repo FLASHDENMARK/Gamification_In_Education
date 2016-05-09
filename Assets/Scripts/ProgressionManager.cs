@@ -1,65 +1,53 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.SceneManagement;
 
-public class ProgressionManager : MonoBehaviour {
-
-    // Use this for initialization
+public class ProgressionManager : MonoBehaviour 
+{
+    public RendererProgression unlockRenderer;
     public ObjectProgress[] unlocks;
 
     [System.Serializable]
     public class ObjectProgress
     {
-        // fornace, campfire...
+        // furnace, campfire...
         public GameObject asset;
         public int level = 0;
+        public int maxLevel;
         public int[] toUnlock;
+        public int[] scenes;
     }
 
-    void Awake()
+    void Awake ()
     {
+        DontDestroyOnLoad(this);
+        FindUnlocks();
+        unlockRenderer.SetProgression(); 
     }
 
-    void OnLevelWasLoaded(int level)
+    // Callback. Called automatically when a level has been loaded
+    void OnLevelWasLoaded (int level)
+    {
+        FindUnlocks();
+
+        // If the Main Menu was loaded. The Main Menu is always '0'
+        if (level == 0) 
+            unlockRenderer.SetProgression(); 
+    }
+
+    void FindUnlocks ()
     {
         unlocks[0].asset = GameObject.Find("Unlockables/CampFire");
-        //if(Application.loadedLevel == 0)
-        //unlockObjects();
+        unlocks[1].asset = GameObject.Find("Unlockables/Workbench");
+        unlocks[2].asset = GameObject.Find("Unlockables/Furnace");
+        unlocks[3].asset = GameObject.Find("Unlockables/Hut");
     }
-	
-   /* void unlockObjects()
+
+    void UnlockObject (int objectIndex)
     {
-        //Furnace
-        for(int j = 0; j < unlocks.Length; j++) { 
-            for(int i = 0; i < unlocks.Length; i++) {
-                Debug.Log(j +", " + i + ". " + "checking " + unlocks[j].asset.name + " need: " + unlocks[j].toUnlock[i]
-                    + " have: " + unlocks[i].level);
-                if (unlocks[i].level >= unlocks[j].toUnlock[i])
-                {
-                    if (i == unlocks.Length-1) {
-                        Debug.Log("unlocking: " + unlocks[j].asset.name);
-                        UnlockObject(j);
-                    }
-                } else
-                {
-                    break;
-                }
-            }
+        if (unlocks[objectIndex].level == 1) 
+        { 
+            GameObject toUnlock = unlocks[objectIndex].asset.gameObject;
+            Sprite sprite = Resources.Load<Sprite>("CampFire");
+            toUnlock.GetComponent<SpriteRenderer>().sprite = sprite;
         }
     }
-    */
-    // Update is called once per frame
-    void Update () {
-    }
-
-    void UnlockObject(int objectIndex)
-    {
-        if (unlocks[objectIndex].level == 1) { 
-        GameObject toUnlock = unlocks[objectIndex].asset.gameObject;
-        Sprite sprite = Resources.Load<Sprite>("CampFire");
-        toUnlock.GetComponent<SpriteRenderer>().sprite = sprite;
-    }
-    }
-
-
 }

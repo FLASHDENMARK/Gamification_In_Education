@@ -1,61 +1,30 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.SceneManagement;
 
-public class MouseManager : MonoBehaviour {
-
-    Vector2 mousePosition;
-
-    // Use this for initialization
-    void Start() {
-
-    }
-
-    void StartMinigame()
+public class MouseManager : MonoBehaviour 
+{
+    // Returns the object the user has clicked on
+    public static GameObject GetClickedEntity ()
     {
-        if(GetClickedEntity(mousePosition).name == "CampFire")
-        {
-            SceneManager.LoadScene(1 + GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[0].level);
-        }
-    }
-
-    // Update is called once per frame
-    void Update() {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log(GetClickedEntity(mousePosition));
-            if(GetClickedEntity(mousePosition))
-            StartMinigame();
-        }
-    }
-
-
-    void LateUpdate()
-    {
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Debug.DrawRay(mousePosition, Vector2.up * 0.5f, Color.red);
-        Debug.DrawRay(mousePosition, Vector2.down * 0.5f, Color.red);
-        Debug.DrawRay(mousePosition, Vector2.right * 0.5f, Color.red);
-        Debug.DrawRay(mousePosition, Vector2.left * 0.5f, Color.red);
-    }
-
-
-
-    public GameObject GetClickedEntity(Vector2 mousePosition)
-    {
+        GameObject entity = null;
+        // Converts the mouse position from screen space into world space
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        // Sends out a 'ray' that checks for objects with Collider Components
         RaycastHit2D hit = Physics2D.Raycast(mousePosition, Camera.main.transform.forward);
+        // If an object with a Collider Component was hit
         if (hit)
         {
-            return hit.collider.gameObject;
-        }
-        hit = Physics2D.Raycast(Input.mousePosition, Camera.main.transform.forward);
-        if (hit)
-        {
-            return hit.collider.gameObject;
+            entity = hit.collider.gameObject;
         }
         else
         {
-            return null;
+            // No world space object was hit. Instead check for UI elements (UI elements are screen spaced)
+            hit = Physics2D.Raycast(Input.mousePosition, Camera.main.transform.forward);
+
+            if (hit)
+                entity = hit.collider.gameObject;
         }
+
+        // Return the object that was hit. Null if no object was hit
+        return entity;
     }
 }
