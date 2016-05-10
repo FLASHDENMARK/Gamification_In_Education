@@ -26,7 +26,7 @@ public class WoodCutter : MonoBehaviour {
     {
         int i = 0, score = 0;
         List<int> answers = new List<int>();
-		int[] correctAnswers = {(15-10*3+4*5+10*0.5), (15-10*(3+4)*5+10*0.5), (15-10*3+4*(5+10)*0.5), ((15-10)*3+4*5+10*0.5)};
+		double[] correctAnswers = {(15-10*3+4*5+10*0.5d), (15-10*(3+4)*5+10*0.5d), (15-10*3+4*(5+10)*0.5d), ((15-10)*3+4*5+10*0.5d)};
         Transform Canvas = GameObject.Find("Canvas/Answers").transform;
         foreach (Transform child in Canvas.transform)
         {

@@ -14,12 +14,10 @@ public class MiniGameCampfireWoodCutter : MiniGameBase
     IEnumerator CheckAnswers ()
     {
         int i = 0, score = 0;
-<<<<<<< HEAD:Assets/Scripts/WoodCutter.cs
+
         List<int> answers = new List<int>();
-		int[] correctAnswers = {(15-10*3+4*5+10*0.5), (15-10*(3+4)*5+10*0.5), (15-10*3+4*(5+10)*0.5), ((15-10)*3+4*5+10*0.5)};
-=======
-        int[] correctAnswers = {10, -330, 15, 40};
->>>>>>> eedd823d018d8bec563501d33a0e27e0dc59e5d0:Assets/Scripts/MiniGameCampfireWoodCutter.cs
+		double[] correctAnswers = {(15-10*3+4*5+10*0.5d), (15-10*(3+4)*5+10*0.5d), (15-10*3+4*(5+10)*0.5d), ((15-10)*3+4*5+10*0.5d)};
+
         Transform Canvas = GameObject.Find("Canvas/Answers").transform;
 
         foreach (Transform child in Canvas.transform)
