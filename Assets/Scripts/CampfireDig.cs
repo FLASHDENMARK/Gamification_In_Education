@@ -10,6 +10,7 @@ public class CampfireDig : MonoBehaviour
     public GameObject object1 = null;
     public GameObject object2 = null;
     bool flag;
+    
     // Use this for initialization
     void Start()
     {
@@ -20,13 +21,12 @@ public class CampfireDig : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (Input.GetMouseButtonDown(0))
         {
             GameObject.Find("Manager").GetComponent<CampFireDigManager>().clearLineColors();
-            if(MouseManager.GetClickedEntity(/*mousePosition*/) == this.gameObject)
+            if(MouseManager.GetClickedEntity() == this.gameObject)
             {
-                object1 = MouseManager.GetClickedEntity(/*mousePosition*/);
+                object1 = MouseManager.GetClickedEntity();
                 this.positions[0] = Camera.main.ScreenToWorldPoint(this.object1.transform.position);
                 this.flag = true;
             }
@@ -44,8 +44,8 @@ public class CampfireDig : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && this.flag)
         {
-            if(MouseManager.GetClickedEntity(/*mousePosition*/) != null && object1 != null){
-                if(MouseManager.GetClickedEntity(/*mousePosition*/) == object1) {
+            if(MouseManager.GetClickedEntity() != null && object1 != null){
+                if(MouseManager.GetClickedEntity() == object1) {
                     object2 = null;
                     this.positions[0] = object1.transform.position;
                     this.positions[1] = object1.transform.position;
@@ -74,7 +74,6 @@ public class CampfireDig : MonoBehaviour
 
     public bool checkAnswers()
     {
- //       Debug.Log(object1.name + " - " + object2.name);
         for (int i = 0; i < GameObject.Find("Canvas").transform.childCount -1; i++ ){
            if (GameObject.Find("Canvas").transform.GetChild(i).GetComponent<CampfireDig>().object1 == null ||
                 GameObject.Find("Canvas").transform.GetChild(i).GetComponent<CampfireDig>().object1 == null) {
