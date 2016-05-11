@@ -1,8 +1,16 @@
 ﻿using UnityEngine;
+using System;
 
 class JournalEntry : JournalEntryBase 
 {	
-	public JournalEntry (string headline) : base (headline) { }
+	public JournalEntry (string body)
+	{ 
+		_content = new GUIContent(body);
+	}
 
-	public JournalEntry (string headline, string body) : base (headline, body) { }
+	GUIContent _content;
+    public override GUIContent Content
+    {
+    	get { return _content; }
+    }
 }

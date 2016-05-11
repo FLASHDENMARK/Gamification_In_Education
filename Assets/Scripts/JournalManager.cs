@@ -2,7 +2,14 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-// Manages the main behaviour of the journal 
+// Reset the scroll view
+// Image labels
+// Center images
+// Seperate into more functions!
+// Store expressions as temp variables
+// Use same names across files
+
+// Manages the main behaviour of the journal
 class JournalManager : MonoBehaviour 
 {
 	// A list of all subjects
@@ -13,11 +20,11 @@ class JournalManager : MonoBehaviour
 	string _body;
 	// The position and scale of the UI Window (assigned through Inspector)
 	public Rect windowRect;
-	// Show the journal or not
-	bool _showJournal;
+	// Show the journal or not (statically accessible)
+	public static bool ShowJournal;
 	// The Keycode (button input) to toggle the journal on/off
 	KeyCode _showKey = KeyCode.Tab;
-	// The color of the highlighted GUI
+	// The color of the highlighted GUI 
 	Color _highlight = Color.grey;
 
 	// Adds a new subject to the list of subjects
@@ -26,35 +33,44 @@ class JournalManager : MonoBehaviour
 		subjects.Add(JournalMenu);
 	}
 
+	public Texture2D bastian;
+
 	// Is called once when the application starts
 	void Start () 
 	{
-		// Intro	
+		CreateIntro();
+		CreateMathematics();
+		CreatePhysics();
+	}
+
+	void CreateIntro ()
+	{
+		// Creates a new subject
         JournalMenu intro = new JournalMenu("Intro");
-        string aboutJournal =
+        // Creates a new topic under the above subject
+        JournalMenuEntry aboutThisJournal = new JournalMenuEntry("About this journal");
+
+        string aboutThisJournalText =
         "<b>This journal belongs to Science Professor Jameson</b>"
         + "\n\nThis journal contains the discoveries I have done, through various experiments."
         + " The finds are divided into chapters of their respective subjects."
         + "\n\nIf you are to find this book, please return it to me."
         + "\n\n<i>-- Prof. Jameson</i>";
 
-        intro.AddJournalEntry(new JournalEntry("About This Journal", aboutJournal));
+        // Adds an entry to the topic. 
+        aboutThisJournal.AddJournalEntry(new JournalEntry(aboutThisJournalText));
+        // Adds the topic to the subject
+        intro.AddMenuEntry(aboutThisJournal);
+        // Adds the subject to a list of subjects
+        AddSubject(intro);
+	}
 
-        // Mathematical subject
+	void CreateMathematics ()
+	{
         JournalMenu mathematics = new JournalMenu("Mathematics");
+        JournalMenuEntry orderOfOperations = new JournalMenuEntry("Order of operations");
 
-		string phytagoreanTheorem = 
-		"The Phytagorean Theorem is a <i>very</i> important equation in mathematics. It states that "
-		+ "the hypotenuse (the side opposite the right angle) of a right angled triangle is equal to the "
-		+ "sum of the squares of the other two sides. The Pythagorean equation is written as follows: "
-		+ "\n\n <b>a^2 + b^2 = c^2</b> \n\n"
-		+ "This equation has many applications, such as Trigonometry and Physics."
-		+ "\n\n More!!";
-
-		// This adds an entry to the mathematics JournalMenu
-		mathematics.AddJournalEntry(new JournalEntry("Phytagorean Theorem", phytagoreanTheorem));
-
-        string orderOfOperations = "It seems that math can be misleading at times."
+        string orderOfOperationsText = "It seems that math can be misleading at times."
         + "\nI have found that the order of operations is quite important."
         + "\n\nHere's an example:"
         + "\nWe have two sticks, and then 4 sets of 3 sticks."
@@ -74,15 +90,18 @@ class JournalManager : MonoBehaviour
         + "\nParentheses, exponents, multiply, devide, add and subtract."
         + "\n\nAs long as equations are calculated in this order, then the result will always be correct."
         +"\n\n<i>-- Prof. Jameson</i>";
-        
-        mathematics.AddJournalEntry(new JournalEntry("Order of Operations", orderOfOperations));
 
-		string geometry = "";
-		mathematics.AddJournalEntry(new JournalEntry("Geometry", geometry));
+        orderOfOperations.AddJournalEntry(new JournalEntry(orderOfOperationsText));
+        mathematics.AddMenuEntry(orderOfOperations);
+        AddSubject(mathematics);
+	}
 
-		// Physics subjects 
+	void CreatePhysics ()
+	{
 		JournalMenu physics = new JournalMenu("Physics");
-        string fireTriangle =
+        JournalMenuEntry fireTriangle = new JournalMenuEntry("Fire Triangle");
+
+        string fireTriangleText =
         "<b>\tDay: 34 - Analysis of fire</b>"
         + "\n\nI have spend the entire day, analyzing the behaviour of fire, and I think I have figured it out. "
         + "It seems that the ability to create a fire is based on three primary factors. "
@@ -90,27 +109,26 @@ class JournalManager : MonoBehaviour
         + "\n\nFirstly to create a fire, I need something that can serve as a fuel, something that can burn. \n\n"
         + "I have also found that creating a fire in an oxygenless environment is impossible. It seems that oxygen is a key "
         + "component too. \n\nLastly I have found that the reaction, that is fire, can be started by raising the fuel to it's"
-        + " Ignition temperature, as long as the other two components are present.\n\n\n"
+        + " ignition temperature, as long as the other two components are present.\n\n"
         + "I am fairly certain this information will come in handy at some point."
         + "\n\n <i>-- Prof. Jameson</i>";
-		physics.AddJournalEntry(new JournalEntry("Fire Triangle", fireTriangle));
 
-        string waterDistillation =
+    	fireTriangle.AddJournalEntry(new JournalEntry(fireTriangleText));
+        fireTriangle.AddJournalEntry(new JournalEntryImage(bastian, "Image label goes here"));
+        physics.AddMenuEntry(fireTriangle);
+
+        JournalMenuEntry waterDistillation = new JournalMenuEntry("Water Distillation");
+
+        string waterDistillationText =
         "<b>\tDay: 37 - Distilling of saltwater</b>"
         + "\n\nI have though of a way to make drinkable water! i just need a container to hold the water "
         + "then i can boil it and cool the steam to turn it into drinkable water. "
         + "\n\nI've made an equation to make it easier to remember "
         + "\n<b> E = m * c * ΔT</b>";
 
-        physics.AddJournalEntry(new JournalEntry("Water distillation", waterDistillation));
-
-		string velocity = "";
-		physics.AddJournalEntry(new JournalEntry("Velocity", velocity));
-
-        AddSubject(intro);
-
-		AddSubject(mathematics);
-		AddSubject(physics);
+        waterDistillation.AddJournalEntry(new JournalEntry(waterDistillationText));
+        physics.AddMenuEntry(waterDistillation);
+        AddSubject(physics);
 	}
 
 	// Called every frame
@@ -118,7 +136,7 @@ class JournalManager : MonoBehaviour
 	{
 		if (Input.GetKeyDown(_showKey))
 		{
-			_showJournal = !_showJournal; 
+			ShowJournal = !ShowJournal; 
 		}
 	}
 
@@ -128,15 +146,14 @@ class JournalManager : MonoBehaviour
 		ScaleToScreenSize();
 
         GUI.backgroundColor = new Color(0, 0, 0, 1);
-        GUI.contentColor = Color.white;
 
         // Let the user know how to toggle the Journal on and off
         GUI.Box(new Rect(0, 450, 280, 30), "");
         GUI.Label(new Rect(10, 455, 350, 30), 
-			"Press " + _showKey.ToString() + " to " + (_showJournal? "hide" : "show") + " the Professor's Journal");
+			"Press " + _showKey.ToString() + " to " + (ShowJournal? "hide" : "show") + " the Professor's Journal");
 
         // Return if the journal shouldn't be show
-        if (!_showJournal) {
+        if (!ShowJournal) {
             return;
         }
         else {
@@ -150,63 +167,46 @@ class JournalManager : MonoBehaviour
 
 	void DrawMenuAndSubjects ()
 	{
-		// Assigns the current subject to a temp value for easy and quicker access
-		JournalMenu currentSubject = subjects[_selection];
-		// Store the body of the current subject for later use
-		_body = currentSubject.Body;
-		
-		// Iterates through all subjects
-		for (int index = 0; index < subjects.Count; index++)
-		{
-			// Highlights the current selected subject 
-			if (index == _selection)
-				Highlight();
-			
-			// Draws a button for each subject
-			if (GUI.Button(new Rect(50, 50 + index * 35, 150, 30), subjects[index].Headline))
+        for (int i = 0; i < subjects.Count; i++)
+        {
+			if (i == _selection)
 			{
-				_selection = index;
-				currentSubject = subjects[_selection];
+				Highlight();
 			}
 
-			// Resets the GUI color
-			ResetHighlight();
+        	if (GUI.Button(new Rect(100, 30 + 45 * i, 120, 30), subjects[i].Headline))
+        	{
+        		_selection = i;
+        	}
 
-			// Starts drawing a UI Window with the 
-			windowRect = GUI.Window(0, windowRect, TheoryUIWindow, currentSubject.Headline);
-		}
+    		ResetHighlight();
+        }
 
-		// Temp list of all entries in the current subject
-		List<JournalEntryBase> entries = currentSubject.Entries;
-
-		// Iterates through all entries
-		for (int b = 0; b < entries.Count; b++)
-		{
-			// Highlights the current selected subject
-			if (b == currentSubject.Selection)
-				Highlight();
-
-			// Draw a button for each entry and check if it has been clicked
-			if (GUI.Button(new Rect(200, 50 + b * 35, 200, 30), entries[b].Headline))
+        for (int i = 0; i < subjects[_selection].menuEntries.Count; i++)
+        {
+			if (i == subjects[_selection].Selection)
 			{
-				// Select the entry that was clicked
-				currentSubject.Selection = b;
+				Highlight();
 			}
 
-			// Resets the GUI color
-			ResetHighlight();
-		}
+        	if (GUI.Button(new Rect(240, 30 + 45 * i, 120, 30), subjects[_selection].menuEntries[i].Topic))
+        	{
+        		subjects[_selection].Selection = i;
+        	}
+
+        	ResetHighlight();
+        }	
+
+        windowRect = GUI.Window(0, windowRect, TheoryUIWindow, subjects[_selection].menuEntries[subjects[_selection].Selection].Topic);
 	}
 
 	Vector2 scrollPosition;
 
+	float height = 0;
 	// Draws the currently selected subject to the screen
     void TheoryUIWindow (int windowID) 
     {	
     	float width = windowRect.width-30;
-    	// Calculates the height of the text we are about to draw. 
-    	// Takes line shifts into account
-    	float height = GUI.skin.label.CalcHeight(new GUIContent(_body), width);
     	// The XY position and XY width of a "scroll view", which allows us to scroll 
     	// through the text if it exceeds its boundaries
     	Rect scrollPosAndSize = new Rect(10, 20, width+20, 375);
@@ -215,8 +215,25 @@ class JournalManager : MonoBehaviour
 
     	// Draw a scroll view
 	 	scrollPosition = GUI.BeginScrollView(scrollPosAndSize, scrollPosition, scrollView);
-	 		// We draw the subject text inside the scroll view
-        	GUI.Label(new Rect(0, 0, width, height), _body);
+
+        	height = 0;
+	        for (int i = 0; i < subjects[_selection].menuEntries[subjects[_selection].Selection].journalEntries.Count; i++)
+	        {
+	        	GUIContent g = subjects[_selection].menuEntries[subjects[_selection].Selection].journalEntries[i].Content;
+
+	        	// Improve!
+	        	/*if (g.image != null)
+	        	{
+	        		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
+	        		GUI.Label(new Rect(0, height + GUI.skin.label.CalcHeight(g, width) / 2, width, GUI.skin.label.CalcHeight(g, width)), g.tooltip);
+	        		GUI.skin.label.alignment = TextAnchor.UpperLeft;
+	        	}*/
+	        		
+	        	GUI.Label(new Rect(0, height, width, GUI.skin.label.CalcHeight(g, width)), g);
+    	    	// Calculates the height of the text / images being drawn on the screen. 
+	        	height += GUI.skin.label.CalcHeight(g, width);
+	        }
+
         // This "ends" the scroll view
         GUI.EndScrollView();
     }

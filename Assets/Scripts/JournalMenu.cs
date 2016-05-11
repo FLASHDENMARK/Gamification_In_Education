@@ -1,26 +1,19 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-class JournalMenu : JournalEntryBase
+class JournalMenu
 {
-	List<JournalEntryBase> journalEntries = new List<JournalEntryBase>();
+	public List<JournalMenuEntry> menuEntries = new List<JournalMenuEntry>();
  	
- 	public JournalMenu (string headline) : base (headline, "")
+ 	public JournalMenu (string headline)
  	{
  		this.Headline = headline;
  	}
 
  	string _headline;
- 	public override string Headline 
+ 	public string Headline 
  	{
  		get { return _headline; }
  		private set { _headline = value; }
- 	}
-
- 	public override string Body
- 	{
- 		get { return journalEntries[_selection].Body; }
  	}
 
  	int _selection;
@@ -30,14 +23,14 @@ class JournalMenu : JournalEntryBase
  		set {_selection = value; }
  	}
 
- 	public List<JournalEntryBase> Entries
+ 	public List<JournalMenuEntry> Entries
  	{
- 		get { return journalEntries; }
+ 		get { return menuEntries; }
  	}
  
- 	// Adds a new entry to the list of entriesx
- 	public void AddJournalEntry (JournalEntryBase entry)
+ 	// Adds a new entry to the list of entries
+ 	public void AddMenuEntry (JournalMenuEntry entry)
  	{
- 		journalEntries.Add(entry);
+ 		menuEntries.Add(entry);
  	}
 }
