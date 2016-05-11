@@ -4,27 +4,35 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
-public class MiniGameCampfireWoodCutter : MiniGameBase 
-{
-    public void Check ()
+public class WoodCutter : MonoBehaviour {
+
+	// Use this for initialization
+	void Start ()
     {
-        StartCoroutine(CheckAnswers());
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+
+    public void check()
+    {
+        StartCoroutine(checkAnswers());
     }
 
-    IEnumerator CheckAnswers ()
+    IEnumerator checkAnswers()
     {
         int i = 0, score = 0;
-
         List<int> answers = new List<int>();
 		double[] correctAnswers = {(15-10*3+4*5+10*0.5d), (15-10*(3+4)*5+10*0.5d), (15-10*3+4*(5+10)*0.5d), ((15-10)*3+4*5+10*0.5d)};
-
         Transform Canvas = GameObject.Find("Canvas/Answers").transform;
-
         foreach (Transform child in Canvas.transform)
         {
             int value;
-            if (int.TryParse((child.GetChild(2).GetComponent<Text>().text), out value))
-            {
+            bool result = int.TryParse((child.GetChild(2).GetComponent<Text>().text), out value);
+            if (result)
                 if (value == correctAnswers[i])
                 {
                     InputField inputfield = Canvas.GetChild(i).GetComponent<InputField>();
@@ -44,6 +52,7 @@ public class MiniGameCampfireWoodCutter : MiniGameBase
                     inputfield.colors = CB;
                     i++;
                     score++;
+                    Debug.Log(score);
                 }
                 else
                 {
@@ -62,12 +71,10 @@ public class MiniGameCampfireWoodCutter : MiniGameBase
                     inputfield.colors = CB;
                     i++;
                 }
-            }
         }
-
-        if (score == 4) 
-        { 
-            base.OnMiniGameCompleted(0);
+        if (score == 4) { 
+            GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[0].level++;
+            SceneManager.LoadScene(0);
         }
     }
 }
