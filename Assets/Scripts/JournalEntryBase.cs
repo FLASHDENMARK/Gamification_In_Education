@@ -15,7 +15,7 @@ class JournalEntryBase
     public virtual string Headline
     {
         get { return _headline; }
-        set
+        private set
         {
             if (value == "")
                 throw new ArgumentNullException();
@@ -28,7 +28,7 @@ class JournalEntryBase
     public virtual string Body
     {
         get { return _body; }
-        set
+        private set
         {
             if (value == "")
                 throw new ArgumentNullException();
