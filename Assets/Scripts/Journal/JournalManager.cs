@@ -92,6 +92,8 @@ class JournalManager : MonoBehaviour
 
 	public Texture geometrySquare;
 	public Texture geometryRectangle;
+	public Texture geometryTriangle;
+	public Texture geometryCircle;
 
 	void CreateMathematics ()
 	{
@@ -127,23 +129,48 @@ class JournalManager : MonoBehaviour
         Topic geometry = new Topic("Geometry");
         mathematics.AddTopic(geometry);
 
-		string geometryText1 = "Through years of research I have finally cracked the "
+		string geometryTextIntro = "Through years of research I have finally cracked the "
 		+ "relationship between geometry and their area and volume - how exciting! "
 		+ "\n\nCalculating the area of geometrical figures seems easier than finding the volume."
 		+ "This is because area is the '<i>size of a flat surface</i>', whereas volume is "
 		+ "the '<i>amount of space inside an object</i>'.";
 
-		string geometryText2 = "Let me start with one of the most basic geometric shapes: The square."
-		+ "The square is simple because it is the same length on all sides. The formula for area for a square"
-		+ "is in the name. It is the length of A multiplied with A. And A multiplied by A is A² = A squared!";
+		string geometryTextSquare = "Let me start with one of the most basic geometric shapes: The square."
+		+ "The square is simple because it is the same length on all sides. The formula for area for a square "
+		+ "is in the name. It is the length of A multiplied with A. This means the area of a square is <i> A squared!</i>";
 
-		string geometryText3 = "The next text goes here...";
+		string geometryTextRectangle = "The area of a rectangle is similar to the area of a square. "
+		+ "The calculation is identical to the area of the square, except the rectangle does not have the same length on all sides. "
+		+ "For this reason the area of a rectangle is A multiplied by B, where B is different from A.";
 
-        geometry.AddEntry(new JournalEntry(geometryText1));
-        geometry.AddEntry(new JournalEntry(geometryText2, "Area"));
+		string geometryTextTriangle = "Another calculation related to the area of rectangles and squares is the area of a triangle. "
+		+ "The area of a triangle is super simple if you know how to calculate the area of a rectangle, because the area of a triangle "
+		+ "is simply the half the area of a rectangle. <i>Amazing!</i>";
+
+		string geometryTextCircle = "Circles are unfortunately not <i>directly</i> related to triangles, rectangles or squares... "
+		+ "However I have found that when I needed to calculate anything related to circles I need to use something I have jokenly called 'PIE'. "
+		+ "PIE is a mathematical constant and I have even given it a fancy symbol too: π. It is a very long number, so I just remember it as roughly 3.14. "
+		+ "\n\nLuckily calculating the area of a circle is somewhat like calculating the area of a square. We multiply A by A and then we will multiply that result by PIE. "
+		+ "However since this is a circle and not a square we will use the term R (for radius) instead of A. I have found that π has many practical uses.";
+
+        geometry.AddEntry(new JournalEntry(geometryTextIntro));
+        geometry.AddEntry(new JournalEntry(geometryTextSquare, "Area"));
         geometry.AddEntry(new JournalEntryImage(geometrySquare, "The area of a square"));
-        geometry.AddEntry(new JournalEntry(geometryText3));
+        geometry.AddEntry(new JournalEntry(geometryTextRectangle));
         geometry.AddEntry(new JournalEntryImage(geometryRectangle, "The area of a rectangle"));
+        geometry.AddEntry(new JournalEntry(geometryTextTriangle));
+        geometry.AddEntry(new JournalEntryImage(geometryTriangle, "The area of a triangle"));
+        geometry.AddEntry(new JournalEntry(geometryTextCircle));
+        geometry.AddEntry(new JournalEntryImage(geometryCircle, "The area of a circle"));
+
+		string geometryTextCube = "Volume is the amount of space occupied by an object and calculating it builds upon knowledge from area calculation, but let us start simple. "
+		+ "\n\nCalculating the volume of a cube is relatively simple. It is just like calculating the area of a square, but this time we just multiply by A one more time. "
+		+ "This turns the calculation from 2D to 3D and only 3D objects have volumes. 3D objects have a width, height <i>and</i> depth, where as 2D objects only have a width and a height.";
+
+		string geometryTextRectangle3D = "Calculating the volume of a 3D rectangle is done just the same way of calculating the area of a rectangle, except we have to remember to multiply by the depth as well.";
+
+        geometry.AddEntry(new JournalEntry(geometryTextCube, "Volume"));
+        geometry.AddEntry(new JournalEntry(geometryTextRectangle3D));
 	}
 
 	void CreatePhysics ()
