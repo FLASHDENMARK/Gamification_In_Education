@@ -31,12 +31,11 @@ class JournalManager : MonoBehaviour
 	{
 		get { return CurrentSubject.Entries[CurrentSubject.Selection]; }
 	}
-	
+
 	List<Topic> Topics
 	{
 		get { return CurrentSubject.Entries; }
 	}
-
 
 	// Adds a new subject to the list of subjects
 	public void AddSubject (Subject subject)
@@ -69,7 +68,7 @@ class JournalManager : MonoBehaviour
 		// Add text(JournalEntry) / images(JournalEntryImage) to the topic
 		newTopic.AddEntry(new JournalEntry("This is a piece of text for the topic: New Topic", "This is a label for this text (optional)"));
 		newTopic.AddEntry(new JournalEntryImage(new Texture2D(100, 100), "This is a label for this image"));
-		// The above can be done in any order ot matter how many entries
+		// The above can be done in any order no matter how many entries
 	}
 
 	void CreateIntro ()
@@ -90,6 +89,9 @@ class JournalManager : MonoBehaviour
         // Adds an entry to the topic. 
         aboutThisJournal.AddEntry(new JournalEntry(aboutThisJournalText));
 	}
+
+	public Texture geometrySquare;
+	public Texture geometryRectangle;
 
 	void CreateMathematics ()
 	{
@@ -125,15 +127,23 @@ class JournalManager : MonoBehaviour
         Topic geometry = new Topic("Geometry");
         mathematics.AddTopic(geometry);
 
-		string geometryText = "Through years of research I have finally cracked the "
-		+ "<b>\tDay: 37 - Distilling of saltwater</b>"
-        + "\n\nI have though of a way to make drinkable water! i just need a container to hold the water "
-        + "then i can boil it and cool the steam to turn it into drinkable water. "
-        + "\n\nI've made an equation that i can use to calculate on the the energy needed to raise water a certain temperature "
-        + "I just need to know some of the physical properties of the water to use it."
-        + "\n\n<b>E = m * c * ΔT</b>";
+		string geometryText1 = "Through years of research I have finally cracked the "
+		+ "relationship between geometry and their area and volume - how exciting! "
+		+ "\n\nCalculating the area of geometrical figures seems easier than finding the volume."
+		+ "This is because area is the '<i>size of a flat surface</i>', whereas volume is "
+		+ "the '<i>amount of space inside an object</i>'.";
 
-        geometry.AddEntry(new JournalEntry(geometryText));
+		string geometryText2 = "Let me start with one of the most basic geometric shapes: The square."
+		+ "The square is simple because it is the same length on all sides. The formula for area for a square"
+		+ "is in the name. It is the length of A multiplied with A. And A multiplied by A is A² = A squared!";
+
+		string geometryText3 = "The next text goes here...";
+
+        geometry.AddEntry(new JournalEntry(geometryText1));
+        geometry.AddEntry(new JournalEntry(geometryText2, "Area"));
+        geometry.AddEntry(new JournalEntryImage(geometrySquare, "The area of a square"));
+        geometry.AddEntry(new JournalEntry(geometryText3));
+        geometry.AddEntry(new JournalEntryImage(geometryRectangle, "The area of a rectangle"));
 	}
 
 	void CreatePhysics ()
@@ -155,9 +165,7 @@ class JournalManager : MonoBehaviour
         + "I am fairly certain this information will come in handy at some point."
         + "\n\n <i>-- Prof. Jameson</i>";
 
-    	fireTriangle.AddEntry(new JournalEntry(fireTriangleText, "Day: 34 - Analysis of fire"));
-        fireTriangle.AddEntry(new JournalEntryImage(bastian, "This is bastian, he is a faggot"));
-        fireTriangle.AddEntry(new JournalEntry(fireTriangleText, "Test title"));
+    	fireTriangle.AddEntry(new JournalEntry(fireTriangleText, "Day: 34 - Analysis of fire"));;
 
         Topic waterDistillation = new Topic("Water Distillation");
         physics.AddTopic(waterDistillation);
@@ -175,8 +183,10 @@ class JournalManager : MonoBehaviour
 	// Called every frame
 	void Update ()
 	{
+		// Check if the user has pressed down the _showKey button
 		if (Input.GetKeyDown(_showKey))
 		{
+			// Change the ShowJournal state from true to false or false to true
 			ShowJournal = !ShowJournal; 
 		}
 	}
@@ -303,6 +313,7 @@ class JournalManager : MonoBehaviour
         GUI.EndScrollView();
     }
 
+    // Scales the UI to match the screen size
     void ScaleToScreenSize ()
     {
 		float screenWidth = Screen.width / 853.0F; // 853 is the native width of the original screen
