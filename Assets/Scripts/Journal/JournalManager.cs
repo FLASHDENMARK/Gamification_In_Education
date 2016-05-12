@@ -126,12 +126,12 @@ class JournalManager : MonoBehaviour
         mathematics.AddTopic(geometry);
 
 		string geometryText = "Through years of research I have finally cracked the "
-		+ "relationship between geometry and their area and volume - how exciting! "
-		+ "\n\nCalculating the area of geometrical figures seems easier than finding the volume."
-		+ "This is because area is the '<i>size of a flat surface</i>', whereas volume is "
-		+ "the '<i>amount of space inside an object</i>'."
-		+ "\n\n<b>Area</b>"
-		+ "\n\n";
+		+ "<b>\tDay: 37 - Distilling of saltwater</b>"
+        + "\n\nI have though of a way to make drinkable water! i just need a container to hold the water "
+        + "then i can boil it and cool the steam to turn it into drinkable water. "
+        + "\n\nI've made an equation that i can use to calculate on the the energy needed to raise water a certain temperature "
+        + "I just need to know some of the physical properties of the water to use it."
+        + "\n\n<b>E = m * c * ΔT</b>";
 
         geometry.AddEntry(new JournalEntry(geometryText));
 	}
