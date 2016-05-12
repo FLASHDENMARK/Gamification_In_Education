@@ -2,18 +2,13 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-// Reset the scroll view
-// Image labels
-// Center images
 // Seperate into more functions!
-// Store expressions as temp variables
-// Use same names across files
 
 // Manages the main behaviour of the journal
 class JournalManager : MonoBehaviour 
 {
 	// A list of all subjects
-	List<JournalMenu> subjects = new List<JournalMenu>();
+	List<Subject> subjects = new List<Subject>();
 	// Index of selected entry
 	int _selection;
 	// The body (text) of the selected entry
@@ -27,10 +22,26 @@ class JournalManager : MonoBehaviour
 	// The color of the highlighted GUI 
 	Color _highlight = Color.grey;
 
-	// Adds a new subject to the list of subjects
-	public void AddSubject (JournalMenu JournalMenu)
+	Subject CurrentSubject
 	{
-		subjects.Add(JournalMenu);
+		get { return subjects[_selection]; }
+	}
+
+	Topic CurrentTopic 
+	{
+		get { return CurrentSubject.Entries[CurrentSubject.Selection]; }
+	}
+	
+	List<Topic> Topics
+	{
+		get { return CurrentSubject.Entries; }
+	}
+
+
+	// Adds a new subject to the list of subjects
+	public void AddSubject (Subject subject)
+	{
+		subjects.Add(subject);
 	}
 
 	public Texture2D bastian;
@@ -38,17 +49,36 @@ class JournalManager : MonoBehaviour
 	// Is called once when the application starts
 	void Start () 
 	{
+		//HowToAddTopic();
 		CreateIntro();
 		CreateMathematics();
 		CreatePhysics();
 	}
 
+	void HowToAddTopic ()
+	{
+		// Create a new subject if the subject doesn't already exist
+		Subject newSubject = new Subject("New Subject");
+		// Add the new subject to a list of all subjects
+		AddSubject(newSubject);
+		// Create a new topic
+		Topic newTopic = new Topic("New Topic");
+		// Add the topic to the subject
+		newSubject.AddTopic(newTopic);
+
+		// Add text(JournalEntry) / images(JournalEntryImage) to the topic
+		newTopic.AddEntry(new JournalEntry("This is a piece of text for the topic: New Topic", "This is a label for this text (optional)"));
+		newTopic.AddEntry(new JournalEntryImage(new Texture2D(100, 100), "This is a label for this image"));
+		// The above can be done in any order ot matter how many entries
+	}
+
 	void CreateIntro ()
 	{
-		// Creates a new subject
-        JournalMenu intro = new JournalMenu("Intro");
-        // Creates a new topic under the above subject
-        JournalMenuEntry aboutThisJournal = new JournalMenuEntry("About this journal");
+        Subject intro = new Subject("Intro");
+        AddSubject(intro);
+
+        Topic aboutThisJournal = new Topic("About this journal");
+        intro.AddTopic(aboutThisJournal);
 
         string aboutThisJournalText =
         "<b>This journal belongs to Science Professor Jameson</b>"
@@ -58,17 +88,16 @@ class JournalManager : MonoBehaviour
         + "\n\n<i>-- Prof. Jameson</i>";
 
         // Adds an entry to the topic. 
-        aboutThisJournal.AddJournalEntry(new JournalEntry(aboutThisJournalText));
-        // Adds the topic to the subject
-        intro.AddMenuEntry(aboutThisJournal);
-        // Adds the subject to a list of subjects
-        AddSubject(intro);
+        aboutThisJournal.AddEntry(new JournalEntry(aboutThisJournalText));
 	}
 
 	void CreateMathematics ()
 	{
-        JournalMenu mathematics = new JournalMenu("Mathematics");
-        JournalMenuEntry orderOfOperations = new JournalMenuEntry("Order of operations");
+        Subject mathematics = new Subject("Mathematics");
+        AddSubject(mathematics);
+
+        Topic orderOfOperations = new Topic("Order of operations");
+        mathematics.AddTopic(orderOfOperations);
 
         string orderOfOperationsText = "It seems that math can be misleading at times."
         + "\nI have found that the order of operations is quite important."
@@ -91,21 +120,34 @@ class JournalManager : MonoBehaviour
         + "\n\nAs long as equations are calculated in this order, then the result will always be correct."
         +"\n\n<i>-- Prof. Jameson</i>";
 
-        orderOfOperations.AddJournalEntry(new JournalEntry(orderOfOperationsText));
-        mathematics.AddMenuEntry(orderOfOperations);
-        AddSubject(mathematics);
+        orderOfOperations.AddEntry(new JournalEntry(orderOfOperationsText));
+
+        Topic geometry = new Topic("Geometry");
+        mathematics.AddTopic(geometry);
+
+		string geometryText = "Through years of research I have finally cracked the "
+		+ "relationship between geometry and their area and volume - how exciting! "
+		+ "\n\nCalculating the area of geometrical figures seems easier than finding the volume."
+		+ "This is because area is the '<i>size of a flat surface</i>', whereas volume is "
+		+ "the '<i>amount of space inside an object</i>'."
+		+ "\n\n<b>Area</b>"
+		+ "\n\n";
+
+        geometry.AddEntry(new JournalEntry(geometryText));
 	}
 
 	void CreatePhysics ()
 	{
-		JournalMenu physics = new JournalMenu("Physics");
-        JournalMenuEntry fireTriangle = new JournalMenuEntry("Fire Triangle");
+		Subject physics = new Subject("Physics");
+		AddSubject(physics);
+
+        Topic fireTriangle = new Topic("Fire Triangle");
+        physics.AddTopic(fireTriangle);
 
         string fireTriangleText =
-        "<b>\tDay: 34 - Analysis of fire</b>"
-        + "\n\nI have spend the entire day, analyzing the behaviour of fire, and I think I have figured it out. "
+        "I have spend the entire day, analyzing the behaviour of fire, and I think I have figured it out. "
         + "It seems that the ability to create a fire is based on three primary factors. "
-        + "I have not been able to produce a fire without these components, so they seem important to creating a fire. "
+        + "I have not been able to produce a fire without these components, so they seem essential in creating a fire. "
         + "\n\nFirstly to create a fire, I need something that can serve as a fuel, something that can burn. \n\n"
         + "I have also found that creating a fire in an oxygenless environment is impossible. It seems that oxygen is a key "
         + "component too. \n\nLastly I have found that the reaction, that is fire, can be started by raising the fuel to it's"
@@ -113,22 +155,21 @@ class JournalManager : MonoBehaviour
         + "I am fairly certain this information will come in handy at some point."
         + "\n\n <i>-- Prof. Jameson</i>";
 
-    	fireTriangle.AddJournalEntry(new JournalEntry(fireTriangleText));
-        fireTriangle.AddJournalEntry(new JournalEntryImage(bastian, "Image label goes here"));
-        physics.AddMenuEntry(fireTriangle);
+    	fireTriangle.AddEntry(new JournalEntry(fireTriangleText, "Day: 34 - Analysis of fire"));
+        fireTriangle.AddEntry(new JournalEntryImage(bastian, "This is bastian, he is a faggot"));
+        fireTriangle.AddEntry(new JournalEntry(fireTriangleText, "Test title"));
 
-        JournalMenuEntry waterDistillation = new JournalMenuEntry("Water Distillation");
+        Topic waterDistillation = new Topic("Water Distillation");
+        physics.AddTopic(waterDistillation);
 
         string waterDistillationText =
         "<b>\tDay: 37 - Distilling of saltwater</b>"
-        + "\n\nI have though of a way to make drinkable water! i just need a container to hold the water "
-        + "then i can boil it and cool the steam to turn it into drinkable water. "
+        + "\n\nI have though of a way to make drinkable water! I just need a container to hold the water "
+        + "then I can boil it and cool the steam to turn it into drinkable water. "
         + "\n\nI've made an equation to make it easier to remember "
         + "\n<b> E = m * c * ΔT</b>";
 
-        waterDistillation.AddJournalEntry(new JournalEntry(waterDistillationText));
-        physics.AddMenuEntry(waterDistillation);
-        AddSubject(physics);
+        waterDistillation.AddEntry(new JournalEntry(waterDistillationText));
 	}
 
 	// Called every frame
@@ -166,7 +207,8 @@ class JournalManager : MonoBehaviour
 	}
 
 	void DrawMenuAndSubjects ()
-	{
+	{	
+		// Draw all the subjects
         for (int i = 0; i < subjects.Count; i++)
         {
 			if (i == _selection)
@@ -174,35 +216,38 @@ class JournalManager : MonoBehaviour
 				Highlight();
 			}
 
-        	if (GUI.Button(new Rect(100, 30 + 45 * i, 120, 30), subjects[i].Headline))
+        	if (GUI.Button(new Rect(100, 30 + 45 * i, 120, 30), subjects[i].Name))
         	{
+        		ResetScrollView();
         		_selection = i;
         	}
 
     		ResetHighlight();
         }
 
-        for (int i = 0; i < subjects[_selection].menuEntries.Count; i++)
+        // Draw all the topic under the current subject
+        for (int i = 0; i < Topics.Count; i++)
         {
 			if (i == subjects[_selection].Selection)
 			{
 				Highlight();
 			}
 
-        	if (GUI.Button(new Rect(240, 30 + 45 * i, 120, 30), subjects[_selection].menuEntries[i].Topic))
+        	if (GUI.Button(new Rect(240, 30 + 45 * i, 120, 30), Topics[i].Name))
         	{
+        		ResetScrollView();
         		subjects[_selection].Selection = i;
         	}
 
         	ResetHighlight();
         }	
 
-        windowRect = GUI.Window(0, windowRect, TheoryUIWindow, subjects[_selection].menuEntries[subjects[_selection].Selection].Topic);
+        windowRect = GUI.Window(0, windowRect, TheoryUIWindow, CurrentTopic.Name);
 	}
 
 	Vector2 scrollPosition;
 
-	float height = 0;
+	float totalHeight = 0;
 	// Draws the currently selected subject to the screen
     void TheoryUIWindow (int windowID) 
     {	
@@ -211,27 +256,47 @@ class JournalManager : MonoBehaviour
     	// through the text if it exceeds its boundaries
     	Rect scrollPosAndSize = new Rect(10, 20, width+20, 375);
     	// The current "scroll position" (how much we have scrolled up/down, left/right)
-    	Rect scrollView = new Rect(0, 0, width, height);
+    	Rect scrollView = new Rect(0, 0, width, totalHeight);
+ 		totalHeight = 0;
 
     	// Draw a scroll view
 	 	scrollPosition = GUI.BeginScrollView(scrollPosAndSize, scrollPosition, scrollView);
+	 		List<JournalEntryBase> journalEntries = CurrentTopic.Entries;
 
-        	height = 0;
-	        for (int i = 0; i < subjects[_selection].menuEntries[subjects[_selection].Selection].journalEntries.Count; i++)
+	        for (int i = 0; i < journalEntries.Count; i++)
 	        {
-	        	GUIContent g = subjects[_selection].menuEntries[subjects[_selection].Selection].journalEntries[i].Content;
+	        	GUIContent g = journalEntries[i].Content;
+	 			float height = GUIHeight(g, width);
 
-	        	// Improve!
-	        	/*if (g.image != null)
+	 			// Are we about to draw an image to the screen?
+	        	if (g.image)
 	        	{
-	        		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
-	        		GUI.Label(new Rect(0, height + GUI.skin.label.CalcHeight(g, width) / 2, width, GUI.skin.label.CalcHeight(g, width)), g.tooltip);
+	        		// Aligns the image to the center
+	        		GUI.skin.label.alignment = TextAnchor.UpperCenter;
+	        		// Draws the image
+	        		GUI.Label(new Rect(0, totalHeight, width, height), g);
+	        		// Draws the label for the image
+	        		GUI.Label(new Rect(0, totalHeight + height, width, height), "<i>" + g.tooltip + "</i>");
+	        		// Reset the alignment
 	        		GUI.skin.label.alignment = TextAnchor.UpperLeft;
-	        	}*/
-	        		
-	        	GUI.Label(new Rect(0, height, width, GUI.skin.label.CalcHeight(g, width)), g);
-    	    	// Calculates the height of the text / images being drawn on the screen. 
-	        	height += GUI.skin.label.CalcHeight(g, width);
+	        		// Increment the height of the window
+	        		totalHeight += GUIHeight(new GUIContent(g.tooltip), width);
+	        	}
+	        	// We are about to draw a text
+	        	else
+	        	{
+	        		if (!string.IsNullOrEmpty(g.tooltip))
+	        		{
+	        			GUI.skin.label.alignment = TextAnchor.UpperCenter;
+	        			GUI.Label(new Rect(0, totalHeight, width, height), "<b>" + g.tooltip + "</b>");
+	        			GUI.skin.label.alignment = TextAnchor.UpperLeft;
+	        			totalHeight += GUIHeight(new GUIContent(g.tooltip), width);
+	        		}
+
+	        		GUI.Label(new Rect(0, totalHeight, width, height), g);
+	        	}
+
+	        	totalHeight += height;
 	        }
 
         // This "ends" the scroll view
@@ -248,6 +313,16 @@ class JournalManager : MonoBehaviour
 		// will now scale properly on (almost) any screen
 		GUI.matrix = Matrix4x4.TRS(new Vector3(0, 0, 0), Quaternion.identity, 
 			new Vector3(screenWidth, screenHeight, 1)); 
+    }
+
+    void ResetScrollView ()
+    {
+    	totalHeight = 0;
+    }
+
+    float GUIHeight (GUIContent g, float width)
+    {
+    	return GUI.skin.label.CalcHeight(g, width);
     }
 
     void Highlight ()

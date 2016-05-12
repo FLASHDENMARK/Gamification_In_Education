@@ -14,10 +14,8 @@ public class MiniGameCampfireWoodCutter : MiniGameBase
     IEnumerator CheckAnswers ()
     {
         int i = 0, score = 0;
-
-        List<int> answers = new List<int>();
-		double[] correctAnswers = {(15-10*3+4*5+10*0.5d), (15-10*(3+4)*5+10*0.5d), (15-10*3+4*(5+10)*0.5d), ((15-10)*3+4*5+10*0.5d)};
-
+		double[] correctAnswers = {(15-10*3+4*5+10*0.5d), (15-10*(3+4)*5+10*0.5d), 
+            (15-10*3+4*(5+10)*0.5d), ((15-10)*3+4*5+10*0.5d)};
         Transform Canvas = GameObject.Find("Canvas/Answers").transform;
 
         foreach (Transform child in Canvas.transform)

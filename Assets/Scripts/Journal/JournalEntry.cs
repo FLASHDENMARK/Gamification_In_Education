@@ -3,9 +3,11 @@ using System;
 
 class JournalEntry : JournalEntryBase 
 {	
-	public JournalEntry (string body)
-	{ 
-		_content = new GUIContent(body);
+	public JournalEntry (string body) : this (body, "") { }
+
+	public JournalEntry (string body, string label)
+	{
+		_content = new GUIContent(body, label);
 	}
 
 	GUIContent _content;

@@ -7,6 +7,9 @@ class JournalEntryImage : JournalEntryBase
 
     public JournalEntryImage (Texture image, string label)
     {
+        if (string.IsNullOrEmpty(label))
+            throw new ArgumentNullException("An image label cannot be empty or null");
+            
         _content = new GUIContent(image, label);
     }
 
