@@ -200,7 +200,11 @@ class JournalManager : MonoBehaviour
         + "\n\nI have though of a way to make drinkable water! I just need a container to hold the water "
         + "then I can boil it and cool the steam to turn it into drinkable water. "
         + "\n\nI've made an equation to make it easier to remember "
-        + "\n<b> E = m * c * ΔT</b>";
+        + "\n<b> E = m * c * ΔT</b>"
+        + "\nm is the mass of what we wan't to heat "
+        + "\nc is the specific heat capacity of water "
+        + "\nΔT is the temperature change we wish to achieve"
+        + "\nE is the energy it takes to heat up something by a certain amount of degrees";
 
         waterDistillation.AddEntry(new JournalEntry(waterDistillationText));
 	}
