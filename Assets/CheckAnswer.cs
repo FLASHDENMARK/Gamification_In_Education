@@ -7,7 +7,7 @@ public class CheckAnswer : MonoBehaviour {
     GameObject parent;
     GameObject questions;
 	// Use this for initialization
-	void Start () {
+	public void Start () {
         parent = this.gameObject;
         questions = GameObject.Find("Questions");
 	}
