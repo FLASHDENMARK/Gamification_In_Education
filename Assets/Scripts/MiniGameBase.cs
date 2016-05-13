@@ -3,10 +3,14 @@ using UnityEngine.SceneManagement;
 
 public class MiniGameBase : MonoBehaviour, IMiniGame 
 {
+	public GameObject victoryPanel;
+
 	// When a Mini Game has been completed, we will progress further in the game
 	// Returns to the Main Menu
 	public void OnMiniGameCompleted (int obj)
 	{
+        victoryPanel.SetActive(true);
+
         GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[obj].level++;
         SceneManager.LoadScene(0);
 	}
