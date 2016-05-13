@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class waterBarChanger : MonoBehaviour {
+public class WaterBarChanger : MonoBehaviour {
 
     public Vector3 startpos;
     float down = 0.05f;

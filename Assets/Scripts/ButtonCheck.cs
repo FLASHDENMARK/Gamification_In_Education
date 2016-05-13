@@ -77,8 +77,8 @@ public class ButtonCheck : MonoBehaviour
         if (inputs[0].text == correctAnswers2D[j, 0] && inputs[1].text == correctAnswers2D[j, 1] && 
             inputs[2].text == correctAnswers2D[j, 2] && inputs[3].text == correctAnswers2D[j, 3])
         {
-            GameObject.Find("emptyTinCan/waterBar").GetComponent<waterBarChanger>().MoreWater();
-            GameObject.Find("emptyTinCan/waterBar").GetComponent<waterBarChanger>().MoreWater();
+            GameObject.Find("emptyTinCan/waterBar").GetComponent<WaterBarChanger>().MoreWater();
+            GameObject.Find("emptyTinCan/waterBar").GetComponent<WaterBarChanger>().MoreWater();
             j++;
 
             object2.GetComponent<InputField>().interactable = true;
