@@ -2,27 +2,29 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour {
-
-    bool _showMenu = false;
+public class MainMenu : MonoBehaviour 
+{
+    // Statically accessible 
+    public static bool ShowMenu = false;
     int oldFontSize;
-    // Update is called once per frame
 
-
-    void Update () {
+    void Update () 
+    {
         if (Input.GetKeyDown(KeyCode.Escape)) 
-            _showMenu = !_showMenu;
+            ShowMenu = !ShowMenu;
     }
 
-    void OnGUI() {
-        if (_showMenu) {
+    void OnGUI() 
+    {
+        if (ShowMenu) 
+        {
             oldFontSize = GUI.skin.button.fontSize;
             GUI.Box(new Rect(0, 0, 20000, 10000), "");
             GUI.Box(new Rect(0, 0, 20000, 10000), "");
             GUI.Box(new Rect(0, 0, 20000, 10000), "");
 
             GUI.skin.button.fontSize = (int)(Screen.height * 0.05f);
-            if (GUI.Button(new Rect(Screen.width / 2 - Screen.width / 12, Screen.height / 3, Screen.width / 6, Screen.height / 10), "Main Menu"))
+            if (GUI.Button(new Rect(Screen.width / 2 - Screen.width / 10, Screen.height / 3, Screen.width / 5, Screen.height / 10), "Main Menu"))
                 SceneManager.LoadScene(0);
             if (GUI.Button(new Rect(Screen.width / 2 - Screen.width / 12, Screen.height / 6, Screen.width / 6, Screen.height / 10), "Survey"))
                 Application.OpenURL("https://da.surveymonkey.com/r/6NK3XYZ");
