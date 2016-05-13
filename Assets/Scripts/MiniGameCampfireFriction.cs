@@ -2,13 +2,19 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class MiniGameCampfireFriction : MonoBehaviour {
+public class MiniGameCampfireFriction : MiniGameBase 
+{
     public GameObject stick;
     public Transform target;
     public Transform target2;
     public Image smoke; 
     public float speed;
     bool atBottom = false;
+
+    void Awake ()
+    {
+        base.OnMiniGameStarted();
+    }
 
 	void Update () {
         float step = speed * Time.deltaTime;

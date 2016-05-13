@@ -3,7 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class MiniGameBase : MonoBehaviour, IMiniGame 
 {
+	public GameObject beginPanel;
 	public GameObject victoryPanel;
+
+	public void OnMiniGameStarted ()
+	{
+		beginPanel.SetActive(true);
+	}
 
 	// When a Mini Game has been completed, we will progress further in the game
 	// Returns to the Main Menu

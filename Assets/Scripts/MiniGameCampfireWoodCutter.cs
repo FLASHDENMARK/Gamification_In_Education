@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class MiniGameCampfireWoodCutter : MiniGameBase 
 {
+    void Awake ()
+    {
+        base.OnMiniGameStarted();
+    }
+
     public void Check ()
     {
         StartCoroutine(CheckAnswers());

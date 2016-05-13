@@ -6,6 +6,11 @@ using System.Collections.Generic;
 public class MiniGameCampfireFireTriangle : MiniGameBase     
 {
     GameObject draggedObject = null;
+
+    void Awake ()
+    {
+        base.OnMiniGameStarted();
+    }
         
     // Update is called once per frame
     void Update () 
@@ -102,7 +107,7 @@ public class MiniGameCampfireFireTriangle : MiniGameBase
             CB.highlightedColor = Color.white;
             button.colors = CB;
             yield return new WaitForSeconds(.5f);
-            
+
             base.OnMiniGameCompleted(0);
         }
         else
