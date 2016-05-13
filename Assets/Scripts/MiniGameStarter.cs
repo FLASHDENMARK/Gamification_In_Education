@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MiniGameStarter : MonoBehaviour 
 {
-    ProgressionManager progression;
+    public Text infoPanel;
 
+    ProgressionManager progression;
     // Update is called once per frame
     void Update () 
     {
@@ -19,18 +20,18 @@ public class MiniGameStarter : MonoBehaviour
         }
     }
 
+    // Load a Mini Games for a specific unlockable, if it is available
     void LoadMiniGame (int levelIndex)
     {
         int index = 0;
         bool levelReached = true;
-        Text canvasText = GameObject.Find("Canvas/Panel/Text").GetComponent<Text>();
     	progression = (ProgressionManager)FindObjectOfType(typeof(ProgressionManager));
 
         foreach (int i in progression.unlocks[levelIndex].toUnlock) 
         {
             if (progression.unlocks[index].level < i) 
             {
-				canvasText.text = progression.unlocks[index].asset.name + " need to be level: " + i;
+				infoPanel.text = progression.unlocks[index].asset.name + " need to be level: " + i;
                 levelReached = false;
             }
 
@@ -41,11 +42,12 @@ public class MiniGameStarter : MonoBehaviour
         {
             try 
             {
-                SceneManager.LoadScene(progression.unlocks[levelIndex].scenes[progression.unlocks[levelIndex].level]);
+                ProgressionManager.ObjectProgress unlockable = progression.unlocks[levelIndex];
+                SceneManager.LoadScene(unlockable.scenes[unlockable.level]);
             } 
             catch (IndexOutOfRangeException) 
             {
-                canvasText.text = "No more levels for this unlockable.";
+                infoPanel.text = "No more levels for this unlockable.";
             }
         }
     }

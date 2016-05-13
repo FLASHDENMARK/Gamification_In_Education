@@ -19,9 +19,9 @@ public class RendererProgression : MonoBehaviour
 
     void FindUnlocks ()
     {
-        unlocks[0] = GameObject.Find("Canvas/Unlockables/Campfire").GetComponent<Image>();
-        unlocks[1] = GameObject.Find("Canvas/Unlockables/Workbench").GetComponent<Image>();
-        unlocks[2] = GameObject.Find("Canvas/Unlockables/Furnace").GetComponent<Image>();
-        unlocks[3] = GameObject.Find("Canvas/Unlockables/Hut").GetComponent<Image>();
+        unlocks[0] = GameObject.Find("Canvas/Unlockables/CampFire/Fill").GetComponent<Image>();
+        unlocks[1] = GameObject.Find("Canvas/Unlockables/Workbench/Fill").GetComponent<Image>();
+        unlocks[2] = GameObject.Find("Canvas/Unlockables/Furnace/Fill").GetComponent<Image>();
+        unlocks[3] = GameObject.Find("Canvas/Unlockables/Hut/Fill").GetComponent<Image>();
     }
 }

@@ -43,8 +43,6 @@ class JournalManager : MonoBehaviour
 		subjects.Add(subject);
 	}
 
-	public Texture2D bastian;
-
 	// Is called once when the application starts
 	void Start () 
 	{
