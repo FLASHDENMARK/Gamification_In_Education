@@ -24,7 +24,10 @@ public class MainMenu : MonoBehaviour
 
             GUI.skin.button.fontSize = (int)(Screen.height * 0.05f);
             if (GUI.Button(new Rect(Screen.width / 2 - Screen.width / 10, Screen.height / 3, Screen.width / 5, Screen.height / 10), "Main Menu"))
+            {
                 SceneManager.LoadScene(0);
+                ShowMenu = false;
+            }
             if (GUI.Button(new Rect(Screen.width / 2 - Screen.width / 12, Screen.height / 6, Screen.width / 6, Screen.height / 10), "Survey"))
                 Application.OpenURL("https://da.surveymonkey.com/r/6NK3XYZ");
             if (GUI.Button(new Rect(Screen.width / 2 - Screen.width / 12, Screen.height / 1.5f, Screen.width / 6, Screen.height / 10), "Exit Game"))

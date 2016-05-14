@@ -1,52 +1,155 @@
-﻿// Push!!
-using UnityEngine;
-using System.Collections;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 
 class CampFireDigManager : MiniGameBase
 {
-    public GameObject[] Shapes;
-    bool ColorChangeRunning = false;
-    // Use this for initialization
-    public void CheckAllAnswers() {
-        int correctAnswers = 0;
-        foreach (GameObject GO in Shapes) {
-            if (GO.GetComponent<CampfireDig>().object1 == null || GO.GetComponent<CampfireDig>().object2 == null) {
-                Debug.Log("Starting coroutine on: " + GO.name);
-                if(!ColorChangeRunning)
-                StartCoroutine(ColorChange(GO, Color.red));
-                return;
-            }
-            foreach (GameObject GOS in Shapes) {
-                if (GOS.GetComponent<CampfireDig>().checkAnswers())
-                    correctAnswers++;
-            }
-            if (correctAnswers == GameObject.Find("Shapes").transform.childCount) 
+    public List<CampfireDig> shapes = new List<CampfireDig>();
+    public GameObject error;
+    public float lineRendererWidth = 0.05F;
+
+    bool colorChangeRunning = false;
+    CampfireDig currentShape = null;
+
+    Color disconnectedColor = Color.grey;
+    Color correctColor = Color.green;
+    Color wrongColor = Color.red;
+
+    void Awake ()
+    {
+        base.OnMiniGameStarted();
+        error.SetActive(false);
+
+        foreach (CampfireDig c in shapes)
+            c.Initialize(lineRendererWidth);
+    }
+
+    void Update ()
+    {   
+        if (Input.GetMouseButtonDown(0))
+        {
+            GrabEquation();
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            DragConnection();
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            ConnectEquationWithShape();
+        }
+    }
+
+    void GrabEquation ()
+    {
+        if (MouseManager.GetClickedEntity())
+        {
+            CampfireDig GO = MouseManager.GetClickedEntity().GetComponent<CampfireDig>();
+            
+            if (GO && shapes.Contains(GO))
             {
-                base.OnMiniGameCompleted(0);
-            }    
+                currentShape = GO;
+            }            
         }
     }
 
-    public void clearLineColors() {
-        Color clearColor = new Color(0.5f, 0.5f, 0.5f);
-        foreach(GameObject GO in Shapes) {
-            GO.GetComponent<LineRenderer>().SetColors(clearColor, clearColor);
+    void DragConnection ()
+    {
+        if (currentShape)
+        {
+            currentShape.SetColor(disconnectedColor);
+            currentShape.SetLineRendererPositions(Input.mousePosition);
         }
     }
 
-    IEnumerator ColorChange(GameObject GO, Color color) {
-        ColorChangeRunning = true;
+    void ConnectEquationWithShape ()
+    {
+        if (currentShape)
+        {
+            GameObject GO = MouseManager.GetClickedEntity();
+
+            // Check if this object can be matched against
+            if (GO && GO.tag == "Matchable")
+            {
+                currentShape.SetMatch(GO);
+                currentShape.SetLineRendererPositions(GO.transform.position);
+
+                currentShape = null;
+            }
+            else
+            {
+                currentShape.ResetLineRenderer();
+                currentShape.SetMatch(null);
+
+                currentShape = null;
+            }
+        }
+    }
+
+    public void CheckMatches ()
+    {
+        int correctAnswers = 0;
+
+        // All connections must be set before we can check the results
+        if (!AreAllShapesConnected())
+        {
+            error.SetActive(true);
+            return;
+        }
+
+        foreach (CampfireDig c in shapes)
+        {
+            if (c.CheckCorrectMatch())
+            {
+                correctAnswers++;
+                c.SetColor(correctColor);
+            }
+            else
+            {
+                c.SetColor(wrongColor);
+                StartCoroutine(ColorChange(c.gameObject, Color.red));
+                break;
+            }
+        }
+
+        // All answers were correct
+        if (correctAnswers == shapes.Count)
+        {
+            base.OnMiniGameCompleted(3);
+        }
+
+        Debug.Log(correctAnswers + "Max; " + shapes.Count);
+    }
+
+    // Returns true if all shapes are connected to an equation
+    // False if not
+    bool AreAllShapesConnected ()
+    {
+         foreach (CampfireDig c in shapes)
+         {
+            if (c.match == null)
+                return false;
+         }
+
+         return true;
+    }
+
+    IEnumerator ColorChange (GameObject GO, Color color) 
+    {
+        colorChangeRunning = true;
+
         Color baseColor = GO.GetComponent<Text>().color;
-        for(int i = 0; i < 3; i++) { 
+
+        for (int i = 0; i < 2; i++) 
+        { 
             Debug.Log(GO.name);
             GO.GetComponent<Text>().color = color;
-        yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.5f);
             GO.GetComponent<Text>().color = baseColor;
-        yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.5f);
         }
-        ColorChangeRunning = false;
-    }
 
+        colorChangeRunning = false;
+    }
 }
