@@ -6,7 +6,6 @@ public class MainMenu : MonoBehaviour
 {
     // Statically accessible 
     public static bool ShowMenu = false;
-    int oldFontSize;
 
     void Update () 
     {
@@ -14,11 +13,11 @@ public class MainMenu : MonoBehaviour
             ShowMenu = !ShowMenu;
     }
 
-    void OnGUI() 
+    void OnGUI () 
     {
         if (ShowMenu) 
         {
-            oldFontSize = GUI.skin.button.fontSize;
+            int oldFontSize = GUI.skin.button.fontSize;
             GUI.Box(new Rect(0, 0, 20000, 10000), "");
             GUI.Box(new Rect(0, 0, 20000, 10000), "");
             GUI.Box(new Rect(0, 0, 20000, 10000), "");
