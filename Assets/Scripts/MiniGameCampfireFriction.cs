@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class MiniGameCampfireFriction : MiniGameBase 
+public class MiniGameCampfireFriction : MonoBehaviour
 {
     public GameObject stick;
     public Transform target;
@@ -11,12 +11,8 @@ public class MiniGameCampfireFriction : MiniGameBase
     public float speed;
     bool atBottom = false;
 
-    void Awake ()
-    {
-        base.OnMiniGameStarted();
-    }
 
-	void Update () {
+    void Update () {
         float step = speed * Time.deltaTime;
 
         if (Vector3.Distance(target.position, stick.transform.position) < 0.1f)

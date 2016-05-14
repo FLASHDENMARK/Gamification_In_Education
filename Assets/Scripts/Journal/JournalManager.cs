@@ -186,7 +186,7 @@ class JournalManager : MonoBehaviour
         + "\n\nFirstly to create a fire, I need something that can serve as a fuel, something that can burn. \n\n"
         + "I have also found that creating a fire in an oxygenless environment is impossible. It seems that oxygen is a key "
         + "component too. \n\nLastly I have found that the reaction, that is fire, can be started by raising the fuel to it's"
-        + " ignition temperature, as long as the other two components are present.\n\n"
+        + " ignition temperature, as long as the other two components are present. It seems that most wood ignites at around 300 degrees.\n\n"
         + "I am fairly certain this information will come in handy at some point."
         + "\n\n <i>-- Prof. Jameson</i>";
 

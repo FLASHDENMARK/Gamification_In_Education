@@ -2,7 +2,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class CheckAnswer : MonoBehaviour {
+public class CheckAnswer : MiniGameBase {
 
     GameObject parent;
     GameObject questions;
@@ -12,14 +12,17 @@ public class CheckAnswer : MonoBehaviour {
         questions = GameObject.Find("Questions");
 	}
 	
+    void Awake() {
+        base.OnMiniGameStarted();
+    }
+
 	// Update is called once per frame
 	void Update () {
 	
 	}
 
     public void complete() {
-        GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[0].level++;
-        SceneManager.LoadScene(0);
+        base.OnMiniGameCompleted(0);
     }
 
     void progress(int questionNumber) {
@@ -49,7 +52,7 @@ public class CheckAnswer : MonoBehaviour {
             case 2:
                 if (canvas.GetChild(0).GetComponent<InputField>().text == "300" ||
                     canvas.GetChild(0).GetComponent<InputField>().text == "300.0"){
-                    progress(questionNumber);
+                    complete();
                 }
                 break;
         }
