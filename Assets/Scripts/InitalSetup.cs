@@ -2,19 +2,21 @@
 
 public class InitalSetup : MonoBehaviour 
 {
-    public GameObject Instance;
-    public GameObject IntroText1;
-    public GameObject IntroText2;
+    public GameObject gameManager;
+    public GameObject introText1;
+    public GameObject introText2;
+    public GameObject languageSelect;
 
     void Awake ()
     {
         if (!GameObject.Find("GameManager")) 
         {
-            GameObject gameManager = Instantiate(Instance);
-            gameManager.name = Instance.name;
+            GameObject manager = Instantiate(gameManager);
+            manager.name = gameManager.name;
             
-            IntroText1.SetActive(true);
-            IntroText2.SetActive(true);
+            introText1.SetActive(true);
+            introText2.SetActive(true);
+            languageSelect.SetActive(true);
         }
     }
 }

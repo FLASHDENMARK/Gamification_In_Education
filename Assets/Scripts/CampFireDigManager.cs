@@ -45,6 +45,7 @@ class CampFireDigManager : MiniGameBase
     {
         if (MouseManager.GetClickedEntity())
         {
+            //
             CampfireDig GO = MouseManager.GetClickedEntity().GetComponent<CampfireDig>();
             
             if (GO && shapes.Contains(GO))
