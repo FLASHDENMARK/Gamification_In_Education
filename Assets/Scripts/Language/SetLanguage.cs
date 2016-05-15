@@ -8,14 +8,18 @@ public class SetLanguage : MonoBehaviour
 	public void SetLanguageToEnglish ()
 	{
 		Language.IsDanish = false;
-		Language.ChangeLanguage();
-		Destroy(languagePanel);
+		ChangeLanguage();
 	}
 
 	public void SetLanguageToDanish ()
 	{
 		Language.IsDanish = true;
+		ChangeLanguage();
+	}	
+
+	void ChangeLanguage ()
+	{
 		Language.ChangeLanguage();
 		Destroy(languagePanel);
-	}	
+	}
 }

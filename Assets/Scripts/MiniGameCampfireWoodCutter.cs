@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class MiniGameCampfireWoodCutter : MiniGameBase 
 {

@@ -119,8 +119,6 @@ class CampFireDigManager : MiniGameBase
         {
             base.OnMiniGameCompleted(3);
         }
-
-        Debug.Log(correctAnswers + "Max; " + shapes.Count);
     }
 
     // Returns true if all shapes are connected to an equation

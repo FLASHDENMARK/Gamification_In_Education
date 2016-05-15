@@ -7,6 +7,11 @@ public class MiniGameCampfireFireTriangle : MiniGameBase
 {
     GameObject draggedObject = null;
 
+    // Drag the correct answers here
+    public Text heatElement;
+    public Text oxygenElement;
+    public Text fuelElement;
+
     void Awake ()
     {
         base.OnMiniGameStarted();
@@ -85,11 +90,11 @@ public class MiniGameCampfireFireTriangle : MiniGameBase
 
         foreach (Transform child in canvas) 
         { 
-            Debug.Log(child.GetComponent<Text>().text);
             compositionList.Add(child.GetComponent<Text>().text);
         }
         
-        if (compositionList.Contains("Heat") && compositionList.Contains("Fuel") && compositionList.Contains("O2")) 
+        if (compositionList.Contains(heatElement.text) && compositionList.Contains(oxygenElement.text) 
+            && compositionList.Contains(fuelElement.text)) 
         {
             CB.normalColor = Color.green;
             CB.highlightedColor = Color.green;
@@ -127,7 +132,6 @@ public class MiniGameCampfireFireTriangle : MiniGameBase
             CB.normalColor = Color.white;
             CB.highlightedColor = Color.white;
             button.colors = CB;
-            yield return new WaitForSeconds(.5f);
         }
     }
 
