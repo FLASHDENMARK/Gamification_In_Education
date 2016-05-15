@@ -4,16 +4,13 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
-public class ButtonCheck : MonoBehaviour
+public class ButtonCheck : MiniGameBase
 {
-
-	
-	// Update is called once per frame
-	void Update ()
+    void Awake ()
     {
-        
-        
+        base.OnMiniGameStarted();
     }
+
     string[,] correctAnswers2D = new string[3, 4];
     InputField[] inputs = new InputField[4];
     public GameObject object1, object2, object3, object4;
@@ -123,10 +120,9 @@ public class ButtonCheck : MonoBehaviour
 
             object3.SetActive(false);
         }
-        else if(k == 3)
+        else if (k == 3)
         {
-            GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[1].level++;
-            SceneManager.LoadScene(0);
+            base.OnMiniGameCompleted(1);
         }
     }
 

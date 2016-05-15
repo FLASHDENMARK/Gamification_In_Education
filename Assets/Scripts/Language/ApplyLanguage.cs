@@ -13,13 +13,16 @@ public class ApplyLanguage : MonoBehaviour
 
 	void Awake ()
 	{
-		Language.language += TestMethod;
+		Language.language += Translate;
+
+		if (Language.IsDanish)
+		{
+			Translate();
+		}
 	}
 
-	void TestMethod ()
+	void Translate ()
 	{
-		Debug.LogWarning("Language has changed. Event");
-
 		if (label)
 		{
 			if (Language.IsDanish)
