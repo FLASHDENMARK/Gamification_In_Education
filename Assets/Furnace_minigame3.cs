@@ -55,7 +55,7 @@ public class Furnace_minigame3 : MiniGameBase
                 }
             if( Points == 6 )
             {
-                OnMiniGameCompleted(0);
+                OnMiniGameCompleted(2);
             }
             }
 
