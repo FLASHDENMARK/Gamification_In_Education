@@ -124,12 +124,17 @@ class JournalManager : MonoBehaviour
         aboutThisJournal.AddEntry(new JournalEntry(aboutThisJournalText));
 	}
 
-	public Texture geometrySquare = null;
-	public Texture geometryRectangle = null;
-	public Texture geometryTriangle = null;
-	public Texture geometryCircle = null;
+    public Texture geometrySquare = null;
+    public Texture geometryRectangle = null;
+    public Texture geometryTriangle = null;
+    public Texture geometryCircle = null;
+    public Texture geometryCube = null;
+    public Texture geometry3DRectangle = null;
+    public Texture geometryPyramid = null;
+    public Texture geometryCylinder = null;
+    public Texture geometryCone = null;
 
-	void CreateMathematicsEnglish ()
+    void CreateMathematicsEnglish ()
 	{
         Subject mathematics = new Subject("Mathematics");
         AddSubject(mathematics);
@@ -197,15 +202,34 @@ class JournalManager : MonoBehaviour
         geometry.AddEntry(new JournalEntry(geometryTextCircle));
         geometry.AddEntry(new JournalEntryImage(geometryCircle, "The area of a circle"));
 
-		string geometryTextCube = "Volume is the amount of space occupied by an object and calculating it builds upon knowledge from area calculation, but let us start simple. "
-		+ "\n\nCalculating the volume of a cube is relatively simple. It is just like calculating the area of a square, but this time we just multiply by A one more time. "
-		+ "This turns the calculation from 2D to 3D and only 3D objects have volumes. 3D objects have a width, height <i>and</i> depth, where as 2D objects only have a width and a height.";
+        string geometryTextCube = "Volume is the amount of space occupied by an object and calculating it builds upon knowledge from area calculation, but let us start simple. "
+        + "\n\nCalculating the volume of a cube is relatively simple. It is just like calculating the area of a quadrant, but this time we just multiply by A one more time. "
+        + "This turns the calculation from two-dimensional(2D) to three-dimensional(3D) and only 3D objects have volumes. 3D objects have a width, height <i>and</i> depth, where as 2D objects only have a width and a height.";
 
-		string geometryTextRectangle3D = "Calculating the volume of a 3D rectangle is done just the same way of calculating the area of a rectangle, except we have to remember to multiply by the depth as well.";
+        string geometryTextRectangle3D = "Calculating the volume of a 3D rectangle is done in the same way as calculating the area of a rectangle, except we have to remember to multiply by the depth as well."
+        + "This means that the formula to calculate the volume of a 3D rectangle is A multiplied B multiplied by C, where A, B, and C are different from eachother.";
+
+        string geometryTextPyramid = "To calculate the volume of a pyramid, two things are needed: The area of the base and the height of the pyramid. "
+        + "The height of the pyramid is the <i>perpendicular</i> height from the base to the same height as the top of the pyramid. The area of the base is calculated like the area of a quadrant or rectangle, "
+        + "depending on the geometry of the base. The formula to calculate the volume of a pyramid is the height H multiplied by the base B multiplied by 1/3.";
+
+        string geometryTextCylinder = "Calculating the volume of a cylinder is also relatively simple. The volume of a cylinder can be calculated by multiplying the area of the base, which is equal to the area of a circle, "
+        + "with the height <i>h</i> of the cylinder.";
+
+        string geometryTextCone = "The volume of a cone is similar to the volume of a pyramid, with only one key difference. "
+        + "The base of a cone is circular, where the base of a pyramid was a square. Therefore, the volume of a cone is calculated by almost the same formula as the pyramid, with the exception of the base B being the area of a circle instead.";
 
         geometry.AddEntry(new JournalEntry(geometryTextCube, "Volume"));
+        geometry.AddEntry(new JournalEntryImage(geometryCube, "The volume of a cube\n"));
         geometry.AddEntry(new JournalEntry(geometryTextRectangle3D));
-	}
+        geometry.AddEntry(new JournalEntryImage(geometry3DRectangle, "The volume of a 3D rectangle\n"));
+        geometry.AddEntry(new JournalEntry(geometryTextPyramid));
+        geometry.AddEntry(new JournalEntryImage(geometryPyramid, "The volume of a pyramid\n"));
+        geometry.AddEntry(new JournalEntry(geometryTextCylinder));
+        geometry.AddEntry(new JournalEntryImage(geometryCylinder, "The volume of a cylinder\n"));
+        geometry.AddEntry(new JournalEntry(geometryTextCone));
+        geometry.AddEntry(new JournalEntryImage(geometryCone, "The volume of a cone\n"));
+    }
 
 	void CreateMathematicsDanish ()
 	{
@@ -304,22 +328,40 @@ class JournalManager : MonoBehaviour
         geometry.AddEntry(new JournalEntry(geometryTextCircle));
         geometry.AddEntry(new JournalEntryImage(geometryCircle, "Arealet af en cirkel"));
 
-		string geometryTextCube = 
-		"Volume, også kaldet rumfanget, er størrelsen af den plads et objekt udgør "
-		+ "og at udregne volumen, bygger på arealberegninger. Men lad us starte simpelt.\n\n"
+        string geometryTextCube =
+        "Volumen, også kaldet rumfang, er størrelsen af den plads et objekt udgør "
+        + "og at udregne volumen, bygger på arealberegninger. Men lad us starte simpelt.\n\n"
 
-		+ "Beregning af volumen af en terning er simpelt. Det er det samme som at beregne "
-		+ "arealet af et kvadrat, og derefter gange med 'a' igen. Dette gør at beregningen "
-		+ "går fra 2D til 3D, og kun 3D objekter har en volume. De har nemlig en bredde, en "
-		+ "dybde og en højde, hvor 2D objekter kun har brede og højde.";
+        + "Beregning af volumen af en terning er simpelt. Det er det samme som at beregne "
+        + "arealet af et kvadrat, og derefter gange med 'a' igen. Dette gør at beregningen "
+        + "går fra to-dimensionel(2D) til tre-dimensionel(3D), og kun 3D objekter har en volumen. De har nemlig en bredde, en "
+        + "dybde og en højde, hvor 2D objekter kun har en bredde og en højde.";
 
-		string geometryTextRectangle3D = 
-		"At beregne volumen af en 3D rektangel er det samme som at beregne arealet af en rektangel, "
-		+ "dog skal man huske også at gange med dybden";
+        string geometryTextRectangle3D =
+        "At beregne volumen af et 3D rektangel er det samme som at beregne arealet af et rektangel, "
+        + "hvorefter man ganger med dybden af det 3D rektangel.";
 
-        geometry.AddEntry(new JournalEntry(geometryTextCube, "Volume"));
+        string geometryTextPyramid = "Der skal bruges to ting for at kunne beregne rumfanget af en pyramide: Arealet af basen, som er kvadratet i bunden, og pyramidens højde. "
+        + "Højden af pyramiden er den <i>retvinklede</i> højde fra basen af pyramiden til toppen af pyramiden. Arealet af basen udregnes på samme måde som man beregner arealet af et rektangel. "
+        + "Formlen brugt til at udregne volumen af en pyramide er derfor højden ganget med basens areal, og derefter ganget med 1/3.";
+
+        string geometryTextCylinder = "At udregne volumen af en cylinder er relativt simpelt. En cylinder er i princippet bare en cirkel der har en højde, hvilket gør at en cylinders volumen "
+        + "kan udregnes ved at gange basens areal, altså cirklens areal, med højden af cylinderen.";
+
+        string geometryTextCone = "Volumen af en kegle er næsten ens med volumen af en pyramide, med kun en enkel ændring. "
+        + "Basen for en kegle er cirkulær, hvor basen for en pyramide er kvadratisk. Dette gør at volumen for en kegle kan udregnes ved at gange højden af keglen med cirklens areal, og derefter gange dette med 1/3.";
+
+        geometry.AddEntry(new JournalEntry(geometryTextCube, "Volumen"));
+        geometry.AddEntry(new JournalEntryImage(geometryCube, "Volumen af en terning\n"));
         geometry.AddEntry(new JournalEntry(geometryTextRectangle3D));
-	}
+        geometry.AddEntry(new JournalEntryImage(geometry3DRectangle, "Volumen af et 3D rektangel\n"));
+        geometry.AddEntry(new JournalEntry(geometryTextPyramid));
+        geometry.AddEntry(new JournalEntryImage(geometryPyramid, "Volumen af en pyramide\n"));
+        geometry.AddEntry(new JournalEntry(geometryTextCylinder));
+        geometry.AddEntry(new JournalEntryImage(geometryCylinder, "Volumen af en cylinder\n"));
+        geometry.AddEntry(new JournalEntry(geometryTextCone));
+        geometry.AddEntry(new JournalEntryImage(geometryCone, "Volumen af en kegle\n"));
+    }
 
 	void CreatePhysicsEnglish ()
 	{
