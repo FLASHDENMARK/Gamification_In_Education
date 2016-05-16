@@ -39,10 +39,10 @@ public class ButtonCheck : MiniGameBase
         correctAnswers2D[1, 2] = "4186"; // specific heat capacity of water
         correctAnswers2D[1, 3] = "20"; // result
 
-        correctAnswers2D[2, 0] = "194188"; // energy
+        correctAnswers2D[2, 0] = "41860"; // energy
         correctAnswers2D[2, 1] = "500"; // watt
         correctAnswers2D[2, 2] = ""; // empty
-        correctAnswers2D[2, 3] = "6.46"; // minutes
+        correctAnswers2D[2, 3] = "84"; // minutes
 
 
         //energyFormulae();
@@ -135,7 +135,7 @@ public class ButtonCheck : MiniGameBase
             {
                 assignmentText.text = "Bålet laver varme svarende til 500W. "
                     + "det tager 4186 joule at varme 1 Kg vand med 1 Grad celsius. "
-                    + "Hvor meget tid tager det at varme 1 Kg vand 46.39 grader celsius?"
+                    + "Hvor meget tid tager det at varme 1 Kg vand 46.39 grader celsius? (husk at runde op)"
                     + "\n\n 500w = 500 joule/sekunder";
 
                 GameObject.Find("Canvas/Unit1").GetComponent<Text>().text = "Energi (Joule)";
@@ -145,7 +145,7 @@ public class ButtonCheck : MiniGameBase
             {
                 assignmentText.text = "The fireplace creates heat equivalent to 500W of power. "
                     + "It takes 4186 joule to heat 1 Kg of water by 1 degree celsius. "
-                    + "\nHow much time does it take to heat 1 Kg of water by 46.39 degrees?"
+                    + "\nHow much time does it take to heat 1 Kg of water by 10 degrees? (remember to round up)"
                     + "\n\n 500w = 500 joule/seconds";
 
                 GameObject.Find("Canvas/Unit1").GetComponent<Text>().text = "Energy (Joule)";
