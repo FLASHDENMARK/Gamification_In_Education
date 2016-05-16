@@ -60,7 +60,7 @@ public class MiniGameCampfireFriction : MiniGameBase
         switch (questionNumber) 
         {
             case 0:
-                if (answer == "KINETIC") 
+                if (answer == "KINETIC" || answer == "KINETISK") 
                     Progress(questionNumber);
             break;
 
