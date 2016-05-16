@@ -17,7 +17,7 @@ public class Furnace_minigame3 : MiniGameBase
         Transform Third_Challenge = GameObject.Find("Third_Challenge/Answers").transform;
         foreach (Transform element in Third_Challenge.transform)
         {   
-            if ((element.GetChild(2).GetComponent<Text>().text).Contains(correctAnswers3[i]))
+            if (element.GetChild(2).GetComponent<Text>().text == correctAnswers3[i])
             {
 
                     InputField inputfield = Third_Challenge.GetChild(i).GetComponent<InputField>();

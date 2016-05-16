@@ -30,8 +30,8 @@ public class Furnace_Minigame : MiniGameBase
 
         foreach (Transform element in First_Challenge.transform)
         {
-            if ((element.GetChild(2).GetComponent<Text>().text).Contains(correctAnswers[i]) ||
-                (element.GetChild(2).GetComponent<Text>().text).Contains(correctAnswerscomma[i]))
+            if (element.GetChild(2).GetComponent<Text>().text == correctAnswers[i] ||
+                element.GetChild(2).GetComponent<Text>().text == correctAnswerscomma[i])
 
             {
 
