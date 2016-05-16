@@ -15,8 +15,6 @@ class JournalManager : MonoBehaviour
 	public Rect windowRect;
 	// Show the journal or not (statically accessible)
 	public static bool ShowJournal;
-	// The Keycode (button input) to toggle the journal on/off
-	KeyCode _showKey = KeyCode.Tab;
 	// The color of the highlighted GUI 
 	Color _highlight = Color.grey;
 
@@ -41,13 +39,31 @@ class JournalManager : MonoBehaviour
 		subjects.Add(subject);
 	}
 
+	bool _initialized = false;
+
 	// Is called once when the application starts
 	void Start () 
 	{
 		//HowToAddTopic();
-		CreateIntro();
-		CreateMathematics();
-		CreatePhysics();
+		Language.language += CreateEntries;
+	}
+
+	void CreateEntries ()
+	{
+		if (Language.IsDanish)
+		{
+			CreateIntroDanish();
+			CreateMathematicsDanish();
+			CreatePhysicsDanish();
+		}
+		else
+		{
+			CreateIntroEnglish();
+			CreateMathematicsEnglish();
+			CreatePhysicsEnglish();
+		}
+
+		_initialized = true;
 	}
 
 	void HowToAddTopic ()
@@ -67,7 +83,7 @@ class JournalManager : MonoBehaviour
 		// The above can be done in any order no matter how many entries
 	}
 
-	void CreateIntro ()
+	void CreateIntroEnglish ()
 	{
         Subject intro = new Subject("Intro");
         AddSubject(intro);
@@ -86,12 +102,27 @@ class JournalManager : MonoBehaviour
         aboutThisJournal.AddEntry(new JournalEntry(aboutThisJournalText));
 	}
 
+	void CreateIntroDanish ()
+	{
+        Subject intro = new Subject("Intro");
+        AddSubject(intro);
+
+        Topic aboutThisJournal = new Topic("Om denne notesbog");
+        intro.AddTopic(aboutThisJournal);
+
+        string aboutThisJournalText =
+        "SKRIV";
+
+        // Adds an entry to the topic. 
+        aboutThisJournal.AddEntry(new JournalEntry(aboutThisJournalText));
+	}
+
 	public Texture geometrySquare = null;
 	public Texture geometryRectangle = null;
 	public Texture geometryTriangle = null;
 	public Texture geometryCircle = null;
 
-	void CreateMathematics ()
+	void CreateMathematicsEnglish ()
 	{
         Subject mathematics = new Subject("Mathematics");
         AddSubject(mathematics);
@@ -169,7 +200,50 @@ class JournalManager : MonoBehaviour
         geometry.AddEntry(new JournalEntry(geometryTextRectangle3D));
 	}
 
-	void CreatePhysics ()
+	void CreateMathematicsDanish ()
+	{
+        Subject mathematics = new Subject("Matematik");
+        AddSubject(mathematics);
+
+        Topic orderOfOperations = new Topic("Order of operations");
+        mathematics.AddTopic(orderOfOperations);
+
+        string orderOfOperationsText = "Skriv";
+
+        orderOfOperations.AddEntry(new JournalEntry(orderOfOperationsText));
+
+        Topic geometry = new Topic("Geometri");
+        mathematics.AddTopic(geometry);
+
+		string geometryTextIntro = "Skriv";
+
+		string geometryTextSquare = "Skriv";
+
+		string geometryTextRectangle = "Skriv";
+
+		string geometryTextTriangle = "Skriv";
+
+		string geometryTextCircle = "Skriv";
+
+        geometry.AddEntry(new JournalEntry(geometryTextIntro));
+        geometry.AddEntry(new JournalEntry(geometryTextSquare, "Area"));
+        geometry.AddEntry(new JournalEntryImage(geometrySquare, "The area of a square"));
+        geometry.AddEntry(new JournalEntry(geometryTextRectangle));
+        geometry.AddEntry(new JournalEntryImage(geometryRectangle, "The area of a rectangle"));
+        geometry.AddEntry(new JournalEntry(geometryTextTriangle));
+        geometry.AddEntry(new JournalEntryImage(geometryTriangle, "The area of a triangle"));
+        geometry.AddEntry(new JournalEntry(geometryTextCircle));
+        geometry.AddEntry(new JournalEntryImage(geometryCircle, "The area of a circle"));
+
+		string geometryTextCube = "Skriv";
+
+		string geometryTextRectangle3D = "Skriv";
+
+        geometry.AddEntry(new JournalEntry(geometryTextCube, "Volume"));
+        geometry.AddEntry(new JournalEntry(geometryTextRectangle3D));
+	}
+
+	void CreatePhysicsEnglish ()
 	{
 		Subject physics = new Subject("Physics");
 		AddSubject(physics);
@@ -207,40 +281,87 @@ class JournalManager : MonoBehaviour
         waterDistillation.AddEntry(new JournalEntry(waterDistillationText));
 	}
 
+	void CreatePhysicsDanish ()
+	{
+		Subject physics = new Subject("Fysik");
+		AddSubject(physics);
+
+        Topic fireTriangle = new Topic("Fire Triangle");
+        physics.AddTopic(fireTriangle);
+
+        string fireTriangleText =
+        "Jeg har brugt hele dagen på at analysere ilds opførsel, og jeg tror jeg har "
+		+ "fundet ud af det! Det virker til at færdigheden at lave ild er baseret på "
+		+ "tre primære faktorer. Det har ikke været muligt for mig at lave ild uden disse "
+		+ "komponenter, hvilket giver mig et indtryk af at de er nødvendige for at kunne lave ild.\n\n"
+
+		+ "Først, for at kunne lave ild har jeg brug for noget som kan bruges som "
+		+ "brandsel - noget der kan brænde.\n\n"  
+
+		+ "Jeg har også fundet ud af at det er umuligt at lave ild i et ilt-frit miljø. "
+		+ "Det virker til at ilt også er et nødvendigt komponent.\n\n"
+
+		+ "Som det sidste komponent, har jeg fundet ud af at reaktionen til at lave ild kan "
+		+ "sættes igang ved at hæve temperaturen af brændslet til dets antændings-temperatur, "
+		+ "den temperatur brændslet skal have for at blive antændt. Dette kan "
+		+ "dog kun lade sig gøre hvis de andre to komponenter, ilt og brændsel, er til "
+		+ "stede. Det virker til at træ kan antændes ved en temperatur på ca. 300 grader celsius.\n\n"
+
+		+ "Jeg er sikker på at denne information kan blive brugbar på et tidspunkt.\n\n"
+
+		+ "<i>-- Prof. Jameson</i>";
+
+    	fireTriangle.AddEntry(new JournalEntry(fireTriangleText, "Day: 34 - Analysis of fire"));;
+
+        Topic waterDistillation = new Topic("Water Distillation");
+        physics.AddTopic(waterDistillation);
+
+        string waterDistillationText =
+        "Skriv";
+
+        waterDistillation.AddEntry(new JournalEntry(waterDistillationText));
+	}
+
 	// Called every frame
 	void Update ()
 	{
-		// Check if the user has pressed down the _showKey button
-		if (Input.GetKeyDown(_showKey))
+		// Check if the user has pressed down the control button(s)
+		if (KeyCheck() && _initialized)
 		{
 			// Change the ShowJournal state from true to false or false to true
 			ShowJournal = !ShowJournal; 
 		}
 	}
 
+	bool KeyCheck ()
+	{
+		return Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl);
+	}
+
 	// Called every frame and draws UI elements on screen
 	void OnGUI ()
 	{
-		ScaleToScreenSize();
+		if (_initialized)
+		{
+			ScaleToScreenSize();
+	
+			if (ShowJournal)
+			{
+		        GUI.backgroundColor = new Color(0, 0, 0, 1);
 
-        GUI.backgroundColor = new Color(0, 0, 0, 1);
+		        GUI.Box(new Rect(0, 0, 20000, 10000), "");
+		        GUI.Box(new Rect(0, 0, 20000, 10000), "");
+			    GUI.Box(new Rect(0, 0, 20000, 10000), "");
 
-        // Let the user know how to toggle the Journal on and off
-        GUI.Box(new Rect(0, 450, 280, 30), "");
-        GUI.Label(new Rect(10, 455, 350, 30), 
-			"Press " + _showKey.ToString() + " to " + (ShowJournal? "hide" : "show") + " the Professor's Journal");
+		        DrawMenuAndSubjects();
+			}
 
-        // Return if the journal shouldn't be show
-        if (!ShowJournal) {
-            return;
-        }
-        else {
-            GUI.Box(new Rect(0, 0, 20000, 10000), "");
-            GUI.Box(new Rect(0, 0, 20000, 10000), "");
-            GUI.Box(new Rect(0, 0, 20000, 10000), "");
-        }
+			string english = "Press CTRL to " + (ShowJournal? "hide" : "show") + " the Professor's Journal";
+        	string danish = "Tryk CTRL for at " + (ShowJournal? "skjule" : "vise") + " professorens notesbog";
 
-        DrawMenuAndSubjects();
+        	// Let the user know how to toggle the Journal on and off
+        	GUI.Box(new Rect(0, 450, 310, 30), Language.IsDanish? danish : english);
+		}
 	}
 
 	void DrawMenuAndSubjects ()
