@@ -135,7 +135,7 @@ public class ButtonCheck : MiniGameBase
             {
                 assignmentText.text = "Bålet laver varme svarende til 500W. "
                     + "det tager 4186 joule at varme 1 Kg vand med 1 Grad celsius. "
-                    + "Hvor meget tid tager det at varme 1 Kg vand 46.39 grader celsius? (husk at runde op)"
+                    + "Hvor meget tid tager det at varme 1 Kg vand 10 grader celsius? (husk at runde op)"
                     + "\n\n 500w = 500 joule/sekunder";
 
                 GameObject.Find("Canvas/Unit1").GetComponent<Text>().text = "Energi (Joule)";
