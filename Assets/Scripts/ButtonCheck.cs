@@ -104,9 +104,7 @@ public class ButtonCheck : MiniGameBase
                 assignmentText.text = "En dunke vand indeholder 0.75 liter vand. "
                     + "Den energi du lige har fundet bliver tilført "
                     + "en mængde vand svarende til 17 dunke vand. "
-                    + "regn temperaturen af vandet"
-                    + "\n\nLigningen er omskrevet i denne opgave så den ser sådan ud "
-                    + "ΔT = E/m * c";
+                    + "regn temperaturen af vandet";
 
                 GameObject.Find("Canvas/Unit1").GetComponent<Text>().text = "Energi (Joule)";
                 GameObject.Find("Canvas/Unit2").GetComponent<Text>().text = "masse (Kg)";
@@ -115,9 +113,7 @@ public class ButtonCheck : MiniGameBase
             {
                 assignmentText.text = "the amount of energy you just found is added to "
                     + "17 jerry cans worth of water."
-                    + "\nCalculate the temperature of the water"
-                    + "\n\nThe equation is rewritten in the assignment "
-                    + "ΔT = E/m * c";
+                    + "\nCalculate the temperature of the water";
 
                 GameObject.Find("Canvas/Unit1").GetComponent<Text>().text = "Energy (Joule)";
                 GameObject.Find("Canvas/Unit2").GetComponent<Text>().text = "mass (Kg)";

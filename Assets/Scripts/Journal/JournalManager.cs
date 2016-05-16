@@ -356,7 +356,8 @@ class JournalManager : MonoBehaviour
         + "you will need 4186 joule.\n "
         + "\nΔT is the temperature change we wish to achieve. the triangle Δ (called delta) is the symbol to show "
         + "a difference. And T is the temperature, so when we write ΔT we are talking about a difference in temperature.\n "
-        + "\nE is the energy it takes to heat up something by a certain amount of degrees";
+        + "\nE is the energy it takes to heat up something by a certain amount of degrees"
+        + "\n\nWith this equation i can calculate the temperature difference ΔT = E/m * c ";
 
         waterDistillation.AddEntry(new JournalEntry(waterDistillationText, "Day: 37 - Distilling of saltwater"));
 	}
@@ -407,13 +408,14 @@ class JournalManager : MonoBehaviour
 		+ "E = m * c * (delta)T\n\n"
 
 		+ "m er massen af hvad der skal varmes op. Et eksempel kunne være en liter vand, "
-		+ "hvilket cirka svarer til et kilo vand. "
-		+ "c er den specifikke varmekapacitet. Vand har en specifik varmekapacitet på "
-		+ "4.186 J/Kg * (grader)celsius. "
-		+ "(delta)T er den temperatur-ændring man ønsker. "
-		+ " E er den energimængde der skal til for at varme noget op svarende til ændringen i temperatur (delta)T.\n\n"
+		+ "hvilket cirka svarer til et kilo vand. \n\n"
+        + "c er den specifikke varmekapacitet. Vand har en specifik varmekapacitet på "
+		+ "4.186 J/Kg * (grader)celsius. \n\n"
+        + "(delta)T er den temperatur-ændring man ønsker. \n\n"
+        + " E er den energimængde der skal til for at varme noget op svarende til ændringen i temperatur (delta)T.\n\n"
+        + "Med denne formel kan jeg udregne temperatur forskellen ΔT = E/m * c \n\n"
 
-		+ "<i>-- Prof. Jameson</i>";
+        + "<i>-- Prof. Jameson</i>";
 
         waterDistillation.AddEntry(new JournalEntry(waterDistillationText, "Dag: 37 - Distillering af saltvand"));
 	}
