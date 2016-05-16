@@ -9,6 +9,7 @@ public class MiniGameBase : MonoBehaviour, IMiniGame
 	public void OnMiniGameStarted ()
 	{
 		beginPanel.SetActive(true);
+		victoryPanel.SetActive(false);
 	}
 
 	// When a Mini Game has been completed, we will progress further in the game

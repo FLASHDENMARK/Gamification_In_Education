@@ -10,12 +10,14 @@ public class MiniGameCampfireFriction : MiniGameBase
 
     public Image smoke; 
     public float speed;
-    bool atBottom = false;
+    public GameObject error;
 
+    bool atBottom = false;
     GameObject questions;
 
     void Start () 
     {
+        DisableError();
         questions = GameObject.Find("Questions");
         base.OnMiniGameStarted();
     }
@@ -62,6 +64,8 @@ public class MiniGameCampfireFriction : MiniGameBase
             case 0:
                 if (answer == "KINETIC" || answer == "KINETISK") 
                     Progress(questionNumber);
+                else
+                    WrongAnswer();
             break;
 
             case 1:
@@ -72,7 +76,11 @@ public class MiniGameCampfireFriction : MiniGameBase
                 {
                     if (secondAnswer == 34.5F)
                         Progress(questionNumber);
+                    else
+                        WrongAnswer();
                 }
+                else
+                    WrongAnswer();
             break;
 
             case 2:
@@ -83,14 +91,27 @@ public class MiniGameCampfireFriction : MiniGameBase
                 {
                     if (thirdAnswer == 300)
                         base.OnMiniGameCompleted(0);
+                    else
+                        WrongAnswer();
                 }
                 else
-                {
-                    Debug.Log("Failed to Int");
-                }
-
+                    WrongAnswer();
+                
             break;
         }
+    }
+
+    // Enables an error
+    void WrongAnswer ()
+    {
+        error.SetActive(true);
+        // Call the DisableError method with one second delay
+        Invoke("DisableError", 1);
+    }
+
+    void DisableError ()
+    {
+        error.SetActive(false);
     }
 
     // Floats will not parse correctly if ',' are used instead of '.'.
