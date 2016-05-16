@@ -346,13 +346,16 @@ class JournalManager : MonoBehaviour
         physics.AddTopic(waterDistillation);
 
         string waterDistillationText =
-        "I have though of a way to make drinkable water! I just need a container to hold the water "
+        "<b>\tDay: 37 - Distilling of saltwater</b>"
+        + "\n\nI have though of a way to make drinkable water! I just need a container to hold the water "
         + "then I can boil it and cool the steam to turn it into drinkable water. "
         + "\n\nI've made an equation to make it easier to remember "
-        + "\n<b>E = m * c * ΔT</b>"
-        + "\nm is the mass of what we wan't to heat, also, 1 litre of water = 1 Kg of water."
-        + "\nc is the specific heat capacity of water "
-        + "\nΔT is the temperature change we wish to achieve"
+        + "\n<b> E = m * c * ΔT</b>\n"
+        + "\nm is the mass of what we wan't to heat, also, 1 Kg of water = i liter of water.\n"
+        + "\nc is the specific heat capacity of water, this means that to heat 1 Kg of water by 1 degree celsius "
+        + "you will need 4186 joule.\n "
+        + "\nΔT is the temperature change we wish to achieve. the triangle Δ (called delta) is the symbol to show "
+        + "a difference. And T is the temperature, so when we write ΔT we are talking about a difference in temperature.\n "
         + "\nE is the energy it takes to heat up something by a certain amount of degrees";
 
         waterDistillation.AddEntry(new JournalEntry(waterDistillationText, "Day: 37 - Distilling of saltwater"));
