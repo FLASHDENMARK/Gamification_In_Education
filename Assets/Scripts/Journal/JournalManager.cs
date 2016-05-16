@@ -357,7 +357,8 @@ class JournalManager : MonoBehaviour
         + "\nΔT is the temperature change we wish to achieve. the triangle Δ (called delta) is the symbol to show "
         + "a difference. And T is the temperature, so when we write ΔT we are talking about a difference in temperature.\n "
         + "\nE is the energy it takes to heat up something by a certain amount of degrees"
-        + "\n\nWith this equation i can calculate the temperature difference ΔT = E/m * c ";
+        + "\n\nWith this equation i can calculate the temperature difference ΔT = E/m * c "
+        + "\n\nThe conversion from watts to joules/seconds is as follows 500w = 500 joule/seconds";
 
         waterDistillation.AddEntry(new JournalEntry(waterDistillationText, "Day: 37 - Distilling of saltwater"));
 	}
@@ -387,8 +388,9 @@ class JournalManager : MonoBehaviour
 		+ "den temperatur brændslet skal have for at blive antændt. Dette kan "
 		+ "dog kun lade sig gøre hvis de andre to komponenter, ilt og brændsel, er til "
 		+ "stede. Det virker til at træ kan antændes ved en temperatur på ca. 300 grader celsius.\n\n"
+        + "Konversionen fra watt til joule/sekunder ser således ud 500w = 500 joule/sekunder"
 
-		+ "Jeg er sikker på at denne information kan blive brugbar på et tidspunkt.\n\n"
+        + "Jeg er sikker på at denne information kan blive brugbar på et tidspunkt.\n\n"
 
 		+ "<i>-- Prof. Jameson</i>";
 
