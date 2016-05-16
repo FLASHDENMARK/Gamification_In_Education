@@ -142,7 +142,8 @@ class JournalManager : MonoBehaviour
         Topic orderOfOperations = new Topic("Order of operations");
         mathematics.AddTopic(orderOfOperations);
 
-        string orderOfOperationsText = "It seems that math can be misleading at times."
+        string orderOfOperationsText = 
+        "It seems that math can be misleading at times."
         + "\nI have found that the order of operations is quite important."
         + "\n\nHere's an example:"
         + "\nWe have two sticks, and then 4 sets of 3 sticks."
@@ -164,6 +165,33 @@ class JournalManager : MonoBehaviour
         +"\n\n<i>-- Prof. Jameson</i>";
 
         orderOfOperations.AddEntry(new JournalEntry(orderOfOperationsText));
+
+        Topic phytagoreanTheorem = new Topic("Phytagorean Theorem");
+        mathematics.AddTopic(phytagoreanTheorem);
+
+        string phytagoreanTheoremText =
+        "Since day 34 I have been working on how to optimizing fire. To optimize the fire I "
+        + "have concluded that we need to do 3 steps. \n\n"
+        + "The first step - I have to find the perfect size for my fuelant (in this case being wood) \n\n"
+        + "The second step - I have to find the right angle for the logs.\n\n"
+        + "The last step - I have to find the length that matches the first two steps"
+
+        + "These are the 'tools' I need to do the above 3 steps:\n\n"
+
+        + "Calculating decimal, given a percent or fraction. If I'm given a percent (0 - 100%) then all I "
+        + "I have to do is devide by 100 and I have the result. This is the same as moving the comma two spaces "
+        + "to the left. If I'm given a fraction (a number above another number) I can calculate the decimal by "
+        + "deviding the numerator(top number) with the denominator(lower number). EKSEMPEL!L!L!LLLL"
+
+        + "Calculating the missing angle by two other angles in a triangle. One property of triangles is that "
+        + "there are always 180 degrees in a triangle. This mans that if I have two angles I can calculate the "
+        + "missing angle by subtracting 180 by the degrees of the two angles. EXAMPLE!!!!!!!"
+
+        + "Finding the length of one of the sides of a triangle by the length of two other sides.";
+
+
+        phytagoreanTheorem.AddEntry(new JournalEntry(phytagoreanTheoremText, "Day: 52 - optimizing fire"));
+
 
         Topic geometry = new Topic("Geometry");
         mathematics.AddTopic(geometry);
