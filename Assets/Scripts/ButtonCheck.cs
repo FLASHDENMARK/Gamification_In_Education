@@ -97,12 +97,27 @@ public class ButtonCheck : MiniGameBase
 
         if (k == 1)
         {
-            GameObject.Find("Canvas/introText").GetComponent<Text>().text = "the amout of energy you just found is added to "
-                + "17 jerry cans worth of water."
-                + "\nCalculate the temperature of the water";
+            Text assignmentText = GameObject.Find("Canvas/introText").GetComponent<Text>();
 
-            GameObject.Find("Canvas/Unit1").GetComponent<Text>().text = "Energy (Joule)";
-            GameObject.Find("Canvas/Unit2").GetComponent<Text>().text = "mass (Kg)";
+            if (Language.IsDanish)
+            {
+                assignmentText.text = "Den energi du lige har fundet bliver tilført "
+                    + "en mængde vand svarende til 17 dunke vand. "
+                    + "regn temperaturen af vandet";
+
+                GameObject.Find("Canvas/Unit1").GetComponent<Text>().text = "Energi (Joule)";
+                GameObject.Find("Canvas/Unit2").GetComponent<Text>().text = "masse (Kg)";
+            }
+            else
+            {
+                assignmentText.text = "the amout of energy you just found is added to "
+                    + "17 jerry cans worth of water."
+                    + "\nCalculate the temperature of the water";
+
+                GameObject.Find("Canvas/Unit1").GetComponent<Text>().text = "Energy (Joule)";
+                GameObject.Find("Canvas/Unit2").GetComponent<Text>().text = "mass (Kg)";
+            }
+
             GameObject.Find("Canvas/Unit3").GetComponent<Text>().text = "J/Kg*°C";
 
             object3.GetComponent<InputField>().interactable = false;
@@ -110,12 +125,26 @@ public class ButtonCheck : MiniGameBase
         }
         else if (k == 2)
         {
-            GameObject.Find("Canvas/introText").GetComponent<Text>().text = "The fireplace creates heat equivalent to 500W of power. "
-                + "It takes 4186 joule to heat 1 Kg of water by 1 degree celsius. "
-                + "\nHow much time does it take to heat 1 Kg of water by 46.39 degrees?";
 
-            GameObject.Find("Canvas/Unit1").GetComponent<Text>().text = "Energy (Joule)";
-            GameObject.Find("Canvas/Unit2").GetComponent<Text>().text = "joule/seconds";
+            if (Language.IsDanish)
+            {
+                GameObject.Find("Canvas/introText").GetComponent<Text>().text = "Bålet laver varme svarende til 500W. "
+                    + "det tager 4186 joule at varme 1 Kg vand med 1 Grad celsius. "
+                    + "Hvor meget tid tager det at varme 1 Kg vand 46.39 grader celsius?";
+
+                GameObject.Find("Canvas/Unit1").GetComponent<Text>().text = "Energi (Joule)";
+                GameObject.Find("Canvas/Unit2").GetComponent<Text>().text = "joule/sekunder";
+            }
+            else
+            {
+                GameObject.Find("Canvas/introText").GetComponent<Text>().text = "The fireplace creates heat equivalent to 500W of power. "
+                    + "It takes 4186 joule to heat 1 Kg of water by 1 degree celsius. "
+                    + "\nHow much time does it take to heat 1 Kg of water by 46.39 degrees?";
+
+                GameObject.Find("Canvas/Unit1").GetComponent<Text>().text = "Energy (Joule)";
+                GameObject.Find("Canvas/Unit2").GetComponent<Text>().text = "joule/seconds";
+            }
+
             GameObject.Find("Canvas/Unit3").SetActive(false);
 
             object3.SetActive(false);
