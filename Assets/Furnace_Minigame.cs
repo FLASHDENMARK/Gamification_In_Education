@@ -8,6 +8,11 @@ public class Furnace_Minigame : MiniGameBase
 
     public GameObject firstGame;
     public GameObject secondGame;
+    
+    void Start()
+    {
+        base.OnMiniGameStarted();
+    }
 
     public void Check ()
     {
@@ -18,17 +23,18 @@ public class Furnace_Minigame : MiniGameBase
     {
         int i = 0, points = 0;
 
-        float[] correctAnswers = { (15.0F / 100.0F), (40.0F / 100.0F), (48.0F / 100.0F), (5.0F / 100.0F) };
+        string[] correctAnswers = { "0.15", "0.40", "0.48", "0.05" };
+        string[] correctAnswerscomma = { "0,15", "0,40", "0,48", "0,05"};
 
         Transform First_Challenge = GameObject.Find("First_Challenge/Answers").transform;
 
         foreach (Transform element in First_Challenge.transform)
         {
-            float count;
-            if (float.TryParse((element.GetChild(2).GetComponent<Text>().text), out count))
+            if ((element.GetChild(2).GetComponent<Text>().text).Contains(correctAnswers[i]) ||
+                (element.GetChild(2).GetComponent<Text>().text).Contains(correctAnswerscomma[i]))
+
             {
-                if(count == correctAnswers[i])
-                {
+
                     InputField inputfield = First_Challenge.GetChild(i).GetComponent<InputField>();
                     ColorBlock colorBlock = inputfield.colors;
                     colorBlock.normalColor = Color.green;
@@ -63,9 +69,6 @@ public class Furnace_Minigame : MiniGameBase
                     i++;
                 }
             }
-         
-        }
-
         if (points == 4)
         {
             firstGame.SetActive(false);

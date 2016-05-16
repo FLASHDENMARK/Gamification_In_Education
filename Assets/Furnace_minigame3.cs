@@ -13,14 +13,12 @@ public class Furnace_minigame3 : MiniGameBase
     IEnumerator AnswerCheck3()
     {
         int i = 0, Points = 0;
-        List<int> answers3 = new List<int>();
         string[] correctAnswers3 = { "2.8", "4", "5", "6.7", "8.6", "4.6"};
         string[] correctAnswers3comma = { "2,8", "4", "5", "6,7", "8,6", "4,6"};
 
         Transform Third_Challenge = GameObject.Find("Third_Challenge/Answers").transform;
         foreach (Transform element in Third_Challenge.transform)
         {   
-            float count;
             if ((element.GetChild(2).GetComponent<Text>().text).Contains(correctAnswers3[i]) ||
                 (element.GetChild(2).GetComponent<Text>().text).Contains(correctAnswers3comma[i]))
             {
@@ -58,6 +56,10 @@ public class Furnace_minigame3 : MiniGameBase
                     inputfield.colors = colorBlock;
                     i++;
                 }
+            if( Points == 6 )
+            {
+                OnMiniGameCompleted(0);
+            }
             }
 
         }
