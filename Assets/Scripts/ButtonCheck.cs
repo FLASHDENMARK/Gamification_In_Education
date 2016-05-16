@@ -45,9 +45,6 @@ public class ButtonCheck : MiniGameBase
         correctAnswers2D[2, 3] = "84"; // minutes
 
 
-        //energyFormulae();
-
-
         for (int i = 0; i < inputs.Length; i++)
         {
             if (inputs[i].text == correctAnswers2D[j, i])
@@ -102,18 +99,21 @@ public class ButtonCheck : MiniGameBase
             if (Language.IsDanish)
             {
                 assignmentText.text = "En dunke vand indeholder 0.75 liter vand. "
-                    + "Den energi du lige har fundet bliver tilført "
+                    + "Den energi du lige har fundet (det var 1067 joule) bliver tilført "
                     + "en mængde vand svarende til 17 dunke vand. "
-                    + "regn temperaturen af vandet (resultatet skal være i Kj)";
+                    + "regn temperaturen af vandet (resultatet skal være i Kj)"
+                    + "hvis du får komma tal skal du bruge punktum istedet for komma";
 
                 GameObject.Find("Canvas/Unit1").GetComponent<Text>().text = "Energi (Kj)";
                 GameObject.Find("Canvas/Unit2").GetComponent<Text>().text = "masse (Kg)";
             }
             else
             {
-                assignmentText.text = "the amount of energy you just found is added to "
+                assignmentText.text = "one jerry can holds 0.75 litres of water"
+                    + "the amount of energy you just found (that was 1067 joule) is added to "
                     + "17 jerry cans worth of water."
-                    + "\nCalculate the temperature of the water(result is in Kj)";
+                    + "\nCalculate the temperature of the water(result is in Kj)"
+                    + "if you get a comma number you need to use period instead";
 
                 GameObject.Find("Canvas/Unit1").GetComponent<Text>().text = "Energy (Kj)";
                 GameObject.Find("Canvas/Unit2").GetComponent<Text>().text = "mass (Kg)";
