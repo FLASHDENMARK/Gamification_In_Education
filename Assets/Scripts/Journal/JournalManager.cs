@@ -111,7 +111,14 @@ class JournalManager : MonoBehaviour
         intro.AddTopic(aboutThisJournal);
 
         string aboutThisJournalText =
-        "SKRIV";
+		"Denne notesbog tilhører videnskabsprofesseren Jameson.\n\n"
+
+		+ "Denne notesbog indeholder mine opdagelser fra forskellige experimenter. "
+		+ "Mine noter er delt ind i hver sin kategori.\n\n"
+
+		+ "Hvis du finder denne bog, bedes du retunere den til mig.\n\n"
+
+ 		+ "<i>-- Prof. Jameson.</i>";
 
         // Adds an entry to the topic. 
         aboutThisJournal.AddEntry(new JournalEntry(aboutThisJournalText));
@@ -205,39 +212,110 @@ class JournalManager : MonoBehaviour
         Subject mathematics = new Subject("Matematik");
         AddSubject(mathematics);
 
-        Topic orderOfOperations = new Topic("Order of operations");
+        Topic orderOfOperations = new Topic("Rækkefølgen af regneoperationer");
         mathematics.AddTopic(orderOfOperations);
 
-        string orderOfOperationsText = "Skriv";
+        string orderOfOperationsText = 
+        "Det virker til, at matematik kan være misvisende til tider. "
+		+ "Jeg har opdaget at rækkefølgen af regneoperationer er meget vigtig.\n\n"
+
+		+ "Her er et eksempel:\n"
+		+ "Vi har 2 pinde og så har vi 4 sæt af 3 pinde.\n"
+		+ "|| +(||| + ||| + ||| + |||)\n\n"
+
+		+ "Den matematiske udregning for antallet af pinde kunne man tro ville være:\n\n"
+
+		+ "2+3x4\n"
+		+ "2+3 = 5, så har vi 5x4\n"
+		+ "5x4 = 20 pinde i alt, ikke? Forkert. Prøv at tælle pindene selv, "
+		+ "er der 20 pinde i alt?\n"
+		+ "Nej, vel? Den korrekte udregning vil være:\n\n"
+
+		+ "2+3x4\n"
+		+ "3x4 = 12, og til sidst er der 2+12 = 14.\n"
+		+ "14 pinde i alt, ligesom du talte før.\n\n"
+
+		+ "Det virker til at man skal gange og dividere for man ligger til og "
+		+ "trækker fra, for at få det korrekte svar. "
+		+ "Derudover ser det ud til, at parenteser burde blive beregnet som det "
+		+ "aller første i en udregning. "
+		+ "Efter parenteser burde man beregne kvadratrødder og exponenter, så "
+		+ "gange og dividere, og til sidst ligger man til og trækker fra.\n\n"
+
+		+ "Jeg er kommet frem til en nemmere måde til at huske denne rækkefølge. "
+		+ "Jeg kalder den for PEGDAS, som står for: "
+		+ "Parenteser, eksponenter, gange og dividere, addere og subtrahere.\n\n"
+
+		+ "Når man udregner regnestykker i denne rækkefølge, får man altid det korrekte svar.\n\n"
+
+		+ "<i>--Prof. Jameson</i>";
 
         orderOfOperations.AddEntry(new JournalEntry(orderOfOperationsText));
 
         Topic geometry = new Topic("Geometri");
         mathematics.AddTopic(geometry);
 
-		string geometryTextIntro = "Skriv";
+		string geometryTextIntro = 
+		"Over flere års undersøgelse har jeg endelig fundet forholdet mellem geometri "
+		+ "og deres areal og volume - utroligt!\n\n"
 
-		string geometryTextSquare = "Skriv";
+		+ "At beregne en geometrisk figurs areal virker nemmere end at finde dens volume. "
+		+ "Arealet er nemlig størrelsen af 'den flade overflade', hvor volumen er " 
+		+ "'Størrelsen af pladsen inden i figuren'.";
 
-		string geometryTextRectangle = "Skriv";
+		string geometryTextSquare = 
+		"Lad mig starte med en af de basale geometriske figurer: Kvadratet. "
+		+ "Kvadratet er simpel, fordi hver side har samme længde. Formlen for at "
+		+ "finde arealet af et kvadrat ligger i navnet. Arealet er længden af 'a' "
+		+ "ganget med længden af 'a'. Arealet af et kvadrat er altså længden af en side kvadreret.";
 
-		string geometryTextTriangle = "Skriv";
+		string geometryTextRectangle = 
+		"Arealet af en rektangel minder om arealet af en kvadrat. Udregningen er "
+		+ "den samme som arealet af en kvadrat, undtagen at rektanglen har ikke "
+		+ "samme længde på alle sider. Af denne grund er arealet af en rektangel "
+		+ "'a' ganget med 'b', hvor 'b' og 'a' er samme længde.";
 
-		string geometryTextCircle = "Skriv";
+		string geometryTextTriangle = 
+		"En anden beregning relateret til arealet af rektangler og kvadrater er "
+		+ "arealet af en trekant. Arealet af en trekant er super simpel, hvis du "
+		+ "ved hvordan man bestemmer arealet af en rektangel, da arealet af en "
+		+ "trekant er halvdelen af arealet rektangel. Dette kan udregned med at "
+		+ "dividere grundlinjen med 2 og gange det med højden af trekanten. Utroligt!";
+
+		string geometryTextCircle = 
+		" Cirkler er desværre ikke direkte relateret til trekanter, rektangler og kvadrater... "
+		+ "Men jeg har dog opdaget at, når jeg har brug for at beregne noget med cirkler, "
+		+ "skal jeg bruge noget jeg for sjovt har kaldt 'PI'. 'PI' er en matematisk konstant. "
+		+ "og jeg har givet den et fancy symbol: π. det er et meget langt nummer, "
+		+ "så jeg husker det bare rundt regnet som 3,14. \n\n"
+
+		+ "Heldigvis, at beregne arealet af en cirkel er tilnærmelsesvis ligesom at beregne "
+		+ "arealet af et kvadrat. Ligesom i et kvadrat, for vi ganger 'a' med 'a', ganger vi "
+		+ "bare med PI på dette tal. Vi bruger dog 'R' (for radius) i stedet for 'a' "
+		+ "Jeg har fundet ud af at PI har mange praktiske funktioner.";
 
         geometry.AddEntry(new JournalEntry(geometryTextIntro));
         geometry.AddEntry(new JournalEntry(geometryTextSquare, "Area"));
-        geometry.AddEntry(new JournalEntryImage(geometrySquare, "The area of a square"));
+        geometry.AddEntry(new JournalEntryImage(geometrySquare, "Arealet af et kvadrat"));
         geometry.AddEntry(new JournalEntry(geometryTextRectangle));
-        geometry.AddEntry(new JournalEntryImage(geometryRectangle, "The area of a rectangle"));
+        geometry.AddEntry(new JournalEntryImage(geometryRectangle, "Arealet af en rektangle"));
         geometry.AddEntry(new JournalEntry(geometryTextTriangle));
-        geometry.AddEntry(new JournalEntryImage(geometryTriangle, "The area of a triangle"));
+        geometry.AddEntry(new JournalEntryImage(geometryTriangle, "Arealet af en trekant"));
         geometry.AddEntry(new JournalEntry(geometryTextCircle));
-        geometry.AddEntry(new JournalEntryImage(geometryCircle, "The area of a circle"));
+        geometry.AddEntry(new JournalEntryImage(geometryCircle, "Arealet af en cirkel"));
 
-		string geometryTextCube = "Skriv";
+		string geometryTextCube = 
+		"Volume, også kaldet rumfanget, er størrelsen af den plads et objekt udgør "
+		+ "og at udregne volumen, bygger på arealberegninger. Men lad us starte simpelt.\n\n"
 
-		string geometryTextRectangle3D = "Skriv";
+		+ "Beregning af volumen af en terning er simpelt. Det er det samme som at beregne "
+		+ "arealet af et kvadrat, og derefter gange med 'a' igen. Dette gør at beregningen "
+		+ "går fra 2D til 3D, og kun 3D objekter har en volume. De har nemlig en bredde, en "
+		+ "dybde og en højde, hvor 2D objekter kun har brede og højde.";
+
+		string geometryTextRectangle3D = 
+		"At beregne volumen af en 3D rektangel er det samme som at beregne arealet af en rektangel, "
+		+ "dog skal man huske også at gange med dybden";
 
         geometry.AddEntry(new JournalEntry(geometryTextCube, "Volume"));
         geometry.AddEntry(new JournalEntry(geometryTextRectangle3D));
@@ -268,17 +346,16 @@ class JournalManager : MonoBehaviour
         physics.AddTopic(waterDistillation);
 
         string waterDistillationText =
-        "<b>\tDay: 37 - Distilling of saltwater</b>"
-        + "\n\nI have though of a way to make drinkable water! I just need a container to hold the water "
+        "I have though of a way to make drinkable water! I just need a container to hold the water "
         + "then I can boil it and cool the steam to turn it into drinkable water. "
         + "\n\nI've made an equation to make it easier to remember "
-        + "\n<b> E = m * c * ΔT</b>"
+        + "\n<b>E = m * c * ΔT</b>"
         + "\nm is the mass of what we wan't to heat, also, 1 litre of water = 1 Kg of water."
         + "\nc is the specific heat capacity of water "
         + "\nΔT is the temperature change we wish to achieve"
         + "\nE is the energy it takes to heat up something by a certain amount of degrees";
 
-        waterDistillation.AddEntry(new JournalEntry(waterDistillationText));
+        waterDistillation.AddEntry(new JournalEntry(waterDistillationText, "Day: 37 - Distilling of saltwater"));
 	}
 
 	void CreatePhysicsDanish ()
@@ -286,7 +363,7 @@ class JournalManager : MonoBehaviour
 		Subject physics = new Subject("Fysik");
 		AddSubject(physics);
 
-        Topic fireTriangle = new Topic("Fire Triangle");
+        Topic fireTriangle = new Topic("Brændtrekant");
         physics.AddTopic(fireTriangle);
 
         string fireTriangleText =
@@ -311,15 +388,31 @@ class JournalManager : MonoBehaviour
 
 		+ "<i>-- Prof. Jameson</i>";
 
-    	fireTriangle.AddEntry(new JournalEntry(fireTriangleText, "Day: 34 - Analysis of fire"));;
+    	fireTriangle.AddEntry(new JournalEntry(fireTriangleText, "Dag: 34 - Analyse af ild"));;
 
-        Topic waterDistillation = new Topic("Water Distillation");
+        Topic waterDistillation = new Topic("Vand-destillering");
         physics.AddTopic(waterDistillation);
 
         string waterDistillationText =
-        "Skriv";
+		"Jeg tror jeg har fundet på en måde at lave drikkevand på! Jeg mangler kun en "
+		+ "beholder der kan holde på vand. Ved at koge saltvand, og derefter køle dampen, "
+		+ "kan jeg lave drikkevand.\n\n"
 
-        waterDistillation.AddEntry(new JournalEntry(waterDistillationText));
+		+ "Jeg har lavet en ligning der gør det nemmere for mig at huske hvor meget energi "
+		+ "der skal til for at varme en mængde vand op til kogepunktet.\n\n"
+
+		+ "E = m * c * (delta)T\n\n"
+
+		+ "m er massen af hvad der skal varmes op. Et eksempel kunne være en liter vand, "
+		+ "hvilket cirka svarer til et kilo vand. "
+		+ "c er den specifikke varmekapacitet. Vand har en specifik varmekapacitet på "
+		+ "4.186 J/Kg * (grader)celsius. "
+		+ "(delta)T er den temperatur-ændring man ønsker. "
+		+ " E er den energimængde der skal til for at varme noget op svarende til ændringen i temperatur (delta)T.\n\n"
+
+		+ "<i>-- Prof. Jameson</i>";
+
+        waterDistillation.AddEntry(new JournalEntry(waterDistillationText, "Dag: 37 - Distillering af saltvand"));
 	}
 
 	// Called every frame
