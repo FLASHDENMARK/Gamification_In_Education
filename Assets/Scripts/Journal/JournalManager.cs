@@ -2,8 +2,6 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-// Seperate into more functions!
-
 // Manages the main behaviour of the journal
 class JournalManager : MonoBehaviour 
 {
@@ -88,10 +86,10 @@ class JournalManager : MonoBehaviour
         aboutThisJournal.AddEntry(new JournalEntry(aboutThisJournalText));
 	}
 
-	public Texture geometrySquare;
-	public Texture geometryRectangle;
-	public Texture geometryTriangle;
-	public Texture geometryCircle;
+	public Texture geometrySquare = null;
+	public Texture geometryRectangle = null;
+	public Texture geometryTriangle = null;
+	public Texture geometryCircle = null;
 
 	void CreateMathematics ()
 	{
@@ -257,7 +255,6 @@ class JournalManager : MonoBehaviour
 
         	if (GUI.Button(new Rect(100, 30 + 45 * i, 120, 30), subjects[i].Name))
         	{
-        		ResetScrollView();
         		_selection = i;
         	}
 
@@ -274,7 +271,6 @@ class JournalManager : MonoBehaviour
 
         	if (GUI.Button(new Rect(240, 30 + 45 * i, 120, 30), Topics[i].Name))
         	{
-        		ResetScrollView();
         		subjects[_selection].Selection = i;
         	}
 
@@ -353,11 +349,6 @@ class JournalManager : MonoBehaviour
 		// will now scale properly on (almost) any screen
 		GUI.matrix = Matrix4x4.TRS(new Vector3(0, 0, 0), Quaternion.identity, 
 			new Vector3(screenWidth, screenHeight, 1)); 
-    }
-
-    void ResetScrollView ()
-    {
-    	totalHeight = 0;
     }
 
     float GUIHeight (GUIContent g, float width)

@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class MiniGameStarter : MonoBehaviour 
 {
     public Text infoPanel;
-
     ProgressionManager progression;
+    
     // Update is called once per frame
     void Update () 
     {
@@ -31,7 +31,11 @@ public class MiniGameStarter : MonoBehaviour
         {
             if (progression.unlocks[index].level < i) 
             {
-				infoPanel.text = progression.unlocks[index].asset.name + " need to be level: " + i;
+            	if (Language.IsDanish)
+            		infoPanel.text = progression.unlocks[index].asset.name + " skal være level: " + i;
+            	else
+					infoPanel.text = progression.unlocks[index].asset.name + " need to be level: " + i;
+
                 levelReached = false;
             }
 
@@ -47,7 +51,10 @@ public class MiniGameStarter : MonoBehaviour
             } 
             catch (IndexOutOfRangeException) 
             {
-                infoPanel.text = "No more levels for this unlockable.";
+            	if (Language.IsDanish)
+            		infoPanel.text = "Ikke flere levels for dette objekt";
+            	else
+            		infoPanel.text = "No more levels for this unlockable";
             }
         }
     }

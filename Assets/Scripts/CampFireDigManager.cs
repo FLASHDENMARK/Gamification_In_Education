@@ -6,7 +6,7 @@ using System.Collections.Generic;
 class CampFireDigManager : MiniGameBase
 {
     public List<CampfireDig> shapes = new List<CampfireDig>();
-    public GameObject error;
+    public GameObject error = null;
     public float lineRendererWidth = 0.05F;
 
     bool colorChangeRunning = false;
