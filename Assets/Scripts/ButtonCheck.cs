@@ -24,10 +24,10 @@ public class ButtonCheck : MiniGameBase
         object3 = GameObject.Find("Canvas/Inputfields/InputField3");
         object4 = GameObject.Find("Canvas/Inputfields/InputField4");
 
-        inputs[0] = GameObject.Find("Canvas/Inputfields/InputField1").GetComponent<InputField>();
-        inputs[1] = GameObject.Find("Canvas/Inputfields/InputField2").GetComponent<InputField>();
-        inputs[2] = GameObject.Find("Canvas/Inputfields/InputField3").GetComponent<InputField>();
-        inputs[3] = GameObject.Find("Canvas/Inputfields/InputField4").GetComponent<InputField>();
+        inputs[0] = object1.GetComponent<InputField>();
+        inputs[1] = object2.GetComponent<InputField>();
+        inputs[2] = object3.GetComponent<InputField>();
+        inputs[3] = object4.GetComponent<InputField>();
 
         correctAnswers2D[0, 0] = "3"; // mass
         correctAnswers2D[0, 1] = "4186"; // specific heat capacity of water
@@ -63,18 +63,21 @@ public class ButtonCheck : MiniGameBase
             }
         }
 
+        WaterBarChanger addWater = GameObject.Find("emptyTinCan/waterBar").GetComponent<WaterBarChanger>();
+        Text correctText = GameObject.Find("Canvas/correctText").GetComponent<Text>();
+
         if (inputs[0].text == correctAnswers2D[j, 0] && inputs[1].text == correctAnswers2D[j, 1] && 
             inputs[2].text == correctAnswers2D[j, 2] && inputs[3].text == correctAnswers2D[j, 3])
         {
-            GameObject.Find("emptyTinCan/waterBar").GetComponent<WaterBarChanger>().MoreWater();
-            GameObject.Find("emptyTinCan/waterBar").GetComponent<WaterBarChanger>().MoreWater();
+            addWater.MoreWater();
+            addWater.MoreWater();
             j++;
 
             object2.GetComponent<InputField>().interactable = true;
             object3.GetComponent<InputField>().interactable = true;
             StartCoroutine(CorrectMethod());
             CorrectMethod();
-            GameObject.Find("Canvas/correctText").GetComponent<Text>().text = "Correct!";
+            correctText.text = "Correct!";
         }
     }
 
@@ -93,6 +96,9 @@ public class ButtonCheck : MiniGameBase
             GameObject.Find("Canvas/correctText").GetComponent<Text>().text = "";
         }
 
+        Text unit1 = GameObject.Find("Canvas/Unit1").GetComponent<Text>();
+        Text unit2 = GameObject.Find("Canvas/Unit2").GetComponent<Text>();
+
         if (k == 1)
         {
    
@@ -101,22 +107,22 @@ public class ButtonCheck : MiniGameBase
                 assignmentText.text = "En dunke vand indeholder 0.75 liter vand. "
                     + "Den energi du lige har fundet (det var 1067 joule) bliver tilført "
                     + "en mængde vand svarende til 17 dunke vand. "
-                    + "regn temperaturen af vandet (resultatet skal være i Kj)"
+                    + "regn temperaturen af vandet (resultatet skal være i Kj)\n"
                     + "hvis du får komma tal skal du bruge punktum istedet for komma";
 
-                GameObject.Find("Canvas/Unit1").GetComponent<Text>().text = "Energi (Kj)";
-                GameObject.Find("Canvas/Unit2").GetComponent<Text>().text = "masse (Kg)";
+                unit1.text = "Energi (Kj)";
+                unit2.text = "masse (Kg)";
             }
             else
             {
                 assignmentText.text = "one jerry can holds 0.75 litres of water"
                     + "the amount of energy you just found (that was 1067 joule) is added to "
                     + "17 jerry cans worth of water."
-                    + "\nCalculate the temperature of the water(result is in Kj)"
+                    + "\nCalculate the temperature of the water(result is in Kj)\n"
                     + "if you get a comma number you need to use period instead";
 
-                GameObject.Find("Canvas/Unit1").GetComponent<Text>().text = "Energy (Kj)";
-                GameObject.Find("Canvas/Unit2").GetComponent<Text>().text = "mass (Kg)";
+                unit1.text = "Energy (Kj)";
+                unit2.text = "mass (Kg)";
             }
 
             GameObject.Find("Canvas/Unit3").GetComponent<Text>().text = "J/Kg*°C";
@@ -133,8 +139,8 @@ public class ButtonCheck : MiniGameBase
                     + "det tager 4186 joule at varme 1 Kg vand med 1 Grad celsius. "
                     + "Hvor meget tid tager det at varme 1 Kg vand 10 grader celsius? (husk at runde op)";
 
-                GameObject.Find("Canvas/Unit1").GetComponent<Text>().text = "Energi (Kj)";
-                GameObject.Find("Canvas/Unit2").GetComponent<Text>().text = "joule/sekunder";
+                unit1.text = "Energi (Kj)";
+                unit2.text = "joule/sekunder";
             }
             else
             {
@@ -142,8 +148,8 @@ public class ButtonCheck : MiniGameBase
                     + "It takes 4186 joule to heat 1 Kg of water by 1 degree celsius. "
                     + "\nHow much time does it take to heat 1 Kg of water by 10 degrees? (remember to round up)";
 
-                GameObject.Find("Canvas/Unit1").GetComponent<Text>().text = "Energy (kJ)";
-                GameObject.Find("Canvas/Unit2").GetComponent<Text>().text = "joule/seconds";
+                unit1.text = "Energy (kJ)";
+                unit2.text = "joule/seconds";
             }
 
             GameObject.Find("Canvas/Unit3").SetActive(false);
