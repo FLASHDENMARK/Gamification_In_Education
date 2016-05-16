@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
 
-public class WaterBarChanger : MonoBehaviour {
+public class WaterBarChanger : MonoBehaviour
+{
 
     public Vector3 startpos;
     float down = 0.05f;
     public GameObject waterBar;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
         waterBar = GameObject.Find("emptyTinCan/waterBar");
         startpos = waterBar.transform.localPosition;

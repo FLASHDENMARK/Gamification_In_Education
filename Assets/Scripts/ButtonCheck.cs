@@ -83,6 +83,7 @@ public class ButtonCheck : MiniGameBase
 
     IEnumerator CorrectMethod()
     {
+        Text assignmentText = GameObject.Find("Canvas/introText").GetComponent<Text>();
         k++;
         yield return new WaitForSeconds(2);
 
@@ -97,8 +98,7 @@ public class ButtonCheck : MiniGameBase
 
         if (k == 1)
         {
-            Text assignmentText = GameObject.Find("Canvas/introText").GetComponent<Text>();
-
+   
             if (Language.IsDanish)
             {
                 assignmentText.text = "Den energi du lige har fundet bliver tilført "
@@ -128,7 +128,7 @@ public class ButtonCheck : MiniGameBase
 
             if (Language.IsDanish)
             {
-                GameObject.Find("Canvas/introText").GetComponent<Text>().text = "Bålet laver varme svarende til 500W. "
+                assignmentText.text = "Bålet laver varme svarende til 500W. "
                     + "det tager 4186 joule at varme 1 Kg vand med 1 Grad celsius. "
                     + "Hvor meget tid tager det at varme 1 Kg vand 46.39 grader celsius?";
 
@@ -137,7 +137,7 @@ public class ButtonCheck : MiniGameBase
             }
             else
             {
-                GameObject.Find("Canvas/introText").GetComponent<Text>().text = "The fireplace creates heat equivalent to 500W of power. "
+                assignmentText.text = "The fireplace creates heat equivalent to 500W of power. "
                     + "It takes 4186 joule to heat 1 Kg of water by 1 degree celsius. "
                     + "\nHow much time does it take to heat 1 Kg of water by 46.39 degrees?";
 
