@@ -598,7 +598,9 @@ class JournalManager : MonoBehaviour
 		+ "sættes igang ved at hæve temperaturen af brændslet til dets antændings-temperatur, "
 		+ "den temperatur brændslet skal have for at blive antændt. Dette kan "
 		+ "dog kun lade sig gøre hvis de andre to komponenter, ilt og brændsel, er til "
-		+ "stede. Det virker til at træ kan antændes ved en temperatur på ca. 300 grader celsius.\n\n"
+		+ "stede. Det virker til at træ kan antændes ved en temperatur på ca. 300 grader celsius."
+        + " Det lader til at man kan lave varme energi fra kinetisk energi, igennem friktion. Hvis jeg gnider mine hænder mod hinanden, kan jeg mærke varme."
+        + " Dette er den kinetiske energi der bliver til varme energi.\n\n"
 
         + "Jeg er sikker på at denne information kan blive brugbar på et tidspunkt.\n\n"
 
