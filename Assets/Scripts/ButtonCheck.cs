@@ -34,7 +34,7 @@ public class ButtonCheck : MiniGameBase
         correctAnswers2D[0, 2] = "85";  // temperature difference
         correctAnswers2D[0, 3] = "1067"; // Result in Kj
 
-        correctAnswers2D[1, 0] = "1067"; // energy in Kj
+        correctAnswers2D[1, 0] = "1067000"; // energy in Kj
         correctAnswers2D[1, 1] = "12.75"; // mass
         correctAnswers2D[1, 2] = "4186"; // specific heat capacity of water
         correctAnswers2D[1, 3] = "20"; // result
@@ -105,23 +105,25 @@ public class ButtonCheck : MiniGameBase
             if (Language.IsDanish)
             {
                 assignmentText.text = "En dunke vand indeholder 0.75 liter vand. "
-                    + "Den energi du lige har fundet (det var 1067 joule) bliver tilført "
+                    + "Den energi du lige har fundet (det var 1067 Kj, men du skal omskrive det til joule i denne opgave) bliver tilført "
                     + "en mængde vand svarende til 17 dunke vand. "
                     + "regn temperaturen af vandet (resultatet skal være i Kj)\n"
-                    + "hvis du får komma tal skal du bruge punktum istedet for komma";
+                    + "hvis du får komma tal skal du bruge punktum istedet for komma\n"
+                    + "Husk at runde op hvis du får komma tal";
 
                 unit1.text = "Energi (Kj)";
                 unit2.text = "masse (Kg)";
             }
             else
             {
-                assignmentText.text = "one jerry can holds 0.75 litres of water"
-                    + "the amount of energy you just found (that was 1067 joule) is added to "
+                assignmentText.text = "One jerry can holds 0.75 litres of water. "
+                    + "the amount of energy you just found (that was 1067 Kj, but you need to rewrite it to joule) is added to "
                     + "17 jerry cans worth of water."
                     + "\nCalculate the temperature of the water(result is in Kj)\n"
-                    + "if you get a comma number you need to use period instead";
+                    + "if you get a comma number you need to use period instead\n"
+                    + "Remember to round up if you get many decimals";
 
-                unit1.text = "Energy (Kj)";
+                unit1.text = "Energy (joule)";
                 unit2.text = "mass (Kg)";
             }
 
