@@ -133,6 +133,7 @@ class JournalManager : MonoBehaviour
     public Texture geometryPyramid = null;
     public Texture geometryCylinder = null;
     public Texture geometryCone = null;
+    public Texture pyhtagoreanTheoremImage = null;
 
     void CreateMathematicsEnglish ()
 	{
@@ -176,7 +177,7 @@ class JournalManager : MonoBehaviour
         
         + "a² + b² = c²\n\n"
 
-        + "Raising the length of two sides to the power of two yields the square of the third missing length. In order to find "
+        + "Raising the length of two sides, called the cathetus, to the power of two yields the square of the third missing length called the hypotinuse. In order to find "
         + "the precise length I use the square root of c². This results in c, which is the missing length of the triangle.\n\n"
 
         + "Here is an example:\n\n"
@@ -188,10 +189,11 @@ class JournalManager : MonoBehaviour
 
         + "c² = 100 - To find c we calculate the square root of 100 (since the square root is the opposite of raising to a power of two). "
         + "The square of 100 is simply the number we have to multiply by itself to equal 100. In this case 10 * 10 is equal to 100. This "
-        + "means that 10 = √10² = √(6² + 8²).\n\n"
-        + "<i>-- Prof. Jameson</i>";
+        + "means that 10 = √10² = √(6² + 8²).";
 
         pyhtagoreanTheorem.AddEntry(new JournalEntry(pyhtagoreanTheoremText, "Length of the sides of triangles"));
+        pyhtagoreanTheorem.AddEntry(new JournalEntryImage(pyhtagoreanTheoremImage, "The lengths A, B and C"));
+        pyhtagoreanTheorem.AddEntry(new JournalEntry("<i>-- Prof. Jameson</i>"));
 
         Topic geometry = new Topic("Geometry");
         mathematics.AddTopic(geometry);
@@ -377,8 +379,8 @@ class JournalManager : MonoBehaviour
 
         + "a² + b² = c²\n\n"
 
-        + "At sætte længden af de to sider i anden resulterer i længden af den ukendte længde kvadreret. "
-        + "For at finde den præcise længde benytter jeg kvadratroden på c². Dette resulterer i c, hvilket er "
+        + "Hvis to vilkårlige sider kendes, kaldet kateterne, kan Pythagoras Sætning udnyttes til at udregne den ukendte side, kaldet hypotenusen. "
+        + "For at finde den præcise længde af c benytter jeg kvadratroden på c². Dette resulterer i c, hvilket er "
         + "lægden af den ukendte længde af trekanten.\n\n"
 
         + "Her er et eksempel: "
@@ -388,13 +390,13 @@ class JournalManager : MonoBehaviour
 
         + "6² = 36(6 * 6) og 8² = 64(8 * 8) - Dette resulterer i at c² er lig med 36 + 64 = 100.\n\n"
 
-        + "c² = 100 - For at finde c skal vi udregne kvadratroden af 100 (da kvadratroden er det modsatte "
-        + "af at opløfte i anden). Kvadratroden af 100 er det tal som skal ganges med sig selv for at få 100. "
-        + "I dette tilfælde er 10 * 10 lig med 100. Dette betyder at 10 = √10² = √(6² + 8²)."
-
-        + "\n\n<i>--Prof. Jameson</i>";
+        + "c² = 100 - For at finde c skal vi udregne kvadratroden af 100, da kvadratroden er det modsatte "
+        + "af at opløfte i anden. Kvadratroden af 100 er det tal som skal ganges med sig selv for at få 100. "
+        + "I dette tilfælde er 10 * 10 lig med 100. Dette betyder at 10 = √10² = √(6² + 8²).";
 
     	pyhtagoreanTheorem.AddEntry(new JournalEntry(pyhtagoreanTheoremText, "Længden af en trekants side"));
+    	pyhtagoreanTheorem.AddEntry(new JournalEntryImage(pyhtagoreanTheoremImage, "Længderne A, B og C"));
+    	pyhtagoreanTheorem.AddEntry(new JournalEntry("<i>--Prof. Jameson</i>"));
 
         Topic geometry = new Topic("Geometri");
         mathematics.AddTopic(geometry);
@@ -469,8 +471,7 @@ class JournalManager : MonoBehaviour
         + "kan udregnes ved at gange basens areal, altså cirklens areal, med højden af cylinderen.";
 
         string geometryTextCone = "Volumen af en kegle er næsten ens med volumen af en pyramide, med kun en enkel ændring. "
-        + "Basen for en kegle er cirkulær, hvor basen for en pyramide er kvadratisk. Dette gør at volumen for en kegle kan udregnes ved at gange højden af keglen med cirklens areal, og derefter gange dette med 1/3."
-        + "<i>--Prof. Jameson</i>";
+        + "Basen for en kegle er cirkulær, hvor basen for en pyramide er kvadratisk. Dette gør at volumen for en kegle kan udregnes ved at gange højden af keglen med cirklens areal, og derefter gange dette med 1/3.";
 
         geometry.AddEntry(new JournalEntry(geometryTextCube, "Volumen"));
         geometry.AddEntry(new JournalEntryImage(geometryCube, "Volumen af en terning\n"));
@@ -501,30 +502,30 @@ class JournalManager : MonoBehaviour
         + "man vil dividere med 100 flytte man kommaet 2 pladser til venstre og så viderer. Dette er brugbart "
         + "til hurtigt at dividere tal med 10, 100, 1000 eller endda større tal.\n\n"
 
-        + "For at demonstrerer dette: \n\n"
+        + "For at demonstrere dette: \n\n"
 
         + "76 er lig med 76.0. Hvis vi vil dividere med 100 flytter vi blot kommaet 2 pladser til venstre, sådan "
         + "her: 0.76.\n\n"
 
-        + "Men, er jeg givet en brøk bliver udregningen af decimaltallet lidt sværer. Jeg skal dividere tælleren "
-        + "med nævneren. Sådanne her:\n\n"
+        + "Men, er jeg givet en brøk bliver udregningen af decimaltallet lidt sværere. Jeg skal dividere tælleren "
+        + "med nævneren. Sådan her:\n\n"
 
         + "29\n"
         + "---\n"
         + "34\n\n"
 
-        + "Decimal tallet af ovenstående er 29 / 34 = 0.85.";
+        + "Decimaltallet af ovenstående er 29 / 34 = 0.85.";
 
         miscOperations.AddEntry(new JournalEntry(miscOperationsDecimal, "Udregning af decimaltal"));
 
         string miscOperationsMissingAngle = 
         "Jeg har opdaget at alle trekanter altid har 3 vinkler med ialt 180 grader. Skulle jeg nogensinde stå i "
-        + "en situation hvor jeg mangler <i>en</i> vinkel, kan jeg let udregne den ved at subtrahere summen of "
+        + "en situation hvor jeg mangler <i>en</i> vinkel, kan jeg let udregne den ved at subtrahere summen af "
         + "kendte vinkler fra 180.\n\n"
 
-        + "For at illustrerer:\n\n"
+        + "For at illustrere:\n\n"
 
-        + "Jeg er givet to kendte vinkler. En med en 35 graders vinklen og den anden med en 45 graders vinkel. "
+        + "Jeg er givet to kendte vinkler. En med en 35 graders vinkel og en anden med en 45 graders vinkel. "
         + "Vinklen af den ukendte udregnes ved 180 - (35 + 45) = 100 grader."
         + "\n\n<i>--Prof. Jameson</i>";
 
@@ -559,14 +560,14 @@ class JournalManager : MonoBehaviour
         "I have though of a way to make drinkable water! If I have a container to hold the water "
         + "then I can boil it and cool the steam to turn it into drinkable water. "
         + "\n\nI've made an equation to make it easier to remember "
-        + "\n<b> E = m * c * ΔT</b>\n"
-        + "\nm is the mass of what we wan't to heat, also, 1 Kg of water = i liter of water.\n"
+        + "\n<b> E = m * c * ΔT</b>\n "
+        + "\nm is the mass of what we wan't to heat, also, 1 Kg of water = 1 liter of water.\n"
         + "\nc is the specific heat capacity of water, this means that to heat 1 Kg of water by 1 degree celsius "
         + "you will need 4186 joule.\n "
         + "\nΔT is the temperature change we wish to achieve. the triangle Δ (called delta) is the symbol to show "
         + "a difference. And T is the temperature, so when we write ΔT we are talking about a difference in temperature.\n "
-        + "\nE is the energy it takes to heat up something by a certain amount of degrees"
-        + "\n\nWith this equation i can calculate the temperature difference ΔT = E/m * c "
+        + "\nE is the energy it takes to heat up something by a certain amount of degrees. "
+        + "\n\nWith this equation i can calculate the temperature difference ΔT = E/m * c. "
         + "\n\nThe conversion from watts to joules/seconds is as follows 500w = 500 joule/seconds. \n\n"
         + "<i>--Prof. Jameson</i>";
 
@@ -616,14 +617,14 @@ class JournalManager : MonoBehaviour
 		+ "Jeg har lavet en ligning der gør det nemmere for mig at huske hvor meget energi "
 		+ "der skal til for at varme en mængde vand op til kogepunktet.\n\n"
 
-		+ "E = m * c * (delta)T\n\n"
+		+ "E = m * c * ΔT\n\n"
 
 		+ "m er massen af hvad der skal varmes op. Et eksempel kunne være en liter vand, "
 		+ "hvilket cirka svarer til et kilo vand. \n\n"
         + "c er den specifikke varmekapacitet. Vand har en specifik varmekapacitet på "
 		+ "4.186 J/Kg * (grader)celsius. \n\n"
-        + "(delta)T er den temperatur-ændring man ønsker. \n\n"
-        + "E er den energimængde der skal til for at varme noget op svarende til ændringen i temperatur (delta)T.\n\n"
+        + "ΔT er den temperatur-ændring man ønsker. \n\n"
+        + "E er den energimængde der skal til for at varme noget op svarende til ændringen i temperatur ΔT.\n\n"
         + "Med denne formel kan jeg udregne temperatur forskellen ΔT = E/m * c \n\n"
         + "Konversionen fra watt til joule/sekunder ser således ud 500w = 500 joule/sekunder. \n\n"
 
