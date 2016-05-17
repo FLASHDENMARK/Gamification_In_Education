@@ -548,6 +548,8 @@ class JournalManager : MonoBehaviour
         + "I have also found that creating a fire in an oxygenless environment is impossible. It seems that oxygen is a key "
         + "component too. \n\nLastly I have found that the reaction, that is fire, can be started by raising the fuel to it's"
         + " ignition temperature, as long as the other two components are present. It seems that most wood ignites at around 300 degrees.\n\n"
+        + "It seems one can create thermal energy from kinetic energi through friction. If I rub my hands together I "
+        + "can feel the heat. This is the kinetic energy turning into thermal energy.\n\n"
         + "I am fairly certain this information will come in handy at some point."
         + "\n\n <i>-- Prof. Jameson</i>";
 
@@ -598,9 +600,9 @@ class JournalManager : MonoBehaviour
 		+ "sættes igang ved at hæve temperaturen af brændslet til dets antændings-temperatur, "
 		+ "den temperatur brændslet skal have for at blive antændt. Dette kan "
 		+ "dog kun lade sig gøre hvis de andre to komponenter, ilt og brændsel, er til "
-		+ "stede. Det virker til at træ kan antændes ved en temperatur på ca. 300 grader celsius."
-        + " Det lader til at man kan lave varme energi fra kinetisk energi, igennem friktion. Hvis jeg gnider mine hænder mod hinanden, kan jeg mærke varme."
-        + " Dette er den kinetiske energi der bliver til varme energi.\n\n"
+		+ "stede. Det virker til at træ kan antændes ved en temperatur på ca. 300 grader celsius. \n\n"
+        + "Det lader til at man kan lave varmeenergi fra kinetisk energi, igennem friktion. Hvis jeg "
+        + "gnider mine hænder mod hinanden, kan jeg mærke varme. Dette er den kinetiske energi der bliver til varmeenergi.\n\n"
 
         + "Jeg er sikker på at denne information kan blive brugbar på et tidspunkt.\n\n"
 
