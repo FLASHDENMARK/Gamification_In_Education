@@ -178,7 +178,7 @@ class JournalManager : MonoBehaviour
         + "a² + b² = c²\n\n"
 
         + "Raising the length of two sides, called the cathetus, to the power of two yields the square of the third missing length called the hypotinuse. In order to find "
-        + "the precise length I use the square root of c². This results in c, which is the missing length of the triangle.\n\n"
+        + "the precise length of c I use the square root of c². This results in c, which is the missing length of the triangle.\n\n"
 
         + "Here is an example:\n\n"
 
