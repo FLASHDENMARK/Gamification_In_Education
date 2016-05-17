@@ -350,7 +350,7 @@ class JournalManager : MonoBehaviour
 		+ "3x4 = 12, og til sidst er der 2+12 = 14.\n"
 		+ "14 pinde i alt, ligesom du talte før.\n\n"
 
-		+ "Det virker til at man skal gange og dividere for man ligger til og "
+		+ "Det virker til at man skal gange og dividere før man ligger til og "
 		+ "trækker fra, for at få det korrekte svar. "
 		+ "Derudover ser det ud til, at parenteser burde blive beregnet som det "
 		+ "aller første i en udregning. "
@@ -372,7 +372,7 @@ class JournalManager : MonoBehaviour
 
         string pyhtagoreanTheoremText = 
         "Jeg har gjort god brug af Pythagoras Sætning. Denne sætning er særligt nyttig "
-        + "til at finde længden af en side af en retviklet trekant, hvis de andre to "
+        + "til at finde længden af en side af en retvinklet-trekant, hvis de andre to "
         + "sider er kendte. Pythagoras Sætning er som følger:\n\n"
 
         + "a² + b² = c²\n\n"
@@ -423,7 +423,7 @@ class JournalManager : MonoBehaviour
 		"En anden beregning relateret til arealet af rektangler og kvadrater er "
 		+ "arealet af en trekant. Arealet af en trekant er super simpel, hvis du "
 		+ "ved hvordan man bestemmer arealet af en rektangel, da arealet af en "
-		+ "trekant er halvdelen af arealet rektangel. Dette kan udregned med at "
+		+ "trekant er halvdelen af arealet rektangel. Dette kan udregnes ved at "
 		+ "dividere grundlinjen med 2 og gange det med højden af trekanten. Utroligt!";
 
 		string geometryTextCircle = 
@@ -439,7 +439,7 @@ class JournalManager : MonoBehaviour
 		+ "Jeg har fundet ud af at PI har mange praktiske funktioner.";
 
         geometry.AddEntry(new JournalEntry(geometryTextIntro));
-        geometry.AddEntry(new JournalEntry(geometryTextSquare, "Area"));
+        geometry.AddEntry(new JournalEntry(geometryTextSquare, "Areal"));
         geometry.AddEntry(new JournalEntryImage(geometrySquare, "Arealet af et kvadrat"));
         geometry.AddEntry(new JournalEntry(geometryTextRectangle));
         geometry.AddEntry(new JournalEntryImage(geometryRectangle, "Arealet af en rektangle"));
