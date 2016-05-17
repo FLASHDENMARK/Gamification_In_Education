@@ -106,24 +106,23 @@ public class ButtonCheck : MiniGameBase
             {
                 assignmentText.text = "En mængde vand svarende til 17 dunke bliver tilført energien udregnet i opgaven før. "
                     + "Udregn den nuværende temperatur af vandet. Afrund resultatet til nærmeste hele tal.\n\n"
-                    + "Husk at en dunk kan indeholde 0.75 liter vand, og at energimængden fra forrige opgave var 1067 Kj.\n\n"
+                    + "Husk at en dunk kan indeholde 0.75 liter vand, og at energimængden fra forrige opgave var 1067 kJ.\n\n"
                     + "I denne opgave skal du bruge punktum i stedet for komma hvis det bliver nødvendigt.\n"
                     + "Energimængden skal her skrives ind i joule.\n";
 
-                unit1.text = "Energi (j)";
-                unit2.text = "masse (Kg)";
+                unit1.text = "Energi (joule)";
+                unit2.text = "Masse (kg)";
             }
             else
             {
-                assignmentText.text = "One jerry can holds 0.75 litres of water. "
-                    + "the amount of energy you just found (that was 1067 Kj, but you need to rewrite it to joule) is added to "
-                    + "17 jerry cans worth of water."
-                    + "\nCalculate the temperature of the water(result is in Kj)\n"
-                    + "if you get a comma number you need to use period instead\n"
-                    + "Remember to round up if you get many decimals";
+                assignmentText.text = "An amount of water equal to 17 cans of water is being heated by the energy calculated before. "
+                    + "Calculate the current temperature of the water. Round up the result to the nearest integer.\n\n"
+                    + "Remember that a can of water can hold 0.75 litres of water, and that the energy calculated before was 1067 kJ.\n\n"
+                    + "If necessary, use a period instead of a comma when writing numbers with decimals.\n"
+                    + "The amount of energy should be entered in joules.";
 
                 unit1.text = "Energy (joule)";
-                unit2.text = "mass (Kg)";
+                unit2.text = "Mass (kg)";
             }
 
             GameObject.Find("Canvas/Unit3").GetComponent<Text>().text = "J/Kg*°C";
@@ -137,22 +136,24 @@ public class ButtonCheck : MiniGameBase
             if (Language.IsDanish)
             {
                 assignmentText.text = "Bålet yder en effekt svarende til 500W. "
-                    + "Der bruges 4186 joule ved en opvarmning af 1 Kg vand med 1 grad celsius. "
-                    + "Hvor lang tid tager det at varme 1 Kg vand op med 10 grader?\n\n"
+                    + "Der bruges 4186 joule ved en opvarmning af 1 kg vand med 1 grad celsius. "
+                    + "Hvor lang tid tager det at varme 1 kg vand op med 10 grader?\n\n"
                     + "Ved komma-tal skal du runde op til nærmeste heltal.\n"
                     + "Jeg er sikker på at notesbogen kan hjælpe hvis det er nødvendigt.";
 
-                unit1.text = "Energi (Kj)";
+                unit1.text = "Energi (kJ)";
                 unit2.text = "Joule/sekund";
             }
             else
             {
-                assignmentText.text = "The fireplace creates heat equivalent to 500W of power. "
-                    + "It takes 4186 joule to heat 1 Kg of water by 1 degree celsius. "
-                    + "\nHow much time does it take to heat 1 Kg of water by 10 degrees? (remember to round up)";
+                assignmentText.text = "The fireplace yields an effect equal to 500W. "
+                    + "4186 joule are used when heating up 1 kg of water one degree celsius."
+                    + "How much time does it take to heat up 1 kg of water by 10 degrees?\n\n"
+                    + "If a decimal-number appears, round up to nearest integer.\n"
+                    + "I am sure that the journal has information that could be necessary to complete this task.";
 
                 unit1.text = "Energy (kJ)";
-                unit2.text = "joule/seconds";
+                unit2.text = "Joule/second";
             }
 
             GameObject.Find("Canvas/Unit3").SetActive(false);
