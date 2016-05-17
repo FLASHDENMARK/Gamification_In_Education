@@ -18,7 +18,8 @@ public class MiniGameBase : MonoBehaviour, IMiniGame
 	{
         victoryPanel.SetActive(true);
 
-        GameObject.Find("GameManager").GetComponent<ProgressionManager>().unlocks[obj].level++;
+        GameObject.Find("GameManager").GetComponent<ProgressionManager>().LevelObjectUp(obj);
+
         SceneManager.LoadScene(0);
 	}
 }

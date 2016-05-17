@@ -4,6 +4,7 @@ public class ProgressionManager : MonoBehaviour
 {
     public RendererProgression unlockRenderer;
     public ObjectProgress[] unlocks;
+    int miniGamesCompleted = 0;
 
     [System.Serializable]
     public class ObjectProgress
@@ -30,7 +31,35 @@ public class ProgressionManager : MonoBehaviour
 
         // If the Main Menu was loaded. The Main Menu is always '0'
         if (level == 0) 
+        {
             unlockRenderer.SetProgression(); 
+         
+            if (miniGamesCompleted == CalculateAmountOfMiniGames())
+            {
+                EndGame end = (EndGame)FindObjectOfType(typeof(EndGame));
+
+                end.GameCompleted();
+            }
+        }
+    }
+
+    public void LevelObjectUp (int obj)
+    {
+        unlocks[obj].level++;
+        miniGamesCompleted++;
+    }
+
+    int CalculateAmountOfMiniGames ()
+    {
+        int games = 0;
+
+        for (int i = 0; i < unlocks.Length; i++)
+        {
+            for (int b = 0; b < unlocks[i].scenes.Length; b++)
+                games++;
+        }
+
+        return games;
     }
 
     void FindUnlocks ()
@@ -39,15 +68,5 @@ public class ProgressionManager : MonoBehaviour
         unlocks[1].asset = GameObject.Find("Unlockables/Workbench");
         unlocks[2].asset = GameObject.Find("Unlockables/Furnace");
         unlocks[3].asset = GameObject.Find("Unlockables/Hut");
-    }
-
-    void UnlockObject (int objectIndex)
-    {
-        if (unlocks[objectIndex].level == 1) 
-        { 
-            GameObject toUnlock = unlocks[objectIndex].asset.gameObject;
-            Sprite sprite = Resources.Load<Sprite>("CampFire");
-            toUnlock.GetComponent<SpriteRenderer>().sprite = sprite;
-        }
     }
 }
