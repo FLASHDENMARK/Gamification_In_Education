@@ -116,7 +116,7 @@ class JournalManager : MonoBehaviour
 		+ "Denne notesbog indeholder mine opdagelser fra forskellige experimenter. "
 		+ "Mine noter er delt ind i hver sin kategori.\n\n"
 
-		+ "Hvis du finder denne bog, bedes du retunere den til mig.\n\n"
+		+ "Hvis du finder denne bog, bedes du returnere den til mig.\n\n"
 
  		+ "<i>-- Prof. Jameson.</i>";
 
@@ -162,36 +162,36 @@ class JournalManager : MonoBehaviour
         + "\n\nI have come up with an easier way to remember this order. I call it PEMDAS and it stands for"
         + "\nParentheses, exponents, multiply, devide, add and subtract."
         + "\n\nAs long as equations are calculated in this order, then the result will always be correct."
-        +"\n\n<i>-- Prof. Jameson</i>";
+        + "\n\n<i>-- Prof. Jameson</i>";
 
         orderOfOperations.AddEntry(new JournalEntry(orderOfOperationsText));
 
-        Topic phytagoreanTheorem = new Topic("Phytagorean Theorem");
-        mathematics.AddTopic(phytagoreanTheorem);
+        Topic pyhtagoreanTheorem = new Topic("Pyhtagorean Theorem");
+        mathematics.AddTopic(pyhtagoreanTheorem);
 
-        string phytagoreanTheoremText =
-        "Since day 34 I have been working on how to optimizing fire. To optimize the fire I "
-        + "have concluded that we need to do 3 steps. \n\n"
-        + "The first step - I have to find the perfect size for my fuelant (in this case being wood) \n\n"
-        + "The second step - I have to find the right angle for the logs.\n\n"
-        + "The last step - I have to find the length that matches the first two steps"
+        string pyhtagoreanTheoremText =
+        "I have been able to make great use of something called the Pythagorean Theorem. It is especially useful "
+        + "for finding the length of one side of an <i>orthogonal</i> triangle if the two other sides are known. The "
+        + "Pythagorean Theorem is as follows: \n\n"
+        
+        + "a² + b² = c²\n\n"
 
-        + "These are the 'tools' I need to do the above 3 steps:\n\n"
+        + "Raising the length of two sides to the power of two yields the square of the third missing length. In order to find "
+        + "the precise length I use the square root of c². This results in c, which is the missing length of the triangle.\n\n"
 
-        + "Calculating decimal, given a percent or fraction. If I'm given a percent (0 - 100%) then all I "
-        + "I have to do is devide by 100 and I have the result. This is the same as moving the comma two spaces "
-        + "to the left. If I'm given a fraction (a number above another number) I can calculate the decimal by "
-        + "deviding the numerator(top number) with the denominator(lower number). EKSEMPEL!L!L!LLLL"
+        + "Here is an example:\n\n"
 
-        + "Calculating the missing angle by two other angles in a triangle. One property of triangles is that "
-        + "there are always 180 degrees in a triangle. This mans that if I have two angles I can calculate the "
-        + "missing angle by subtracting 180 by the degrees of the two angles. EXAMPLE!!!!!!!"
+        + "c² = 6² + 8² - This example shows the two known sides being of length 6 and 8. To calculate the missing length we "
+        + "first calculate 6² and 8²:\n\n"
 
-        + "Finding the length of one of the sides of a triangle by the length of two other sides.";
+        + "6² = 36(6 * 6) and 8² = 64(8 * 8) - This results in c² being equal to 36 + 64 = 100.\n\n"
 
+        + "c² = 100 - To find c we calculate the square root of 100 (since the square root is the opposite of raising to a power of two). "
+        + "The square of 100 is simply the number we have to multiply by itself to equal 100. In this case 10 * 10 is equal to 100. This "
+        + "means that 10 = √10² = √(6² + 8²).\n\n"
+        + "<i>-- Prof. Jameson</i>";
 
-        phytagoreanTheorem.AddEntry(new JournalEntry(phytagoreanTheoremText, "Day: 52 - optimizing fire"));
-
+        pyhtagoreanTheorem.AddEntry(new JournalEntry(pyhtagoreanTheoremText, "Length of the sides of triangles"));
 
         Topic geometry = new Topic("Geometry");
         mathematics.AddTopic(geometry);
@@ -256,8 +256,71 @@ class JournalManager : MonoBehaviour
         geometry.AddEntry(new JournalEntry(geometryTextCylinder));
         geometry.AddEntry(new JournalEntryImage(geometryCylinder, "The volume of a cylinder\n"));
         geometry.AddEntry(new JournalEntry(geometryTextCone));
-        geometry.AddEntry(new JournalEntryImage(geometryCone, "The volume of a cone\n"));
+        geometry.AddEntry(new JournalEntryImage(geometryCone, "The volume of a cone"));
+        geometry.AddEntry(new JournalEntry("\n<i>-- Prof. Jameson</i>"));
+
+
+        Topic miscOperations = new Topic("Miscellaneous operations");
+        mathematics.AddTopic(miscOperations);
+
+        string miscOperationsDecimal =
+		"If I am given a percentage or fraction I can calculate the decimal by these simple formulas. "
+		+ "If I am given a percentage (0 - 100%) then all I have to do is devide by 100 and I have "
+        + "the result. This is the same as moving the comma two spaces to the left. "
+        + "If I am given a fraction (a number above another number) I can calculate the decimal by "
+        + "deviding the numerator(top number) with the denominator(lower number). \n\n"
+
+        + "This calls for an example: \n\n"
+
+        + "How is 76% converted to decimal? We simply devide by 100. I have "
+        + "discovered that if you devide by 10 we move the comma one place to the left. If we devide by "
+        + "100 we move it 2 places to the left and so on. This is useful for quickly deviding numbers "
+        + "by 10, 100, 1000 or even larger numbers. \n\n"
+
+        + "To demonstrate this behavior: \n\n"
+        + "76 is equal to 76.0. If we want to devide by 100 we move the comma two places "
+        + "to the left, like so: 0.76.\n\n"
+
+        + "However, if I am given a fraction, calculating the decimal value is a bit more complicated. "
+        + "I have to devide the top number with the lower number. Like so: \n\n"
+
+        + "29\n"
+        + "---\n"
+        + "34\n\n"
+
+        + "The decimal number of the above is 29 / 34 = 0.85.";
+
+        miscOperations.AddEntry(new JournalEntry(miscOperationsDecimal, "Decimal calculation"));
+
+        string miscOperationsMissingAngle = 
+        "I have discovered that triangles always have 3 points with a total of 180 degrees. So if I am ever "
+        + "in a situation where I am missing one angle of a triangle, I can easily calculate it by subtracting "
+        + "the sum of the known angles from 180.\n\n"
+
+        + "To illustrate:\n\n"
+
+        + "I am given two known angles. One with a 35 degree angle and the other with a 45 degree angle. The degree "
+        + "of the third and missing angle is simply 180 - (35 + 45) = 100 degrees."
+        + "\n\n<i>-- Prof. Jameson</i>";
+
+        miscOperations.AddEntry(new JournalEntry(miscOperationsMissingAngle, "Missing angle of a triangle"));
     }
+
+    /*
+
+            "Since day 34 I have been working on how to optimizing fire. To optimize the fire I "
+        + "have concluded that we need to do 3 steps. \n\n"
+        + "The first step - I have to find the perfect size for my fuelant (in this case being wood) \n\n"
+        + "The second step - I have to find the right angle for the logs.\n\n"
+        + "The last step - I have to find the length that matches the first two steps"
+
+        + "These are the 'tools' I need to do the above 3 steps:\n\n"
+
+        + "Calculating the missing angle by two other angles in a triangle. One property of triangles is that "
+        + "there are always 180 degrees in a triangle. This mans that if I have two angles I can calculate the "
+        + "missing angle by subtracting 180 by the degrees of the two angles. EXAMPLE!!!!!!!\n\n"
+
+       */
 
 	void CreateMathematicsDanish ()
 	{
@@ -291,10 +354,10 @@ class JournalManager : MonoBehaviour
 		+ "trækker fra, for at få det korrekte svar. "
 		+ "Derudover ser det ud til, at parenteser burde blive beregnet som det "
 		+ "aller første i en udregning. "
-		+ "Efter parenteser burde man beregne kvadratrødder og exponenter, så "
+		+ "Efter parenteser burde man beregne kvadratrødder og eksponenter, så "
 		+ "gange og dividere, og til sidst ligger man til og trækker fra.\n\n"
 
-		+ "Jeg er kommet frem til en nemmere måde til at huske denne rækkefølge. "
+		+ "Jeg er kommet frem til en nemmere måde at huske denne rækkefølge. "
 		+ "Jeg kalder den for PEGDAS, som står for: "
 		+ "Parenteser, eksponenter, gange og dividere, addere og subtrahere.\n\n"
 
@@ -303,6 +366,35 @@ class JournalManager : MonoBehaviour
 		+ "<i>--Prof. Jameson</i>";
 
         orderOfOperations.AddEntry(new JournalEntry(orderOfOperationsText));
+
+        Topic pyhtagoreanTheorem = new Topic("Phytagoras Sætning");
+        mathematics.AddTopic(pyhtagoreanTheorem);
+
+        string pyhtagoreanTheoremText = 
+        "Jeg har gjort god brug af Pythagoras Sætning. Denne sætning er særligt nyttig "
+        + "til at finde længden af en side af en retviklet trekant, hvis de andre to "
+        + "sider er kendte. Pythagoras Sætning er som følger:\n\n"
+
+        + "a² + b² = c²\n\n"
+
+        + "At sætte længden af de to sider i anden resulterer i længden af den ukendte længde kvadreret. "
+        + "For at finde den præcise længde benytter jeg kvadratroden på c². Dette resulterer i c, hvilket er "
+        + "lægden af den ukendte længde af trekanten.\n\n"
+
+        + "Her er et eksempel: "
+
+        + "c² = 6² + 8² - Dette eksempel viser længden af de to kendte sider som 6 og 8. For at udregne "
+        + "den manglende længde udregner vi først 6² + 8².\n\n"
+
+        + "6² = 36(6 * 6) og 8² = 64(8 * 8) - Dette resulterer i at c² er lig med 36 + 64 = 100.\n\n"
+
+        + "c² = 100 - For at finde c skal vi udregne kvadratroden af 100 (da kvadratroden er det modsatte "
+        + "af at opløfte i anden). Kvadratroden af 100 er det tal som skal ganges med sig selv for at få 100. "
+        + "I dette tilfælde er 10 * 10 lig med 100. Dette betyder at 10 = √10² = √(6² + 8²)."
+
+        + "\n\n<i>--Prof. Jameson</i>";
+
+    	pyhtagoreanTheorem.AddEntry(new JournalEntry(pyhtagoreanTheoremText, "Længden af en trekants side"));
 
         Topic geometry = new Topic("Geometri");
         mathematics.AddTopic(geometry);
@@ -377,7 +469,8 @@ class JournalManager : MonoBehaviour
         + "kan udregnes ved at gange basens areal, altså cirklens areal, med højden af cylinderen.";
 
         string geometryTextCone = "Volumen af en kegle er næsten ens med volumen af en pyramide, med kun en enkel ændring. "
-        + "Basen for en kegle er cirkulær, hvor basen for en pyramide er kvadratisk. Dette gør at volumen for en kegle kan udregnes ved at gange højden af keglen med cirklens areal, og derefter gange dette med 1/3.";
+        + "Basen for en kegle er cirkulær, hvor basen for en pyramide er kvadratisk. Dette gør at volumen for en kegle kan udregnes ved at gange højden af keglen med cirklens areal, og derefter gange dette med 1/3."
+        + "<i>--Prof. Jameson</i>";
 
         geometry.AddEntry(new JournalEntry(geometryTextCube, "Volumen"));
         geometry.AddEntry(new JournalEntryImage(geometryCube, "Volumen af en terning\n"));
@@ -388,7 +481,54 @@ class JournalManager : MonoBehaviour
         geometry.AddEntry(new JournalEntry(geometryTextCylinder));
         geometry.AddEntry(new JournalEntryImage(geometryCylinder, "Volumen af en cylinder\n"));
         geometry.AddEntry(new JournalEntry(geometryTextCone));
-        geometry.AddEntry(new JournalEntryImage(geometryCone, "Volumen af en kegle\n"));
+        geometry.AddEntry(new JournalEntryImage(geometryCone, "Volumen af en kegle"));
+        geometry.AddEntry(new JournalEntry("\n<i>-- Prof. Jameson</i>"));
+
+        Topic miscOperations = new Topic("Diverse operationer");
+        mathematics.AddTopic(miscOperations);
+
+        string miscOperationsDecimal =
+        "Hvis jeg er givet et procenttal eller brøk kan jeg udregne decimaltallet via disse simple udregninger. "
+        + "Hvis jeg er givet et procenttal (0 - 100%) skal jeg blot dividere med 100 og jeg har resultatet. "
+        + "Dette er det samme som at flytte kommaet to pladser til venstre. Hvis jeg er givet en brøk (et "
+        + "tal over et andet tal) kan jeg udregne decimaltallet ved at dividere tælleren(øverste tal) med "
+        + "nævneren(nederste tal).\n\n"
+
+        + "Dette kræver et eksempel: \n\n"
+
+        + "Hvordan er 76% udregnet til et decimaltal? Da dette er et procenttal kan vi blot dividere med 100. "
+        + "Jeg har opdaget at hvis man vil dividere med 10 flytte man blot kommaet en plads til venstre. Hvis "
+        + "man vil dividere med 100 flytte man kommaet 2 pladser til venstre og så viderer. Dette er brugbart "
+        + "til hurtigt at dividere tal med 10, 100, 1000 eller endda større tal.\n\n"
+
+        + "For at demonstrerer dette: \n\n"
+
+        + "76 er lig med 76.0. Hvis vi vil dividere med 100 flytter vi blot kommaet 2 pladser til venstre, sådan "
+        + "her: 0.76.\n\n"
+
+        + "Men, er jeg givet en brøk bliver udregningen af decimaltallet lidt sværer. Jeg skal dividere tælleren "
+        + "med nævneren. Sådanne her:\n\n"
+
+        + "29\n"
+        + "---\n"
+        + "34\n\n"
+
+        + "Decimal tallet af ovenstående er 29 / 34 = 0.85.";
+
+        miscOperations.AddEntry(new JournalEntry(miscOperationsDecimal, "Udregning af decimaltal"));
+
+        string miscOperationsMissingAngle = 
+        "Jeg har opdaget at alle trekanter altid har 3 vinkler med ialt 180 grader. Skulle jeg nogensinde stå i "
+        + "en situation hvor jeg mangler <i>en</i> vinkel, kan jeg let udregne den ved at subtrahere summen of "
+        + "kendte vinkler fra 180.\n\n"
+
+        + "For at illustrerer:\n\n"
+
+        + "Jeg er givet to kendte vinkler. En med en 35 graders vinklen og den anden med en 45 graders vinkel. "
+        + "Vinklen af den ukendte udregnes ved 180 - (35 + 45) = 100 grader."
+        + "\n\n<i>--Prof. Jameson</i>";
+
+        miscOperations.AddEntry(new JournalEntry(miscOperationsMissingAngle, "Ukendt vinkel af en trekant"));
     }
 
 	void CreatePhysicsEnglish ()
@@ -416,8 +556,7 @@ class JournalManager : MonoBehaviour
         physics.AddTopic(waterDistillation);
 
         string waterDistillationText =
-        "<b>\tDay: 37 - Distilling of saltwater</b>"
-        + "\n\nI have though of a way to make drinkable water! I just need a container to hold the water "
+        "I have though of a way to make drinkable water! If I have a container to hold the water "
         + "then I can boil it and cool the steam to turn it into drinkable water. "
         + "\n\nI've made an equation to make it easier to remember "
         + "\n<b> E = m * c * ΔT</b>\n"
@@ -428,7 +567,8 @@ class JournalManager : MonoBehaviour
         + "a difference. And T is the temperature, so when we write ΔT we are talking about a difference in temperature.\n "
         + "\nE is the energy it takes to heat up something by a certain amount of degrees"
         + "\n\nWith this equation i can calculate the temperature difference ΔT = E/m * c "
-        + "\n\nThe conversion from watts to joules/seconds is as follows 500w = 500 joule/seconds";
+        + "\n\nThe conversion from watts to joules/seconds is as follows 500w = 500 joule/seconds. \n\n"
+        + "<i>--Prof. Jameson</i>";
 
         waterDistillation.AddEntry(new JournalEntry(waterDistillationText, "Day: 37 - Distilling of saltwater"));
 	}
@@ -458,7 +598,6 @@ class JournalManager : MonoBehaviour
 		+ "den temperatur brændslet skal have for at blive antændt. Dette kan "
 		+ "dog kun lade sig gøre hvis de andre to komponenter, ilt og brændsel, er til "
 		+ "stede. Det virker til at træ kan antændes ved en temperatur på ca. 300 grader celsius.\n\n"
-        + "Konversionen fra watt til joule/sekunder ser således ud 500w = 500 joule/sekunder"
 
         + "Jeg er sikker på at denne information kan blive brugbar på et tidspunkt.\n\n"
 
@@ -470,7 +609,7 @@ class JournalManager : MonoBehaviour
         physics.AddTopic(waterDistillation);
 
         string waterDistillationText =
-		"Jeg tror jeg har fundet på en måde at lave drikkevand på! Jeg mangler kun en "
+		"Jeg tror jeg har fundet på en måde at lave drikkevand på! Man skal kun have en "
 		+ "beholder der kan holde på vand. Ved at koge saltvand, og derefter køle dampen, "
 		+ "kan jeg lave drikkevand.\n\n"
 
@@ -484,8 +623,9 @@ class JournalManager : MonoBehaviour
         + "c er den specifikke varmekapacitet. Vand har en specifik varmekapacitet på "
 		+ "4.186 J/Kg * (grader)celsius. \n\n"
         + "(delta)T er den temperatur-ændring man ønsker. \n\n"
-        + " E er den energimængde der skal til for at varme noget op svarende til ændringen i temperatur (delta)T.\n\n"
+        + "E er den energimængde der skal til for at varme noget op svarende til ændringen i temperatur (delta)T.\n\n"
         + "Med denne formel kan jeg udregne temperatur forskellen ΔT = E/m * c \n\n"
+        + "Konversionen fra watt til joule/sekunder ser således ud 500w = 500 joule/sekunder. \n\n"
 
         + "<i>-- Prof. Jameson</i>";
 
@@ -544,7 +684,7 @@ class JournalManager : MonoBehaviour
 				Highlight();
 			}
 
-        	if (GUI.Button(new Rect(100, 30 + 45 * i, 120, 30), subjects[i].Name))
+        	if (GUI.Button(new Rect(50, 30 + 45 * i, 120, 30), subjects[i].Name))
         	{
         		_selection = i;
         	}
@@ -560,7 +700,7 @@ class JournalManager : MonoBehaviour
 				Highlight();
 			}
 
-        	if (GUI.Button(new Rect(240, 30 + 45 * i, 120, 30), Topics[i].Name))
+        	if (GUI.Button(new Rect(190, 30 + 45 * i, 205, 30), Topics[i].Name))
         	{
         		subjects[_selection].Selection = i;
         	}
