@@ -104,14 +104,13 @@ public class ButtonCheck : MiniGameBase
    
             if (Language.IsDanish)
             {
-                assignmentText.text = "En dunke vand indeholder 0.75 liter vand. "
-                    + "Den energi du lige har fundet (det var 1067 Kj, men du skal omskrive det til joule i denne opgave) bliver tilført "
-                    + "en mængde vand svarende til 17 dunke vand. "
-                    + "regn temperaturen af vandet (resultatet skal være i Kj)\n"
-                    + "hvis du får komma tal skal du bruge punktum istedet for komma\n"
-                    + "Husk at runde op hvis du får komma tal";
+                assignmentText.text = "En mængde vand svarende til 17 dunke bliver tilført energien udregnet i opgaven før. "
+                    + "Udregn den nuværende temperatur af vandet. Afrund resultatet til nærmeste hele tal.\n\n"
+                    + "Husk at en dunk kan indeholde 0.75 liter vand, og at energimængden fra forrige opgave var 1067 Kj.\n\n"
+                    + "I denne opgave skal du bruge punktum i stedet for komma hvis det bliver nødvendigt.\n"
+                    + "Energimængden skal her skrives ind i joule.\n";
 
-                unit1.text = "Energi (Kj)";
+                unit1.text = "Energi (j)";
                 unit2.text = "masse (Kg)";
             }
             else
@@ -137,12 +136,14 @@ public class ButtonCheck : MiniGameBase
 
             if (Language.IsDanish)
             {
-                assignmentText.text = "Bålet laver varme svarende til 500W. "
-                    + "det tager 4186 joule at varme 1 Kg vand med 1 Grad celsius. "
-                    + "Hvor meget tid tager det at varme 1 Kg vand 10 grader celsius? (husk at runde op)";
+                assignmentText.text = "Bålet yder en effekt svarende til 500W. "
+                    + "Der bruges 4186 joule ved en opvarmning af 1 Kg vand med 1 grad celsius. "
+                    + "Hvor lang tid tager det at varme 1 Kg vand op med 10 grader?\n\n"
+                    + "Ved komma-tal skal du runde op til nærmeste heltal.\n"
+                    + "Jeg er sikker på at notesbogen kan hjælpe hvis det er nødvendigt.";
 
                 unit1.text = "Energi (Kj)";
-                unit2.text = "joule/sekunder";
+                unit2.text = "Joule/sekund";
             }
             else
             {
