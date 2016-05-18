@@ -19,7 +19,7 @@ class CampFireDigManager : MiniGameBase
     void Awake ()
     {
         base.OnMiniGameStarted();
-        error.SetActive(false);
+        StopError();
 
         foreach (CampfireDig c in shapes)
             c.Initialize(lineRendererWidth);
@@ -95,7 +95,7 @@ class CampFireDigManager : MiniGameBase
         // All connections must be set before we can check the results
         if (!AreAllShapesConnected())
         {
-            error.SetActive(true);
+            StartError();
             return;
         }
 
@@ -150,5 +150,17 @@ class CampFireDigManager : MiniGameBase
         }
 
         colorChangeRunning = false;
+    }
+
+    void StartError ()
+    {
+        error.SetActive(true);
+
+        Invoke("StopError", 1);
+    }
+
+    void StopError ()
+    {
+        error.SetActive(false);
     }
 }
