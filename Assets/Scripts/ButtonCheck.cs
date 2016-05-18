@@ -105,7 +105,7 @@ public class ButtonCheck : MiniGameBase
             if (Language.IsDanish)
             {
                 assignmentText.text = "En mængde vand svarende til 17 dunke bliver tilført energien udregnet i opgaven før. "
-                    + "Udregn den nuværende temperatur af vandet. Afrund resultatet til nærmeste hele tal.\n\n"
+                    + "Udregn den temperaturændring der sker i vandet. Afrund resultatet til nærmeste hele tal.\n\n"
                     + "Husk at en dunk kan indeholde 0.75 liter vand, og at energimængden fra forrige opgave var 1067 kJ.\n\n"
                     + "I denne opgave skal du bruge punktum i stedet for komma hvis det bliver nødvendigt.\n"
                     + "Energimængden skal her skrives ind i joule.\n";
@@ -116,7 +116,7 @@ public class ButtonCheck : MiniGameBase
             else
             {
                 assignmentText.text = "An amount of water equal to 17 cans of water is being heated by the energy calculated before. "
-                    + "Calculate the current temperature of the water. Round up the result to the nearest integer.\n\n"
+                    + "Calculate the change in temperature in the water. Round up the result to the nearest integer.\n\n"
                     + "Remember that a can of water can hold 0.75 litres of water, and that the energy calculated before was 1067 kJ.\n\n"
                     + "If necessary, use a period instead of a comma when writing numbers with decimals.\n"
                     + "The amount of energy should be entered in joules.";
@@ -125,7 +125,7 @@ public class ButtonCheck : MiniGameBase
                 unit2.text = "Mass (kg)";
             }
 
-            GameObject.Find("Canvas/Unit3").GetComponent<Text>().text = "J/Kg*°C";
+            GameObject.Find("Canvas/Unit3").GetComponent<Text>().text = "J/kg*°C";
 
             object3.GetComponent<InputField>().interactable = false;
             object3.GetComponent<InputField>().text = "4186";
