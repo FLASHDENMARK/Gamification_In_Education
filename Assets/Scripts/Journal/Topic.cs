@@ -7,7 +7,7 @@ class Topic
 		_name = name;
 	}
 	
-	List<JournalEntryBase> journalEntries = new List<JournalEntryBase>();
+	List<EntryBase> journalEntries = new List<EntryBase>();
 
 	string _name;
 	public string Name
@@ -16,12 +16,12 @@ class Topic
 		private set { _name = value; }
 	}
 
-	public List<JournalEntryBase> Entries 
+	public List<EntryBase> Entries 
 	{
 		get { return journalEntries; }
 	}
 
-	public void AddEntry (JournalEntryBase entry)
+	public void AddEntry (EntryBase entry)
 	{
 		journalEntries.Add(entry);
 	}

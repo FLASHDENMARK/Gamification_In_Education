@@ -7,8 +7,8 @@ public class MouseManager : MonoBehaviour
     {
         GameObject entity = null;
 
-        // Don't let the user click on objects while the Journal is displaying
-        if (!JournalManager.ShowJournal && !MainMenu.ShowMenu)
+        // Don't let the user click on objects while the Journal or Menu is displaying
+        if (!JournalManager.ShowJournal && !Menu.ShowMenu)
         {
             // Converts the mouse position from screen space into world space
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

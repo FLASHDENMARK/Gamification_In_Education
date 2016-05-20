@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+// Is in charge of translating any in-engine text.
 public class ApplyLanguage : MonoBehaviour 
 {
 	public Text label;
@@ -13,7 +14,7 @@ public class ApplyLanguage : MonoBehaviour
 
 	void Awake ()
 	{
-		Language.language += Translate;
+		Language.OnLanguageChanged += Translate;
 
 		if (Language.IsDanish)
 		{

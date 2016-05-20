@@ -19,7 +19,6 @@ public class ProgressionManager : MonoBehaviour
 
     void Awake ()
     {
-        DontDestroyOnLoad(this);
         FindUnlocks();
         unlockRenderer.SetProgression(); 
     }
