@@ -1,9 +1,21 @@
 ﻿using UnityEngine;
+using System;
 
-public abstract class JournalEntryBase : MonoBehaviour
+public class JournalEntryBase : MonoBehaviour
 {
-    public abstract GUIContent Content
+	public JournalEntryBase (GUIContent content)
+	{
+		if (content.image && string.IsNullOrEmpty(content.tooltip))
+		{
+			throw new ArgumentNullException("A figure label cannot be empty or null");
+		}
+
+		_content = content;
+	}
+
+	GUIContent _content;
+    public GUIContent Content
     {
-        get;
+    	get { return _content; }
     }
 }

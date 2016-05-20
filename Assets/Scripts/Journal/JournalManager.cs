@@ -144,26 +144,35 @@ class JournalManager : MonoBehaviour
         mathematics.AddTopic(orderOfOperations);
 
         string orderOfOperationsText = 
-        "It seems that math can be misleading at times."
-        + "\nI have found that the order of operations is quite important."
-        + "\n\nHere's an example:"
-        + "\nWe have two sticks, and then 4 sets of 3 sticks."
-        + "\n || +(||| + ||| + ||| + |||)"
-        + "\n\nThe mathematcial equation would then be:"
-        + "\n\n<b>2+3×4</b>"
-        + "\n2+3 = 5, that leaves us with 5×4."
-        + "\n5×4 = 20 right? Wrong. Count the sticks for yourself, are there 20 sticks above?"
-        + "\nNo, right? The correct equation would be:"
-        + "\n\n<b>2+3×4</b>"
-        + "\n3×4 = 12, which leaves us with: 2 + 12 = 14."
-        + "\n14 sticks, just as above."
-        + "\n\nIt seems that you have to multiply and divide, before addition and subtraction, to get the right result."
-        + "\nFurthermore it seems that parenthesis should be calculated as the very first thing of an equation."
-        + "\nthen we should calculate roots and exponents, then multiplication and division, and lastly addition and subtraction."
-        + "\n\nI have come up with an easier way to remember this order. I call it PEMDAS and it stands for"
-        + "\nParentheses, exponents, multiply, devide, add and subtract."
-        + "\n\nAs long as equations are calculated in this order, then the result will always be correct."
-        + "\n\n<i>-- Prof. Jameson</i>";
+        "It seems that math can be misleading at times. I have found that the order of operations "
+        + "is quite important.\n\n"
+
+        + "Here's an example:\n\n"
+
+        + "We have two sticks, and then 4 sets of 3 sticks.\n\n"
+
+        + "|| +(||| + ||| + ||| + |||)\n\n"
+
+        + "The mathematcial equation would then be:\n\n"
+
+        + "<b>2+3×4</b>\n"
+        + "2+3 = 5, that leaves us with 5×4. 5×4 = 20 right? Wrong. Count the sticks for yourself, "
+        + "are there 20 sticks above?\n\n"
+
+        + "No, right? The correct equation would be:\n\n"
+
+        + "<b>2+3×4</b>\n"
+        + "3×4 = 12, which leaves us with: 2 + 12 = 14.\n\n"
+
+        + "14 sticks, just as above.\n\n"
+
+        + "It seems that you have to multiply and divide, before addition and subtraction, to get the "
+        + "right result. Furthermore it seems that parenthesis should be calculated as the very first thing "
+        + "of an equation. Then we should calculate roots and exponents, then multiplication and division, "
+        + "and lastly addition and subtraction. I have come up with an easier way to remember this order. "
+        + "I call it PEMDAS and it stands for Parentheses, exponents, multiply, devide, add and subtract.\n\n"
+        + "As long as equations are calculated in this order, then the result will always be correct.\n\n"
+        + "<i>-- Prof. Jameson</i>";
 
         orderOfOperations.AddEntry(new JournalEntry(orderOfOperationsText));
 
